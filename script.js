@@ -14,12 +14,12 @@ module.exports = new Script({
         %[Autre demande](postback:contactRequest)
         %[Visiter notre site](http://wondor.co)`),
         receive: (bot) => {
-            return bot.then(() => 'askName');
+            return bot.say('Comment vous appelez-vous ?')
+                .then(() => 'setName');
         }
     },
 
-    askName: {
-        prompt: (bot) => bot.say('What\'s your name?'),
+    setName: {
         receive: (bot, message) => {
             const name = message.text;
             return bot.setProp('name', name)
