@@ -14,8 +14,7 @@ module.exports = new Script({
         %[Autre demande](postback:contactRequest)
         %[Visiter notre site](http://wondor.co)`),
         receive: (bot) => {
-            return bot.say('Hi! I\'m Smooch Bot!')
-                .then(() => 'askName');
+            return bot.then(() => 'askName');
         }
     },
 
