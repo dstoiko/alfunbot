@@ -13,15 +13,13 @@ module.exports = new Script({
         %[Demander un service](postback:serviceRequest)
         %[Autre demande](postback:contactRequest)
         %[Visiter notre site](http://wondor.co)`),
-        receive: (bot) => {
-            return bot.say('Comment vous appelez-vous ?')
-                .then(() => 'setName');
-        }
+        receive: () => 'askName'
     },
 
-    setName: {
+    askName: {
+        prompt: (bot) => bot.say('Comment vous appelez-vous ?'),
         receive: (bot, message) => {
-            const name = message.text;
+            const name = message.text.trim();
             return bot.setProp('name', name)
                 .then(() => bot.say(`Merci ${name} !`))
                 .then(() => 'finish');
