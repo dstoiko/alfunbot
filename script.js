@@ -4,7 +4,7 @@ const Script = require('smooch-bot').Script;
 
 module.exports = new Script({
     processing: {
-        prompt: (bot) => bot.say('Beep boop...'),
+        //prompt: (bot) => bot.say('Beep boop...'),
         receive: () => 'processing'
     },
 
@@ -29,9 +29,13 @@ module.exports = new Script({
     finish: {
         receive: (bot, message) => {
             return bot.getProp('name')
-                .then((name) => bot.say(`Sorry ${name}, my creator didn't ` +
-                        'teach me how to do anything else!'))
+                .then((name) => bot.say(`Sorry ${name}, GAME OVER...`))
                 .then(() => 'start');
         }
+    },
+
+    error: {
+        prompt: (bot) => bot.say('Beep Boop... Désolé, il y a une erreur...'),
+        receive: () => 'start'
     }
 });

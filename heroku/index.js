@@ -112,8 +112,17 @@ function handlePostback(req, res) {
         res.end();
     }
 
-    createBot(req.body.appUser).say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
-        .then(() => res.end());
+    if (postback.action.payload === 'serviceRequest') {
+        createBot(req.body.appUser).say(`Choisissez un type de service :
+%[Bricolage](postback:bricolage)
+%[Ménage](postback:menage)
+%[Déménagement](postback:demenagement)`)
+            .then(() => res.end());
+    }
+    else {
+        createBot(req.body.appUser).say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
+            .then(() => res.end());
+    }
 }
 
 app.post('/webhook', function(req, res, next) {
