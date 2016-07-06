@@ -28,13 +28,12 @@ module.exports = new Script({
 
     contact: {
         prompt: (bot) => bot.say(`Veuillez patienter, un de mes collègues humains va prendre le relais...`)
-            .then(() => 'speak')
+            .then(() => 'finish')
     }
 
     finish: {
         receive: (bot, message) => {
-            return bot.getProp('name')
-                .then((name) => bot.say(`Sorry ${name}, GAME OVER...`))
+            return bot.say(`Sorry, GAME OVER...`)
                 .then(() => 'start');
         }
     },
