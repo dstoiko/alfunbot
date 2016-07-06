@@ -29,7 +29,7 @@ module.exports = new Script({
     contact: {
         prompt: (bot) => bot.say(`Veuillez patienter, un de mes collègues humains va prendre le relais...`)
             .then(() => 'finish')
-    }
+    },
 
     finish: {
         receive: (bot, message) => {
