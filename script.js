@@ -18,7 +18,7 @@ module.exports = new Script({
 %[Ménage](postback:menage)
 %[Déménagement](postback:demenagement)`),
         receive: () => 'escape'
-    }
+    },
 
     escape: {
         prompt: (bot) => bot.say(`Sélectionnez l'une des options proposées, nous tratierons votre demande au plus vite ! Voulez-vous parler à notre équipe ?
