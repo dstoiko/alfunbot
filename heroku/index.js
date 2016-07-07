@@ -119,7 +119,7 @@ function handlePostback(req, res) {
     });
 
     if (postback.action.payload === 'serviceRequest') {
-        stateMachine.bot.setState(services)
+        stateMachine.prompt('services')
 //         createBot(req.body.appUser).say(`Choisissez un type de service :
 // %[Bricolage](postback:bricolage)
 // %[Ménage](postback:menage)
