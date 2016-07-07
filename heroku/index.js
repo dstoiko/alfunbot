@@ -107,13 +107,19 @@ function handleMessages(req, res) {
 }
 
 function handlePostback(req, res) {
+
     const postback = req.body.postbacks[0];
     if (!postback || !postback.action) {
         res.end();
     }
 
+    const stateMachine = new StateMachine({
+        script,
+        bot: createBot(req.body.appUser)
+    });
+
     if (postback.action.payload === 'serviceRequest') {
-        createBot(req.body.appUser).setState('services')
+        stateMachine.bot.setState('services')
 //         createBot(req.body.appUser).say(`Choisissez un type de service :
 // %[Bricolage](postback:bricolage)
 // %[Ménage](postback:menage)

@@ -5,13 +5,12 @@ const Script = require('smooch-bot').Script;
 module.exports = new Script({
 
     start: {
-        prompt: (bot) => {
+        receive: (bot) => {
             return bot.say(`Bienvenue sur Wondor ! Nous offrons actuellement des services de bricolage, déménagement et ménage. Sélectionnez 'Demander un service' pour continuer.
 %[Demander un service](postback:serviceRequest)
 %[Autre demande](postback:contactRequest)
 %[Visiter notre site](http://wondor.co)`);
-        },
-        receive: () => 'escape'
+        }
     },
 
     services: {
