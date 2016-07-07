@@ -11,6 +11,7 @@ module.exports = new Script({
 %[Autre demande](postback:contactRequest)
 %[Visiter notre site](http://wondor.co)`)
         }
+        receive: () => 'escape'
     },
 
     services: {
