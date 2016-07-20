@@ -124,7 +124,7 @@ function handlePostback(req, res) {
         case 'bricolage':
         case 'menage':
         case 'demenagement':
-            console.log('Payload: ' + payload + ' / State: ' + JSON.stringify(bot.getState(), null, 2);
+            console.log('Payload: ' + payload + ' / State: ' + JSON.stringify(bot.getState(), null, 2));
             // smoochBot.setState(payload)
             //     .then(() => res.end());
             res.end();
