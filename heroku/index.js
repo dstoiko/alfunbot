@@ -120,12 +120,20 @@ function handlePostback(req, res) {
 
     switch (postback.action.payload) {
         case "postcode":
+            stateMachine.prompt(postback.action.payload);
+                .then(() => res.end());
         case "contactRequest":
+            stateMachine.prompt(postback.action.payload);
+                .then(() => res.end());
         case "bricolage":
+            stateMachine.prompt(postback.action.payload);
+                .then(() => res.end());
         case "menage":
+            stateMachine.prompt(postback.action.payload);
+                .then(() => res.end());
         case "demenagement":
             stateMachine.prompt(postback.action.payload);
-                // .then(() => res.end());
+                .then(() => res.end());
         break;
 
         default:
