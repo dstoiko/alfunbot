@@ -108,26 +108,29 @@ function handleMessages(req, res) {
 
 function handlePostback(req, res) {
 
-    const user = req.body.appUser;
+    const userId = req.body.appUser._id;
+    const bot = createBot(req.body.appUser);
 
     const postback = req.body.postbacks[0];
     if (!postback || !postback.action) {
         res.end();
     };
 
-    switch (postback.action.payload) {
+    const payload = postback.action.payload;
+
+    switch (payload) {
         case 'postcode':
         case 'contactRequest':
         case 'bricolage':
         case 'menage':
         case 'demenagement':
-            console.log(postback.action.payload);
-            user.setState(postback.action.payload)
+            console.log(payload);
+            SmoochApiStore.setState(userId, payload)
                 .then(() => res.end());
         break;
 
         default:
-            stateMachine.bot.say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
+            bot.say(`Payload was: ${payload}`)
                 .then(() => res.end());
     };
 
