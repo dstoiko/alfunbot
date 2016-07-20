@@ -15,27 +15,20 @@ module.exports = new Script({
 
     postcode: {
         prompt: (bot) => bot.say(`Quel est votre code postal ?`),
-        receive: (bot, message) => {
-            const postcode = message.text;
-            return bot.setProp('postcode', postcode)
-                .then(() => 'date');
-        }
+        receive: () => 'date'
     },
 
     date: {
         prompt: (bot) => bot.say(`Pour quand voulez-vous ce service (date et heure) ?`),
-        receive: (bot, message) => {
-            const date = message.text;
-            return bot.setProp('date', date)
-                .then(() => 'servicesRequest');
-        }
+        receive: () => 'servicesRequest'
     },
 
     servicesRequest: {
-        prompt: (bot) => bot.say(`Choisissez un type de service :
+        prompt: (bot) => bot.say(`Choisissez le type de service que vous voulez:
 %[Bricolage](postback:bricolage)
 %[Ménage](postback:menage)
-%[Déménagement](postback:demenagement)`),
+%[Déménagement](postback:demenagement)
+%[Autre](postback:otherService)`),
         receive: () => 'escape'
     },
 
