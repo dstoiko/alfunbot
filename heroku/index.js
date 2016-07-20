@@ -118,14 +118,14 @@ function handlePostback(req, res) {
         res.end();
     }
 
-    switch (postback.action.payload) {
+    switch (JSON.stringify(postback.action.payload)) {
         case 'postcode':
         case 'contactRequest':
         case 'bricolage':
         case 'menage':
         case 'demenagement':
-            console.log(postback.action.payload);
-            stateMachine._doPrompt(postback.action.payload)
+            console.log(JSON.stringify(postback.action.payload));
+            stateMachine._doPrompt(JSON.stringify(postback.action.payload))
                 .then(() => res.end());
         break;
 
