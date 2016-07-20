@@ -108,7 +108,7 @@ function handleMessages(req, res) {
 
 function handlePostback(req, res) {
 
-    const userId = req.body.appUser._id;
+    const userId = req.body.appUser.userId || req.body.appUser._id;
     const bot = createBot(req.body.appUser);
 
     const postback = req.body.postbacks[0];
@@ -124,9 +124,10 @@ function handlePostback(req, res) {
         case 'bricolage':
         case 'menage':
         case 'demenagement':
-            console.log(payload);
-            SmoochApiStore.setState(userId, payload)
-                .then(() => res.end());
+            console.log('Payload: ' + payload + ' / State: ' + smoochBot.getState());
+            // smoochBot.setState(payload)
+            //     .then(() => res.end());
+            res.end();
         break;
 
         default:
