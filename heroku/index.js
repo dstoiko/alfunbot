@@ -124,6 +124,7 @@ function handlePostback(req, res) {
         case 'bricolage':
         case 'menage':
         case 'demenagement':
+            console.log(postback.action.payload);
             stateMachine._doPrompt(postback.action.payload)
                 .then(() => res.end());
         break;
