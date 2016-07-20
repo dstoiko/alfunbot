@@ -16,7 +16,7 @@ module.exports = new Script({
     postcode: {
         prompt: (bot) => bot.say(`Quel est votre code postal ?`),
         receive: (bot, message) => {
-            const postcode = message.text.trim();
+            const postcode = message.text;
             return bot.setProp('postcode', postcode)
                 .then(() => 'date');
         }
@@ -25,7 +25,7 @@ module.exports = new Script({
     date: {
         prompt: (bot) => bot.say(`Pour quand voulez-vous ce service (date et heure) ?`),
         receive: (bot, message) => {
-            const date = message.text.trim();
+            const date = message.text;
             return bot.setProp('date', date)
                 .then(() => 'servicesRequest');
         }
