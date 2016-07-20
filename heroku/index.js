@@ -108,7 +108,10 @@ function handleMessages(req, res) {
 
 function handlePostback(req, res) {
 
-    const bot = createBot(req.body.appUser);
+    const stateMachine = new StateMachine({
+        script,
+        bot: createBot(req.body.appUser)
+    });
 
     const postback = req.body.postbacks[0];
     if (!postback || !postback.action) {
@@ -116,11 +119,7 @@ function handlePostback(req, res) {
     }
 
     if (postback.action.payload === 'serviceRequest') {
-        bot.say(`Choisissez un type de service :
-%[Bricolage](postback:bricolage)
-%[Ménage](postback:menage)
-%[Déménagement](postback:demenagement)`)
-            .then(() => 'services')
+        stateMachine.prompt('services')
             .then(() => res.end());
     }
     else {
