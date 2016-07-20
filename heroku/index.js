@@ -118,14 +118,29 @@ function handlePostback(req, res) {
         res.end();
     }
 
-    if (postback.action.payload === 'serviceRequest') {
-        stateMachine.prompt('services')
-            .then(() => res.end());
+    switch (postback.action.payload) {
+        case "postcode":
+        case "contactRequest":
+        case "bricolage":
+        case "menage":
+        case "demenagement":
+            stateMachine.prompt(postback.action.payload)
+                .then(() => res.end());
+        break;
+
+        default:
+            stateMachine.bot.say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
+                .then(() => res.end());
     }
-    else {
-        stateMachine.bot.say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
-            .then(() => res.end());
-    }
+
+    // if (postback.action.payload === 'serviceRequest') {
+    //     stateMachine.prompt('services')
+    //         .then(() => res.end());
+    // }
+    // else {
+    //     stateMachine.bot.say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
+    //         .then(() => res.end());
+    // }
 }
 
 app.post('/webhook', function(req, res, next) {
