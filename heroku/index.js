@@ -123,7 +123,7 @@ function handlePostback(req, res) {
             .then(() => res.end());
     }
     else {
-        bot.say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
+        stateMachine.bot.say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
             .then(() => res.end());
     }
 }
