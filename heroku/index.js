@@ -126,7 +126,6 @@ function handlePostback(req, res) {
         case 'start':
         case 'pass':
         case 'passRetry':
-        case 'inviteRequest':
         case 'postcode':
         case 'faq':
         case 'contactRequest':

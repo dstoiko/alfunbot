@@ -13,7 +13,7 @@ module.exports = new Script({
 
     // Password entry for beta test users
     pass: {
-        prompt: (bot) => bot.say(`Dites le mot magique... Si vous n'avez pas encore d'invitation, vous pouvez en demander une : %[Invitez-moi !](postback:inviteRequest)`),
+        prompt: (bot) => bot.say(`Dites le mot magique... Si vous n'avez pas encore d'invitation, vous pouvez en demander une : %[Invitez-moi !](http://goo.gl/forms/YjYcGDHIzcohI7Az1)`),
         receive: (bot, message) => {
             const pass = message.text.trim();
             if (pass === 'wondorland') {
