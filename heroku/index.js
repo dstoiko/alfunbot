@@ -109,29 +109,32 @@ function handleMessages(req, res) {
 function handlePostback(req, res) {
 
     const userId = req.body.appUser.userId || req.body.appUser._id;
-    const bot = createBot(req.body.appUser);
+    const stateMachine = new StateMachine({
+        script,
+        bot: createBot(req.body.appUser)
+    });
 
     const postback = req.body.postbacks[0];
     if (!postback || !postback.action) {
         res.end();
     };
 
-    const payload = postback.action.payload;
+    const smoochPayload = postback.action.payload;
 
-    switch (payload) {
+    switch (smoochPayload) {
         case 'postcode':
         case 'contactRequest':
         case 'bricolage':
         case 'menage':
         case 'demenagement':
-            bot.setState(payload);
-            console.log('Payload: ' + payload + ' / State: ' + bot.getState().toString());
+            stateMachine.setState(smoochPayload);
+            console.log('Payload: ' + smoochPayload + ' / State: ' + JSON.stringify(stateMachine.getState(), null, 2));
             //     .then(() => res.end());
             res.end();
         break;
 
         default:
-            bot.say(`Payload was: ${payload}`)
+            stateMachine.bot.say(`Payload was: ${payload}`)
                 .then(() => res.end());
     };
 
