@@ -128,8 +128,8 @@ function handlePostback(req, res) {
         case 'menage':
         case 'demenagement':
             return Promise.all([
-                this.bot.releaseLock(),
-                this.setState(smoochPayload)
+                stateMachine.bot.releaseLock(),
+                stateMachine.setState(smoochPayload)
             ]);
             res.end();
         break;
