@@ -128,7 +128,7 @@ function handlePostback(req, res) {
         case 'menage':
         case 'demenagement':
             stateMachine.setState(smoochPayload);
-            console.log('Payload: ' + smoochPayload + ' / State: ' + stateMachine.getState());
+            console.log('Payload: ' + smoochPayload + ' / State: ' + util.inspect(stateMachine.getState()));
             //     .then(() => res.end());
             res.end();
         break;
