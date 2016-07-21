@@ -93,7 +93,7 @@ module.exports = new Script({
     faq: {
         prompt: (bot) => bot.say(`Voici les questions qu'on nous pose souvent :`),
         receive: () => 'contactRequest'
-    }
+    },
     // If FAQ doesn't answer all the user's questions
     contactRequest: {
         prompt: (bot) => bot.say(`Veuillez patienter, un de mes collègues humains va prendre le relais...`)
