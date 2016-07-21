@@ -129,7 +129,8 @@ function handlePostback(req, res) {
         case 'demenagement':
             Promise.all([
                 stateMachine.bot.releaseLock(),
-                stateMachine.setState(smoochPayload)
+                stateMachine.setState(smoochPayload),
+                stateMachine.prompt(smoochPayload)
             ]);
             res.end();
         break;
