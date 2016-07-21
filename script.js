@@ -49,7 +49,7 @@ module.exports = new Script({
         receive: () => 'servicesRequest'
     },
 
-    // User chooses between available services
+    // User chooses between available services or suggests a new one
     servicesRequest: {
         prompt: (bot) => bot.say(`Choisissez le type de service que vous voulez:
 %[Bricolage](postback:bricolage)
@@ -62,28 +62,28 @@ module.exports = new Script({
     // Specific message depending on service asked
     bricolage: {
         prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de bricolage : petits travaux, peinture, autre ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-        receive: (bot, message) => {
+        receive: (bot) => {
             return bot.say(`Merci, votre demande est prise en compte. Nous revenons vers vous tout de suite avec un tarif estimatif...`)
                 .then(() => 'human')
         }
     },
     menage: {
         prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de ménage : nombre de pièces, fenêtres à nettoyer, repassage ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-        receive: (bot, message) => {
+        receive: (bot) => {
             return bot.say(`Merci, votre demande est prise en compte. Nous revenons vers vous tout de suite avec un prix estimatif...`)
                 .then(() => 'human')
         }
     },
     demenagement: {
         prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin : taille de votre appartement, nombre de cartons, mobilier encombrant... Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service !`),
-        receive: (bot, message) => {
+        receive: (bot) => {
             return bot.say(`Merci, votre demande est prise en compte. Nous revenons vers vous tout de suite avec un prix estimatif...`)
                 .then(() => 'human')
         }
     },
     otherService: {
         prompt: (bot) => bot.say(`De quel service auriez-vous besoin ? Dites-nous ce que nous devrions ajouter à notre offre !`),
-        receive: (bot, message) => {
+        receive: (bot) => {
             return bot.say(`Merci pour votre demande. Nous la prenons en compte et essayons d'élargir notre offre au plus vite ! Vous voulez recevoir une notification quand ce service est disponible ? %[Me notifier](http://eepurl.com/b9RLAP)`)
                 .then(() => 'human')
         }
