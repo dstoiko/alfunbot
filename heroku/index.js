@@ -121,6 +121,7 @@ function handlePostback(req, res) {
 
     const smoochPayload = postback.action.payload;
 
+    // Change conversation state according to postback clicked
     switch (smoochPayload) {
         case 'postcode':
         case 'contactRequest':
@@ -140,14 +141,6 @@ function handlePostback(req, res) {
                 .then(() => res.end());
     };
 
-    // if (postback.action.payload === 'serviceRequest') {
-    //     stateMachine.prompt('services')
-    //         .then(() => res.end());
-    // }
-    // else {
-    //     stateMachine.bot.say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
-    //         .then(() => res.end());
-    // }
 }
 
 app.post('/webhook', function(req, res, next) {

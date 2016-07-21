@@ -41,7 +41,7 @@ module.exports = new Script({
     bricolage: {
         prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de bricolage : petits travaux, peinture, autre ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
         receive: (bot, message) => {
-            return bot.say(`Merci, votre demande est prise en compte. Nous revenons vers vous tout de suite avec un prix estimatif...`)
+            return bot.say(`Merci, votre demande est prise en compte. Nous revenons vers vous tout de suite avec un tarif estimatif...`)
                 .then(() => 'human')
         }
     },
