@@ -131,7 +131,7 @@ function handlePostback(req, res) {
                 this.bot.releaseLock(),
                 this.setState(smoochPayload)
             ]);
-            res.end());
+            res.end();
         break;
 
         default:
