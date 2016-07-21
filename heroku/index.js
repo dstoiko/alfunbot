@@ -120,17 +120,18 @@ function handlePostback(req, res) {
     };
 
     const smoochPayload = postback.action.payload;
-    const util = require('util');
+
     switch (smoochPayload) {
         case 'postcode':
         case 'contactRequest':
         case 'bricolage':
         case 'menage':
         case 'demenagement':
-            stateMachine.setState(smoochPayload);
-            console.log('Payload: ' + smoochPayload + ' / State: ' + util.inspect(stateMachine.getState()));
-            //     .then(() => res.end());
-            res.end();
+            return Promise.all([
+                this.bot.releaseLock(),
+                this.setState(smoochPayload)
+            ]);
+                .then(() => res.end());
         break;
 
         default:
