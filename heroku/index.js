@@ -127,7 +127,7 @@ function handlePostback(req, res) {
         case 'bricolage':
         case 'menage':
         case 'demenagement':
-            return Promise.all([
+            Promise.all([
                 stateMachine.bot.releaseLock(),
                 stateMachine.setState(smoochPayload)
             ]);
