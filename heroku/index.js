@@ -120,7 +120,7 @@ function handlePostback(req, res) {
     };
 
     const smoochPayload = postback.action.payload;
-
+    const util = require('util');
     switch (smoochPayload) {
         case 'postcode':
         case 'contactRequest':
