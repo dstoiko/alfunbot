@@ -123,11 +123,17 @@ function handlePostback(req, res) {
 
     // Change conversation state according to postback clicked
     switch (smoochPayload) {
+        case 'start':
+        case 'pass':
+        case 'passRetry':
+        case 'inviteRequest':
         case 'postcode':
+        case 'faq':
         case 'contactRequest':
         case 'bricolage':
         case 'menage':
         case 'demenagement':
+        case 'otherService':
             Promise.all([
                 stateMachine.bot.releaseLock(),
                 stateMachine.setState(smoochPayload),
@@ -137,7 +143,7 @@ function handlePostback(req, res) {
         break;
 
         default:
-            stateMachine.bot.say(`Payload was: ${payload}`)
+            stateMachine.bot.say(`Je ne comprends plus rien... %[Revenir en arrière](postback:start)`)
                 .then(() => res.end());
     };
 
