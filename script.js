@@ -77,7 +77,7 @@ module.exports = new Script({
     demenagement: {
         prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin : taille de votre appartement, nombre de cartons, mobilier encombrant... Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service !`),
         receive: (bot) => {
-            return bot.say(`Merci, votre demande est prise en compte. Nous revenons vers vous tout de suite avec un prix estimatif...`)
+            return bot.say(`Merci, votre demande est prise en compte. Nous revenons vers vous très rapidement avec un prix estimatif...`)
                 .then(() => 'human')
         }
     },
@@ -91,7 +91,13 @@ module.exports = new Script({
 
     // FAQ to answer most common questions
     faq: {
-        prompt: (bot) => bot.say(`Voici les questions qu'on nous pose souvent :`),
+        prompt: (bot) => bot.say(`Voici les questions qu'on nous pose souvent :
+%[Quand lancez-vous wondor ?](postback:contactRequest)
+%[Dans quelles villes êtes-vous ?](postback:contactRequest)
+%[Quels services demander ?](postback:contactRequest)
+%[Qui offre ses services ?](postback:contactRequest)
+%[Combien ça coûte ?](postback:contactRequest)
+%[Comment travailler avec vous ?](postback:contactRequest)`),
         receive: () => 'contactRequest'
     },
     // If FAQ doesn't answer all the user's questions
