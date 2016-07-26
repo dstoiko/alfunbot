@@ -91,13 +91,18 @@ module.exports = new Script({
 
     // FAQ to answer most common questions
     faq: {
-        prompt: (bot) => bot.say(`Voici les questions qu'on nous pose souvent :
-%[Quand lancez-vous wondor ?](postback:contactRequest)
-%[Dans quelles villes êtes-vous ?](postback:contactRequest)
-%[Quels services demander ?](postback:contactRequest)
-%[Qui offre ses services ?](postback:contactRequest)
-%[Combien ça coûte ?](postback:contactRequest)
-%[Comment travailler avec vous ?](postback:contactRequest)`),
+        prompt: (bot) => {
+            return bot.say(`Voici les questions qu'on nous pose souvent :
+%[Quand lancez-vous wondor ?](postback:launchDate)
+%[Dans quelles villes ?](postback:placesAvailable)
+%[Quels services ?](postback:servicesAvailable)
+%[Qui offre ses services ?](postback:wondorsProfile)
+%[Combien ça coûte ?](postback:howMuch)
+%[Comment travailler avec wondor ?](postback:workRequest)`)
+            .then(() => bot.say(`Besoin de plus d'infos ?
+%[Visiter notre site](http://wondor.co)
+%[Contacter l'équipe](postback:contactRequest)`))
+},
         receive: () => 'contactRequest'
     },
     // If FAQ doesn't answer all the user's questions
