@@ -128,6 +128,12 @@ function handlePostback(req, res) {
         case 'passRetry':
         case 'postcode':
         case 'faq':
+        case 'launchDate':
+        case 'citiesAvailable':
+        case 'servicesAvailable':
+        case 'wondorsProfile':
+        case 'howMuch':
+        case 'workRequest':
         case 'contactRequest':
         case 'bricolage':
         case 'menage':
@@ -142,7 +148,7 @@ function handlePostback(req, res) {
         break;
 
         default:
-            stateMachine.bot.say(`Je ne comprends plus rien... %[Revenir en arrière](postback:start)`)
+            stateMachine.bot.say(`Je ne comprends plus rien... Veuillez sélectionner une option ou contacter un humain: %[Contacter l'équipe](postback:contactRequest)`)
                 .then(() => res.end());
     };
 
