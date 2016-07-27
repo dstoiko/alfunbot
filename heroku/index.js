@@ -108,7 +108,6 @@ function handleMessages(req, res) {
 
 function handlePostback(req, res) {
 
-    const userId = req.body.appUser.userId || req.body.appUser._id;
     const stateMachine = new StateMachine({
         script,
         bot: createBot(req.body.appUser)
@@ -148,7 +147,7 @@ function handlePostback(req, res) {
         break;
 
         default:
-            stateMachine.bot.say(`Je ne comprends plus rien... Veuillez sélectionner une option ou contacter un humain: %[Contacter l'équipe](postback:contactRequest)`)
+            stateMachine.bot.say(`Je ne comprends plus rien... Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
                 .then(() => res.end());
     };
 

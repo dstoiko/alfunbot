@@ -100,8 +100,7 @@ module.exports = new Script({
 %[Combien ça coûte ?](postback:howMuch)
 %[Comment travailler avec wondor ?](postback:workRequest)`)
             .then(() => bot.say(`Besoin de plus d'infos ?
-%[Visiter notre site](http://wondor.co)
-%[Contacter l'équipe](postback:contactRequest)`))
+%[Visiter notre site](http://wondor.co)`))
         },
         receive: () => 'contactRequest'
     },
@@ -126,7 +125,7 @@ module.exports = new Script({
         receive: () => 'contactRequest'
     },
     workRequest: {
-        prompt: (bot) => bot.say(`Si vous êtes qualifié(e) dans l’un des services que nous proposons, vous pouvez travailler avec nous ! C’est très simple, remplissez l'un de ces formulaires : %[Bricolage](https://goo.gl/forms/M1DkhFAJIcc4cc1H3) %[Déménagement](https://goo.gl/forms/ErBYXvtfQ6qJm9b42) %[Ménage](https://goo.gl/forms/qlcRkjy7d9qVAf7G3)`),
+        prompt: (bot) => bot.say(`Si vous êtes qualifié(e) sur l’un des services que nous proposons, vous pouvez travailler avec nous ! C’est très simple, remplissez l'un de ces formulaires et nous reviendrons vers vous très vite : %[Bricolage](https://goo.gl/forms/M1DkhFAJIcc4cc1H3) %[Déménagement](https://goo.gl/forms/ErBYXvtfQ6qJm9b42) %[Ménage](https://goo.gl/forms/qlcRkjy7d9qVAf7G3)`),
         receive: () => 'contactRequest'
     },
     // If FAQ doesn't answer all the user's questions
