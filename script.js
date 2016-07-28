@@ -13,7 +13,7 @@ module.exports = new Script({
 
     // Password entry for beta test users
     pass: {
-        prompt: (bot) => bot.say(`Dites le mot magique... Si vous n'avez pas encore d'invitation, vous pouvez en demander une : %[Invitez-moi !](http://goo.gl/forms/YjYcGDHIzcohI7Az1)`),
+        prompt: (bot) => bot.say(`Dites le mot magique...`),
         receive: (bot, message) => {
             const pass = message.text.trim();
             if (pass === 'wondorland') {
@@ -63,21 +63,21 @@ module.exports = new Script({
     bricolage: {
         prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de bricolage : petits travaux, peinture, autre ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
         receive: (bot) => {
-            return bot.say(`Merci, votre demande est prise en compte. Nous revenons vers vous tout de suite avec un tarif estimatif...`)
+            return bot.say(`Merci, votre demande est bien prise en compte. Nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions complémentaires...`)
                 .then(() => 'human')
         }
     },
     menage: {
         prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de ménage : nombre de pièces, fenêtres à nettoyer, repassage ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
         receive: (bot) => {
-            return bot.say(`Merci, votre demande est prise en compte. Nous revenons vers vous tout de suite avec un prix estimatif...`)
+            return bot.say(`Merci, votre demande est bien prise en compte. Nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions complémentaires...`)
                 .then(() => 'human')
         }
     },
     demenagement: {
         prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin : taille de votre appartement, nombre de cartons, mobilier encombrant... Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service !`),
         receive: (bot) => {
-            return bot.say(`Merci, votre demande est prise en compte. Nous revenons vers vous très rapidement avec un prix estimatif...`)
+            return bot.say(`Merci, votre demande est bien prise en compte. Nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions complémentaires...`)
                 .then(() => 'human')
         }
     },
