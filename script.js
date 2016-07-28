@@ -13,9 +13,9 @@ module.exports = new Script({
 
     // Password entry for beta test users
     pass: {
-        prompt: (bot) => bot.say(`Dites le mot magique...`),
+        prompt: (bot) => bot.say(`Dites le mot de passe...`),
         receive: (bot, message) => {
-            const pass = message.text.trim();
+            const pass = message.text.trim().toLowerCase();
             if (pass === 'wondorland') {
                 return bot.say(`Gagné !`)
                     .then(() => 'postcode');
@@ -27,8 +27,9 @@ module.exports = new Script({
     },
     // Password retry if unsuccessful
     passRetry: {
+        prompt: (bot) => bot.say(`Réssayez le mot de passe...`),
         receive: (bot, message) => {
-            const pass = message.text.trim();
+            const pass = message.text.trim().toLowerCase();
             if (pass === 'wondorland') {
                 return bot.say(`Gagné !`)
                     .then(() => 'postcode');;
