@@ -11,9 +11,15 @@ module.exports = new Script({
 
     // Initial state of the bot
     start: {
-        receive: () => {
-            return bot.say(`Bienvenue sur Wondor ! Nous offrons actuellement des services de bricolage, déménagement et ménage. Sélectionnez une option pour commencer : %[Demander un service](postback:pass) %[Autre demande](postback:faq) %[Visiter notre site](http://wondor.co)`);
+        receive: (bot) => {
+            return bot.say(`Bienvenue sur Wondor !`)
+                .then(() => 'welcome');
         }
+    },
+
+    welcome: {
+        prompt: (bot) => bot.say(`Nous offrons actuellement des services de bricolage, déménagement et ménage. Sélectionnez une option pour commencer : %[Demander un service](postback:pass) %[Plus d'infos](postback:faq)`);
+        receive: () => 'faq'
     },
 
     // Password entry for beta test users
