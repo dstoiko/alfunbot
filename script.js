@@ -11,7 +11,7 @@ module.exports = new Script({
 
     // Initial state of the bot
     start: {
-        receive: (bot) => {
+        receive: () => {
             return bot.say(`Bienvenue sur Wondor ! Nous offrons actuellement des services de bricolage, déménagement et ménage. Sélectionnez une option pour commencer : %[Demander un service](postback:pass) %[Autre demande](postback:faq) %[Visiter notre site](http://wondor.co)`);
         }
     },
