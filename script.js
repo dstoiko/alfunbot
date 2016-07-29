@@ -4,7 +4,12 @@ const Script = require('smooch-bot').Script;
 
 module.exports = new Script({
 
-    // Welcome, initial state of the bot
+    processing: {
+        //prompt: (bot) => bot.say('Beep boop...'),
+        receive: () => 'processing'
+    },
+
+    // Initial state of the bot
     start: {
         receive: (bot) => {
             return bot.say(`Bienvenue sur Wondor ! Nous offrons actuellement des services de bricolage, déménagement et ménage. Sélectionnez une option pour commencer : %[Demander un service](postback:pass) %[Autre demande](postback:faq) %[Visiter notre site](http://wondor.co)`);
@@ -46,7 +51,7 @@ module.exports = new Script({
         receive: () => 'date'
     },
     date: {
-        prompt: (bot) => bot.say(`Pour quand voulez-vous ce service (date et heure) ?`),
+        prompt: (bot) => bot.say(`Pour quand voulez-vous demander un service (date et heure) ?`),
         receive: () => 'servicesRequest'
     },
 
@@ -147,10 +152,6 @@ module.exports = new Script({
     },
 
     // Error handling
-    processing: {
-        //prompt: (bot) => bot.say('Beep boop...'),
-        receive: () => 'processing'
-    },
     error: {
         prompt: (bot) => bot.say(`Beep Boop... Désolé, il y a une erreur...
 %[Parler à l'équipe](postback:contactRequest)`),
