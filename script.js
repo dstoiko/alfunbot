@@ -18,7 +18,7 @@ module.exports = new Script({
     },
 
     welcome: {
-        prompt: (bot) => bot.say(`Nous offrons actuellement des services de bricolage, déménagement et ménage. Sélectionnez une option pour commencer : %[Demander un service](postback:pass) %[Plus d'infos](postback:faq)`);
+        prompt: (bot) => bot.say(`Nous offrons actuellement des services de bricolage, déménagement et ménage. Sélectionnez une option pour commencer : %[Demander un service](postback:pass) %[Plus d'infos](postback:faq)`),
         receive: () => 'faq'
     },
 
