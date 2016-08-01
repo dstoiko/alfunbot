@@ -80,14 +80,14 @@ module.exports = new Script({
         }
     },
     menage: {
-        prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de ménage : nombre de pièces, fenêtres à nettoyer, repassage ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
+        prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de ménage : surface, fenêtres à nettoyer, repassage ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
         receive: (bot) => {
             return bot.say(`Merci, votre demande est bien prise en compte. Nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions complémentaires...`)
                 .then(() => 'human')
         }
     },
     demenagement: {
-        prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin : taille de votre appartement, nombre de cartons, mobilier encombrant... Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service !`),
+        prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin : surface de votre appartement, nombre de cartons, mobilier encombrant... Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service !`),
         receive: (bot) => {
             return bot.say(`Merci, votre demande est bien prise en compte. Nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions complémentaires...`)
                 .then(() => 'human')
