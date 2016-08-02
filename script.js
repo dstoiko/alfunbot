@@ -27,7 +27,7 @@ module.exports = new Script({
         prompt: (bot) => bot.say(`Dites le mot de passe...`),
         receive: (bot, message) => {
             const pass = message.text.trim().toLowerCase();
-            if (pass === 'wondorland') {
+            if (pass === 'wondorisback') {
                 return bot.say(`Gagné !`)
                     .then(() => 'postcode');
             }
@@ -41,7 +41,7 @@ module.exports = new Script({
         prompt: (bot) => bot.say(`Réssayez le mot de passe...`),
         receive: (bot, message) => {
             const pass = message.text.trim().toLowerCase();
-            if (pass === 'wondorland') {
+            if (pass === 'wondorisback') {
                 return bot.say(`Gagné !`)
                     .then(() => 'postcode');;
             }
