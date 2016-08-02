@@ -66,6 +66,7 @@ module.exports = new Script({
             const date = message.text.trim();
             return bot.setProp('date', date)
                 .then(() => 'servicesRequest')
+        }
     },
 
     // User chooses between available services or suggests a new one
