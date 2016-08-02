@@ -54,11 +54,18 @@ module.exports = new Script({
     // Post code and date/time entry (always go one after the other)
     postcode: {
         prompt: (bot) => bot.say(`Quel est votre code postal ?`),
-        receive: () => 'date'
+        receive: (bot, message) => {
+            const postcode = message.text.trim();
+            return bot.setProp('postcode', postcode)
+                .then(() => 'date')
+        }
     },
     date: {
         prompt: (bot) => bot.say(`Pour quand voulez-vous demander un service (date et heure) ?`),
-        receive: () => 'servicesRequest'
+        receive: (bot, message) => {
+            const date = message.text.trim();
+            return bot.setProp('date', date)
+                .then(() => 'servicesRequest')
     },
 
     // User chooses between available services or suggests a new one
