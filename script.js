@@ -61,7 +61,7 @@ module.exports = new Script({
         }
     },
     date: {
-        prompt: (bot) => bot.say(`Pour quand voulez-vous demander un service (date et heure) ?`),
+        prompt: (bot) => bot.say(`Pour quand voulez-vous demander un service (date - heure) ?`),
         receive: (bot, message) => {
             const date = message.text.trim();
             return bot.setProp('date', date)
