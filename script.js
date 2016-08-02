@@ -51,7 +51,7 @@ module.exports = new Script({
         }
     },
 
-    // Post code and date/time entry (always go one after the other)
+    // Postcode and date/time entry
     postcode: {
         prompt: (bot) => bot.say(`Quel est votre code postal ?`),
         receive: (bot, message) => {
