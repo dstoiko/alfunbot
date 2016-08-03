@@ -87,7 +87,6 @@ module.exports = new Script({
         %[Peinture](postback:paint)
         %[Autre](postback:otherBrico)`),
         receive: () => 'escape'
-        }
     },
     furniture: {
         prompt: (bot) => bot.say(`Pourriez-vous préciser le nombre et type(s) de meubles à monter ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
