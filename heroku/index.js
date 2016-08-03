@@ -135,8 +135,14 @@ function handlePostback(req, res) {
         case 'workRequest':
         case 'contactRequest':
         case 'bricolage':
+        case 'furniture':
+        case 'mounting':
+        case 'paint':
+        case 'otherBrico':
         case 'menage':
         case 'demenagement':
+        case 'transportOnly':
+        case 'transportHelp':
         case 'otherService':
             Promise.all([
                 stateMachine.bot.releaseLock(),
@@ -145,7 +151,6 @@ function handlePostback(req, res) {
             ]);
             res.end();
         break;
-
         default:
             stateMachine.bot.say(`Je ne comprends plus rien... Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
                 .then(() => res.end());
