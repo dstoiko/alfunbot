@@ -225,7 +225,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const email = message.text.trim();
             return bot.setProp('email', email)
-                .then(bot.say(`Merci. Nous revenons vers vous tout de suite avec l'estimatif du prix et des demandes de précisions si besoin.`))
+                .then(bot.say(`Merci. Restez ici, nous revenons vers vous tout de suite avec l'estimatif du prix et des demandes de précisions si besoin !`))
                 .then(() => 'human')
         }
     },
