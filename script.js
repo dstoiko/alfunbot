@@ -222,8 +222,10 @@ module.exports = new Script({
     // Collect user e-mail
     email: {
         prompt: (bot) => bot.say(`Quelle est votre adresse e-mail ? Nous utiliserons cette adresse pour vous envoyer une offre de prestation.`),
-        receive: (bot) => {
-            return bot.say(`Merci. Nous revenons vers vous tout de suite avec l'estimatif du prix et des demandes de précisions si besoin.`)
+        receive: (bot, message) => {
+            const email = message.text.trim();
+            return bot.setProp('email', email)
+                .then(bot.say(`Merci. Nous revenons vers vous tout de suite avec l'estimatif du prix et des demandes de précisions si besoin.`))
                 .then(() => 'human')
         }
     },
