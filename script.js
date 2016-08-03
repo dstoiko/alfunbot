@@ -89,38 +89,38 @@ module.exports = new Script({
         receive: () => 'escape'
         }
     },
-        furniture: {
-            prompt: (bot) => bot.say(`Pourriez-vous préciser le nombre et type(s) de meubles à monter ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-            receive: (bot, message) => {
-                const ask = message.text.trim();
-                return bot.setProp('ask', ask)
-                    .then(() => 'email')
-            }
-        },
-        mounting: {
-            prompt: (bot) => bot.say(`Pourriez-vous préciser ce que vous avez besoin de fixer (étagères, luminaires, rideaux...) ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-            receive: (bot, message) => {
-                const ask = message.text.trim();
-                return bot.setProp('ask', ask)
-                    .then(() => 'email')
-            }
-        },
-        paint: {
-            prompt: (bot) => bot.say(`Pourriez-vous préciser quelle surface vous avez besoin de peindre ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-            receive: (bot, message) => {
-                const ask = message.text.trim();
-                return bot.setProp('ask', ask)
-                    .then(() => 'email')
-            }
-        },
-        otherBrico: {
-            prompt: (bot) => bot.say(`Pourriez-vous décrire votre besoin de bricolage ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-            receive: (bot, message) => {
-                const ask = message.text.trim();
-                return bot.setProp('ask', ask)
-                    .then(() => 'email')
-            }
-        },
+    furniture: {
+        prompt: (bot) => bot.say(`Pourriez-vous préciser le nombre et type(s) de meubles à monter ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
+        receive: (bot, message) => {
+            const ask = message.text.trim();
+            return bot.setProp('ask', ask)
+                .then(() => 'email')
+        }
+    },
+    mounting: {
+        prompt: (bot) => bot.say(`Pourriez-vous préciser ce que vous avez besoin de fixer (étagères, luminaires, rideaux...) ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
+        receive: (bot, message) => {
+            const ask = message.text.trim();
+            return bot.setProp('ask', ask)
+                .then(() => 'email')
+        }
+    },
+    paint: {
+        prompt: (bot) => bot.say(`Pourriez-vous préciser quelle surface vous avez besoin de peindre ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
+        receive: (bot, message) => {
+            const ask = message.text.trim();
+            return bot.setProp('ask', ask)
+                .then(() => 'email')
+        }
+    },
+    otherBrico: {
+        prompt: (bot) => bot.say(`Pourriez-vous décrire votre besoin de bricolage ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
+        receive: (bot, message) => {
+            const ask = message.text.trim();
+            return bot.setProp('ask', ask)
+                .then(() => 'email')
+        }
+    },
     menage: {
         prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de ménage : surface, fenêtres à nettoyer, vêtements à repasser ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
         receive: (bot, message) => {
@@ -129,14 +129,14 @@ module.exports = new Script({
                 .then(() => 'menageProducts')
         }
     },
-        menageProducts: {
-            prompt: (bot) => bot.say(`Avez-vous besoin de produits d'entretien ?`),
-            receive: (bot, message) => {
-                const products = message.text.trim();
-                return bot.setProp('produits', products)
-                    .then(() => 'email')
-            }
-        },
+    menageProducts: {
+        prompt: (bot) => bot.say(`Avez-vous besoin de produits d'entretien ?`),
+        receive: (bot, message) => {
+            const products = message.text.trim();
+            return bot.setProp('produits', products)
+                .then(() => 'email')
+        }
+    },
     // demenagement: {
     //     prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin : surface de votre appartement, nombre de cartons, mobilier encombrant... Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service !`),
     //     receive: (bot) => {
@@ -153,62 +153,62 @@ module.exports = new Script({
                 .then(() => 'demenagementType')
         }
     },
-        demenagementType: {
-            prompt: (bot) => bot.say(`De quel service de déménagement avez-vous besoin ?
-            %[Transport seul](postback:transportOnly)
-            %[Transport avec aide](postback:transportHelp)`),
-            receive: () => 'escape'
-        },
-            transportOnly: {
-                prompt: (bot) => bot.say(`Le transport seul comprend un service de déménagement de trottoir à trottoir, avec chargement et déchargement de 15mn maximum. Combien de cartons avez-vous à déplacer environ ?`),
-                receive: (bot, message) => {
-                    const type = bot.getState();
-                    const boxes = message.text.trim();
-                    return bot.setProp('cartons', boxes)
-                        .then(bot.setProp('type', type))
-                        .then(() => 'bigFurniture')
-                }
-            },
-            transportHelp: {
-                prompt: (bot) => bot.say(`Le transport avec aide comprend une intervention avec un chauffeur éventuellement accompagné pour vous aider à transporter vos biens. Combien de cartons avez-vous à déplacer environ ?`),
-                receive: (bot, message) => {
-                    const type = bot.getState();
-                    const boxes = message.text.trim();
-                    return bot.setProp('cartons', boxes)
-                        .then(() => 'bigFurniture')
-                }
-            },
-        bigFurniture: {
-            prompt: (bot) => bot.say(`Avez-vous également des gros meubles à transporter ? Si oui, dites simplement combien et quels types de meubles...`),
-            receive: (bot, message) => {
-                const bigItems = message.text.trim();
-                if (bot.getState() == 'transportHelp') {
-                    return bot.setProp('gros', bigItems)
-                        .then(() => 'etageA')
-                }
-                else if (bot.getState() == 'transportOnly') {
-                    return bot.setProp('gros', bigItems)
-                        .then(() => 'email')
-                }
-
+    demenagementType: {
+        prompt: (bot) => bot.say(`De quel service de déménagement avez-vous besoin ?
+        %[Transport seul](postback:transportOnly)
+        %[Transport avec aide](postback:transportHelp)`),
+        receive: () => 'escape'
+    },
+    transportOnly: {
+        prompt: (bot) => bot.say(`Le transport seul comprend un service de déménagement de trottoir à trottoir, avec chargement et déchargement de 15mn maximum. Combien de cartons avez-vous à déplacer environ ?`),
+        receive: (bot, message) => {
+            const type = bot.getState();
+            const boxes = message.text.trim();
+            return bot.setProp('cartons', boxes)
+                .then(bot.setProp('type', type))
+                .then(() => 'bigFurniture')
+        }
+    },
+    transportHelp: {
+        prompt: (bot) => bot.say(`Le transport avec aide comprend une intervention avec un chauffeur éventuellement accompagné pour vous aider à transporter vos biens. Combien de cartons avez-vous à déplacer environ ?`),
+        receive: (bot, message) => {
+            const type = bot.getState();
+            const boxes = message.text.trim();
+            return bot.setProp('cartons', boxes)
+                .then(() => 'bigFurniture')
+        }
+    },
+    bigFurniture: {
+        prompt: (bot) => bot.say(`Avez-vous également des gros meubles à transporter ? Si oui, dites simplement combien et quels types de meubles...`),
+        receive: (bot, message) => {
+            const bigItems = message.text.trim();
+            if (bot.getState() == 'transportHelp') {
+                return bot.setProp('gros', bigItems)
+                    .then(() => 'etageA')
             }
-        },
-            etageA: {
-                prompt: (bot) => bot.say(`A quel étage habitez-vous ? Indiquez également si vous avez un ascenseur dans votre bâtiment actuel.`),
-                receive: (bot, message) => {
-                    const etageA = message.text.trim();
-                    return bot.setProp('etageA', etageA)
-                        .then(() => 'etageB')
-                }
-            },
-            etageB: {
-                prompt: (bot) => bot.say(`A quel étage emménagez-vous ? Indiquez également si vous avez un ascenseur dans votre prochain bâtiment.`),
-                receive: (bot, message) => {
-                    const etageB = message.text.trim();
-                    return bot.setProp('etageB', etageB)
-                        .then(() => 'email')
-                }
-            },
+            else if (bot.getState() == 'transportOnly') {
+                return bot.setProp('gros', bigItems)
+                    .then(() => 'email')
+            }
+
+        }
+    },
+    etageA: {
+        prompt: (bot) => bot.say(`A quel étage habitez-vous ? Indiquez également si vous avez un ascenseur dans votre bâtiment actuel.`),
+        receive: (bot, message) => {
+            const etageA = message.text.trim();
+            return bot.setProp('etageA', etageA)
+                .then(() => 'etageB')
+        }
+    },
+    etageB: {
+        prompt: (bot) => bot.say(`A quel étage emménagez-vous ? Indiquez également si vous avez un ascenseur dans votre prochain bâtiment.`),
+        receive: (bot, message) => {
+            const etageB = message.text.trim();
+            return bot.setProp('etageB', etageB)
+                .then(() => 'email')
+        }
+    },
 
     otherService: {
         prompt: (bot) => bot.say(`De quel service auriez-vous besoin ? Dites-nous ce que nous devrions ajouter à notre offre !`),
