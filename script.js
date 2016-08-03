@@ -226,7 +226,7 @@ module.exports = new Script({
             return bot.say(`Merci. Nous revenons vers vous tout de suite avec l'estimatif du prix et des demandes de précisions si besoin.`)
                 .then(() => 'human')
         }
-    }
+    },
 
     // FAQ to answer most common questions
     faq: {
