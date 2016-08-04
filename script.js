@@ -145,14 +145,6 @@ module.exports = new Script({
                 .then(() => 'wait')
         }
     },
-    // demenagement: {
-    //     prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin : surface de votre appartement, nombre de cartons, mobilier encombrant... Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service !`),
-    //     receive: (bot) => {
-    //         const ask = message.text.trim();
-    //         return bot.setProp('ask', ask)
-    //             .then(() => 'human')
-    //     }
-    // },
     demenagement: {
         prompt: (bot) => bot.say(`Où emménagez-vous ? (code postal de destination)`),
         receive: (bot, message) => {
@@ -181,6 +173,7 @@ module.exports = new Script({
         prompt: (bot) => bot.say(`Le transport avec aide comprend une intervention avec un chauffeur éventuellement accompagné pour vous aider à transporter vos biens. Combien de cartons avez-vous à déplacer environ ?`),
         receive: (bot, message) => {
             const type = bot.getState();
+            console.log(type);
             const boxes = message.text.trim();
             return bot.setProp('cartons', boxes)
                 .then(bot.setProp('type', type))
@@ -199,7 +192,6 @@ module.exports = new Script({
                 return bot.setProp('gros', bigItems)
                     .then(() => 'wait')
             }
-
         }
     },
     etageA: {
