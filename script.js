@@ -65,6 +65,15 @@ module.exports = new Script({
         receive: (bot, message) => {
             const date = message.text.trim();
             return bot.setProp('date', date)
+                .then(() => 'email')
+        }
+    },
+    // Collect user e-mail
+    email: {
+        prompt: (bot) => bot.say(`Quelle est votre adresse e-mail ? Nous utiliserons cette adresse pour vous envoyer une offre de prestation.`),
+        receive: (bot, message) => {
+            const email = message.text.trim();
+            return bot.setProp('email', email)
                 .then(() => 'servicesRequest')
         }
     },
@@ -93,7 +102,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const ask = message.text.trim();
             return bot.setProp('ask', ask)
-                .then(() => 'email')
+                .then(() => 'wait')
         }
     },
     mounting: {
@@ -101,7 +110,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const ask = message.text.trim();
             return bot.setProp('ask', ask)
-                .then(() => 'email')
+                .then(() => 'wait')
         }
     },
     paint: {
@@ -109,7 +118,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const ask = message.text.trim();
             return bot.setProp('ask', ask)
-                .then(() => 'email')
+                .then(() => 'wait')
         }
     },
     otherBrico: {
@@ -117,7 +126,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const ask = message.text.trim();
             return bot.setProp('ask', ask)
-                .then(() => 'email')
+                .then(() => 'wait')
         }
     },
     menage: {
@@ -133,7 +142,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const products = message.text.trim();
             return bot.setProp('produits', products)
-                .then(() => 'email')
+                .then(() => 'wait')
         }
     },
     // demenagement: {
@@ -174,6 +183,7 @@ module.exports = new Script({
             const type = bot.getState();
             const boxes = message.text.trim();
             return bot.setProp('cartons', boxes)
+                .then(bot.setProp('type', type))
                 .then(() => 'bigFurniture')
         }
     },
@@ -181,13 +191,13 @@ module.exports = new Script({
         prompt: (bot) => bot.say(`Avez-vous également des gros meubles à transporter ? Si oui, dites simplement combien et quels types de meubles...`),
         receive: (bot, message) => {
             const bigItems = message.text.trim();
-            if (bot.getState() == 'transportHelp') {
+            if (bot.getProp('type') == 'transportHelp') {
                 return bot.setProp('gros', bigItems)
                     .then(() => 'etageA')
             }
-            else if (bot.getState() == 'transportOnly') {
+            else if (bot.getProp('type') == 'transportOnly') {
                 return bot.setProp('gros', bigItems)
-                    .then(() => 'email')
+                    .then(() => 'wait')
             }
 
         }
@@ -205,7 +215,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const etageB = message.text.trim();
             return bot.setProp('etageB', etageB)
-                .then(() => 'email')
+                .then(() => 'wait')
         }
     },
 
@@ -215,17 +225,6 @@ module.exports = new Script({
             const autreService = message.text.trim();
             return bot.setProp('autreService', autreService)
                 .then(bot.say(`Merci pour votre demande. Nous la prenons en compte et essayons d'élargir notre offre au plus vite ! Vous voulez recevoir une notification quand ce service est disponible ? %[Me notifier](http://eepurl.com/b9RLAP)`))
-                .then(() => 'human')
-        }
-    },
-
-    // Collect user e-mail
-    email: {
-        prompt: (bot) => bot.say(`Quelle est votre adresse e-mail ? Nous utiliserons cette adresse pour vous envoyer une offre de prestation.`),
-        receive: (bot, message) => {
-            const email = message.text.trim();
-            return bot.setProp('email', email)
-                .then(bot.say(`Merci. Restez ici, nous revenons vers vous tout de suite avec l'estimatif du prix et des demandes de précisions si besoin !`))
                 .then(() => 'human')
         }
     },
@@ -271,6 +270,15 @@ module.exports = new Script({
     contactRequest: {
         prompt: (bot) => bot.say(`Veuillez patienter, un de mes collègues humains va prendre le relais...`)
             .then(() => 'human'),
+        receive: () => 'human'
+    },
+
+    // Waiting message
+    wait: {
+        prompt: (bot) => {
+            return bot.say(`Nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions...`)
+                .then(() => 'human')
+        },
         receive: () => 'human'
     },
 
