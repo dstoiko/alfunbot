@@ -6,13 +6,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 
-// Initialize Firebase
-const firebase = require('firebase');
-firebase.initializeApp({
-  serviceAccount: "firebase-service.json",
-  databaseURL: "https://wondorbot.firebaseio.com"
-});
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(bodyParser.json());

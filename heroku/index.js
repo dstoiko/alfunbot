@@ -182,6 +182,13 @@ var server = app.listen(process.env.PORT || 8000, function() {
     console.log('Smooch Bot listening at http://%s:%s', host, port);
 });
 
+// Initialize Firebase
+var firebase = require('firebase');
+firebase.initializeApp({
+  serviceAccount: "firebase-service.json",
+  databaseURL: "https://wondorbot.firebaseio.com"
+});
+
 // Firebase services
 var db = firebase.database();
 var auth = firebase.auth();
