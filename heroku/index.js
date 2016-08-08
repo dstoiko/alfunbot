@@ -191,8 +191,8 @@ firebase.initializeApp({
 
 // Firebase services
 var db = firebase.database();
-var auth = firebase.auth();
-var storage = firebase.storage();
+// var auth = firebase.auth();
+// var storage = firebase.storage();
 
 var ref = db.ref("wondorbot");
 var usersRef = ref.child("users");
