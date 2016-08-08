@@ -2,6 +2,17 @@
 
 const Script = require('smooch-bot').Script;
 
+// Initialize Firebase
+var firebase = require('firebase');
+firebase.initializeApp({
+  serviceAccount: "firebase-service.json",
+  databaseURL: "https://wondorbot.firebaseio.com"
+});
+// Firebase services
+var db = firebase.database();
+var ref = db.ref("wondorbot");
+var usersRef = ref.child("users");
+
 module.exports = new Script({
 
     processing: {
