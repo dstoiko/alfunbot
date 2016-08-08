@@ -9,7 +9,7 @@ const path = require('path');
 // Initialize Firebase
 const firebase = require('firebase');
 firebase.initializeApp({
-  serviceAccount: "../firebase-service.json",
+  serviceAccount: "firebase-service.json",
   databaseURL: "https://wondorbot.firebaseio.com"
 });
 
