@@ -152,7 +152,7 @@ function handlePostback(req, res) {
             res.end();
         break;
         default:
-            stateMachine.bot.say(`Je ne comprends plus rien... Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
+            stateMachine.bot.say(`Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
                 .then(() => res.end());
     };
 
@@ -181,3 +181,11 @@ var server = app.listen(process.env.PORT || 8000, function() {
 
     console.log('Smooch Bot listening at http://%s:%s', host, port);
 });
+
+// Firebase services
+var db = firebase.database();
+var auth = firebase.auth();
+var storage = firebase.storage();
+
+var ref = db.ref("wondorbot");
+var usersRef = ref.child("users");

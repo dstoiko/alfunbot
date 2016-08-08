@@ -57,6 +57,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const postcode = message.text.trim();
             return bot.setProp('postcode', postcode)
+                .then(usersRef.child("dstoiko").set({postcode: "${postcode}"}))
                 .then(() => 'date')
         }
     },
