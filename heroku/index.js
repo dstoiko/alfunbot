@@ -104,6 +104,10 @@ function handleMessages(req, res) {
             console.error(err.stack);
             res.end();
         });
+
+    // Store user id into Firebase
+    const user = req.body.appUser;
+    console.log(user);
 }
 
 function handlePostback(req, res) {
