@@ -78,7 +78,7 @@ function createBot(appUser) {
         store,
         userId
     });
-    console.log(userId = 'test bot');
+    console.log(userId + 'test bot');
 }
 
 function handleMessages(req, res) {
