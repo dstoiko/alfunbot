@@ -25,6 +25,7 @@ function createWebhook(smoochCore, target) {
     })
         .then((res) => {
             console.log('Smooch webhook created with target', res.webhook.target);
+            console.log(res.webhook._id);
         })
         .catch((err) => {
             console.error('Error creating Smooch webhook:', err);
@@ -71,7 +72,6 @@ if (process.env.SERVICE_URL) {
 
 function createBot(appUser) {
     const userId = appUser.userId || appUser._id;
-    console.log(userId);
     return new SmoochApiBot({
         name,
         avatarUrl,
