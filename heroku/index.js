@@ -78,6 +78,7 @@ function createBot(appUser) {
         store,
         userId
     });
+    console.log(userId = 'test bot');
 }
 
 function handleMessages(req, res) {
@@ -106,8 +107,8 @@ function handleMessages(req, res) {
         });
 
     // Store user id into Firebase
-    const user = req.body.appUser;
-    console.log(user);
+    // const user = req.body.appUser;
+    // console.log(user);
 }
 
 function handlePostback(req, res) {
