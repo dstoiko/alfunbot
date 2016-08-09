@@ -12,7 +12,7 @@ firebase.initializeApp({
 var db = firebase.database();
 var ref = db.ref("wondorbot");
 var usersRef = ref.child("users");
-var uid = "testuser";
+var uid = "testuser"; // for testing purposes, arbitrary user
 
 module.exports = new Script({
 
