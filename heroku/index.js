@@ -25,7 +25,6 @@ function createWebhook(smoochCore, target) {
     })
         .then((res) => {
             console.log('Smooch webhook created with target', res.webhook.target);
-            console.log(res.webhook._id);
         })
         .catch((err) => {
             console.error('Error creating Smooch webhook:', err);

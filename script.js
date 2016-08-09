@@ -185,7 +185,6 @@ module.exports = new Script({
         prompt: (bot) => bot.say(`Le transport avec aide comprend une intervention avec un chauffeur éventuellement accompagné pour vous aider à transporter vos biens. Combien de cartons avez-vous à déplacer environ ?`),
         receive: (bot, message) => {
             const type = bot.getState();
-            console.log(type);
             const boxes = message.text.trim();
             return bot.setProp('cartons', boxes)
                 .then(bot.setProp('type', type))
@@ -196,14 +195,17 @@ module.exports = new Script({
         prompt: (bot) => bot.say(`Avez-vous également des gros meubles à transporter ? Si oui, dites simplement combien et quels types de meubles...`),
         receive: (bot, message) => {
             const bigItems = message.text.trim();
-            if (bot.getProp('type') == 'transportHelp') {
-                return bot.setProp('gros', bigItems)
-                    .then(() => 'etageA')
-            }
-            else if (bot.getProp('type') == 'transportOnly') {
-                return bot.setProp('gros', bigItems)
-                    .then(() => 'wait')
-            }
+            return bot.setProp('gros', bigItems)
+                .then(() => 'etageA')
+                .then(console.log(bot.getProp('type')));
+            // if (bot.getProp('type') == 'transportHelp') {
+            //     return bot.setProp('gros', bigItems)
+            //         .then(() => 'etageA')
+            // }
+            // else if (bot.getProp('type') == 'transportOnly') {
+            //     return bot.setProp('gros', bigItems)
+            //         .then(() => 'wait')
+            // }
         }
     },
     etageA: {
