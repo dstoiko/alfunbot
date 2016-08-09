@@ -12,6 +12,7 @@ firebase.initializeApp({
 var db = firebase.database();
 var ref = db.ref("wondorbot");
 var usersRef = ref.child("users");
+var uid = "testuser";
 
 module.exports = new Script({
 
@@ -68,7 +69,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const postcode = message.text.trim();
             return bot.setProp('postcode', postcode)
-                .then(usersRef.child("dstoiko").set({"postcode": postcode}))
+                .then(usersRef.child(uid).set({"postcode": postcode}))
                 .then(() => 'date')
         }
     },
@@ -77,6 +78,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const date = message.text.trim();
             return bot.setProp('date', date)
+                .then(usersRef.child(uid).set({"date": date}))
                 .then(() => 'email')
         }
     },
@@ -86,6 +88,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             const email = message.text.trim();
             return bot.setProp('email', email)
+                .then(usersRef.child(uid).set({"email": email}))
                 .then(() => 'servicesRequest')
         }
     },
@@ -106,7 +109,8 @@ module.exports = new Script({
         %[Montage de meubles](postback:furniture)
         %[Pose au mur](postback:mounting)
         %[Peinture](postback:paint)
-        %[Autre](postback:otherBrico)`),
+        %[Autre](postback:otherBrico)`)
+            .then(usersRef.child(uid).set({"bricolage": true})),
         receive: () => 'escape'
     },
     furniture: {
@@ -142,7 +146,8 @@ module.exports = new Script({
         }
     },
     menage: {
-        prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de ménage : surface, fenêtres à nettoyer, vêtements à repasser ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
+        prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de ménage : surface, fenêtres à nettoyer, vêtements à repasser ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`)
+            .then(usersRef.child(uid).set({"menage": true})),
         receive: (bot, message) => {
             const ask = message.text.trim();
             return bot.setProp('ask', ask)
@@ -158,7 +163,8 @@ module.exports = new Script({
         }
     },
     demenagement: {
-        prompt: (bot) => bot.say(`Où emménagez-vous ? (code postal de destination)`),
+        prompt: (bot) => bot.say(`Où emménagez-vous ? (code postal de destination)`)
+            .then(usersRef.child(uid).set({"demenagement": true})),
         receive: (bot, message) => {
             const destination = message.text.trim();
             return bot.setProp('destination', destination)
