@@ -71,14 +71,14 @@ if (process.env.SERVICE_URL) {
 
 function createBot(appUser) {
     const userId = appUser.userId || appUser._id;
+    console.log(userId);
     return new SmoochApiBot({
         name,
         avatarUrl,
         lock,
         store,
         userId
-    })
-        .then(console.log(userId));
+    });
 }
 
 function handleMessages(req, res) {
