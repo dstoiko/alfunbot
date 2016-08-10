@@ -172,7 +172,7 @@ function handlePostback(req, res) {
             const propsRef = usersRef.child(userId + "/properties")
             const userProps = propsRef.once("value", function(snapshot) {
                 var props = snapshot.val();
-                console.log(`Demande : ` + props.ask);
+                console.log(`Demande : ` + props);
             });
         default:
             stateMachine.bot.say(`Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
