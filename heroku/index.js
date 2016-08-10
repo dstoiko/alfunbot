@@ -169,8 +169,8 @@ function handlePostback(req, res) {
         case 'summary':
             const user = req.body.appUser;
             const userId = user.userId || user._id;
-            const ask = usersRef.child(userId).once("value", function(data) {
-                return data.properties.ask;
+            const ask = usersRef.child(userId + "/properties").once("value", function(data) {
+                return data.val().ask;
             });
             console.log(`Demande :` + ask);
         default:
