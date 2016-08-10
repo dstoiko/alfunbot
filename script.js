@@ -270,7 +270,7 @@ module.exports = new Script({
     // Waiting message
     wait: {
         prompt: (bot) => {
-            return bot.say(`Veuillez patienter, nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions... %[Ma demande](postback:summary)`)
+            return bot.say(`Veuillez patienter, nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions... %[Récapitulatif](postback:summary)`)
                 .then(() => 'human')
         },
         receive: () => 'human'

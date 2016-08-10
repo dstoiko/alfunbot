@@ -134,6 +134,7 @@ function handlePostback(req, res) {
     };
 
     const smoochPayload = postback.action.payload;
+    const buttonText = postback.text;
 
     // Change conversation state according to postback clicked
     switch (smoochPayload) {
@@ -172,7 +173,8 @@ function handlePostback(req, res) {
             const propsRef = usersRef.child(userId + "/properties")
             const userProps = propsRef.once("value", function(snapshot) {
                 var props = snapshot.val();
-                stateMachine.bot.say(`Date : ` + props.date + '\n'
+                stateMachine.bot.say( `Voici un résumé de votre demande :`
+                + `Date : ` + props.date + '\n'
                 + `Code postal : ` + props.postcode + '\n'
                 + `Adresse e-mail : ` + props.email + '\n'
                 + `Demande : ` + props.ask + '\n'
