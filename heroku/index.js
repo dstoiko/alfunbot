@@ -170,9 +170,9 @@ function handlePostback(req, res) {
             const user = req.body.appUser;
             const userId = user.userId || user._id;
             const userProps = usersRef.child(userId).once("value", function(data) {
-                return data
+                return JSON.stringify(data);
             });
-            console.log(`Demande :` + JSON.parse(userProps));
+            console.log(`Demande :` + userProps);
         default:
             stateMachine.bot.say(`Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
                 .then(() => res.end());
