@@ -6,8 +6,6 @@ const Script = require('smooch-bot').Script;
 const natural = require('natural');
 // For e-mail validation
 const validator = require('validator');
-// For date understanding and sanitizing
-const moment = require('moment');
 
 
 module.exports = new Script({
@@ -71,7 +69,7 @@ module.exports = new Script({
     date: {
         prompt: (bot) => bot.say(`Pour quand voulez-vous demander un service ? (date et heure)`),
         receive: (bot, message) => {
-            // const date = moment(message.text.trim()).locale("fr").format('lll'); // Parse and sanitize date for future use NOT WORKING NEEDS FIXING
+            // const date = moment(message.text.trim()).locale("fr").format('lll'); // Parse and sanitize date for future use MOMENT NOT WORKING, TRY ANOTHER ONE
             const date = message.text.trim();
             return bot.setProp('date', date)
                 .then(console.log(date))

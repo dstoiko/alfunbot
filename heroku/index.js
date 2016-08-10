@@ -179,7 +179,7 @@ function handlePostback(req, res) {
                 + `Code postal : ` + props.postcode + '\n'
                 + `Adresse e-mail : ` + props.email + '\n'
                 + `Demande : ` + props.ask + '\n'
-                + `Veuillez nous indiquer si l'une des infos est fausse.`);
+                + `Veuillez nous indiquer si l'une des informations est fausse.`);
             });
             res.end();
         break;
