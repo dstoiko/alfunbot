@@ -1,10 +1,13 @@
 'use strict';
 
 const Script = require('smooch-bot').Script;
+
 // Natural language processing module
 const natural = require('natural');
 // For e-mail validation
 const validator = require('validator');
+// For date understanding and sanitizing
+const moment = require('moment');
 
 
 module.exports = new Script({
@@ -68,8 +71,9 @@ module.exports = new Script({
     date: {
         prompt: (bot) => bot.say(`Pour quand voulez-vous demander un service ? (date et heure)`),
         receive: (bot, message) => {
-            const date = message.text.trim();
+            const date = moment(message.text.trim()).format('ll');
             return bot.setProp('date', date)
+                .then(console.log(date))
                 .then(() => 'email')
         }
     },
@@ -210,6 +214,7 @@ module.exports = new Script({
             return bot.setProp('gros', bigItems)
                 .then(() => 'etageA')
                 .then(console.log(bot.getProp('type')));
+            // Review following code to get data from Firebase
             // if (bot.getProp('type') == 'transportHelp') {
             //     return bot.setProp('gros', bigItems)
             //         .then(() => 'etageA')
@@ -229,7 +234,7 @@ module.exports = new Script({
         }
     },
     etageB: {
-        prompt: (bot) => bot.say(`A quel étage emménagez-vous ? Indiquez également si vous avez un ascenseur dans votre prochain bâtiment.`),
+        prompt: (bot) => bot.say(`A quel étage emménagez-vous ? Indiquez également si vous avez un ascenseur dans le bâtiment où vous emménagez.`),
         receive: (bot, message) => {
             const etageB = message.text.trim();
             return bot.setProp('etageB', etageB)
