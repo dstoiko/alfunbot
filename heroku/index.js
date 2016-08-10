@@ -174,7 +174,7 @@ function handlePostback(req, res) {
             const propsRef = usersRef.child(userId + "/properties")
             const userProps = propsRef.once("value", function(snapshot) {
                 var props = snapshot.val();
-                stateMachine.bot.say( `Voici un résumé de votre demande :`
+                stateMachine.bot.say( `Voici un résumé de votre demande :` + '\n'
                 + `Date : ` + props.date + '\n'
                 + `Code postal : ` + props.postcode + '\n'
                 + `Adresse e-mail : ` + props.email + '\n'
