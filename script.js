@@ -27,7 +27,7 @@ module.exports = new Script({
         prompt: (bot) => bot.say(`Dites le mot de passe...`),
         receive: (bot, message) => {
             const pass = message.text.trim().toLowerCase();
-            if (pass === 'wondorisback') {
+            if (pass === 'wondorbong') {
                 return bot.say(`Gagné !`)
                     .then(() => 'postcode');
             }
@@ -41,7 +41,7 @@ module.exports = new Script({
         prompt: (bot) => bot.say(`Réssayez le mot de passe...`),
         receive: (bot, message) => {
             const pass = message.text.trim().toLowerCase();
-            if (pass === 'wondorisback') {
+            if (pass === 'wondorbong') {
                 return bot.say(`Gagné !`)
                     .then(() => 'postcode');;
             }
@@ -70,7 +70,7 @@ module.exports = new Script({
     },
     // Collect user e-mail
     email: {
-        prompt: (bot) => bot.say(`Quelle est votre adresse e-mail ? Nous utiliserons cette adresse pour vous envoyer une offre de prestation.`),
+        prompt: (bot) => bot.say(`Quelle est votre adresse e-mail ? Nous utiliserons cette adresse plus tard pour vous envoyer une offre de prestation.`),
         receive: (bot, message) => {
             const email = message.text.trim();
             return bot.setProp('email', email)
@@ -270,7 +270,7 @@ module.exports = new Script({
     // Waiting message
     wait: {
         prompt: (bot) => {
-            return bot.say(`Nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions...`)
+            return bot.say(`Veuillez patienter, nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions... %[Ma demande](postback:summary)`)
                 .then(() => 'human')
         },
         receive: () => 'human'

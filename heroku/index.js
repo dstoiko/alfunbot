@@ -115,7 +115,7 @@ function handleMessages(req, res) {
             res.end();
         });
 
-    // Store user id into Firebase
+    // Store and update user info into Firebase
     const user = req.body.appUser;
     const userId = user.userId || user._id;
     usersRef.child(userId).update(user);
@@ -166,6 +166,13 @@ function handlePostback(req, res) {
             ]);
             res.end();
         break;
+        case 'summary':
+            const user = req.body.appUser;
+            const userId = user.userId || user._id;
+            const userProps = usersRef.child(userId).once("value", function(data) {
+                return data
+            });
+            console.log(`Demande :` + data);
         default:
             stateMachine.bot.say(`Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
                 .then(() => res.end());
