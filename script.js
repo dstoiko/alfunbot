@@ -85,8 +85,6 @@ module.exports = new Script({
             else {
                 return bot.say(`Il semblerait que vous n'ayez pas rentré un e-mail valide... %[Réessayer](postback:emailRetry)`);
             }
-            return bot.setProp('email', email)
-                .then(() => 'servicesRequest')
         }
     },
     // Email retry if unsuccessful
@@ -101,8 +99,6 @@ module.exports = new Script({
             else {
                 return bot.say(`Il semblerait que vous n'ayez toujours pas rentré un e-mail valide... %[Réessayer](postback:emailRetry) %[Contacter l'équipe](postback:contactRequest)`);
             }
-            return bot.setProp('email', email)
-                .then(() => 'servicesRequest')
         }
     },
 
