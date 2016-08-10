@@ -1,6 +1,11 @@
 'use strict';
 
 const Script = require('smooch-bot').Script;
+// Natural language processing module
+const natural = require('natural');
+// For e-mail validation
+const validator = require('validator');
+
 
 module.exports = new Script({
 
@@ -73,6 +78,29 @@ module.exports = new Script({
         prompt: (bot) => bot.say(`Quelle est votre adresse e-mail ? Nous utiliserons cette adresse plus tard pour vous envoyer une offre de prestation.`),
         receive: (bot, message) => {
             const email = message.text.trim();
+            if (validator.isEmail(email)) { // Validate e-mail format using nifty validator library
+                return bot.say(`Merci !`)
+                    .then(() => 'servicesRequest');
+            }
+            else {
+                return bot.say(`Il semblerait que vous n'ayez pas rentré un e-mail valide... %[Réessayer](postback:emailRetry)`);
+            }
+            return bot.setProp('email', email)
+                .then(() => 'servicesRequest')
+        }
+    },
+    // Email retry if unsuccessful
+    emailRetry: {
+        prompt: (bot) => bot.say(`Veuilez réécrire votre adresse e-mail`),
+        receive: (bot, message) => {
+            const email = message.text.trim();
+            if (validator.isEmail(email)) { // Validate e-mail format using nifty validator library
+                return bot.say(`Merci !`)
+                    .then(() => 'servicesRequest');
+            }
+            else {
+                return bot.say(`Il semblerait que vous n'ayez toujours pas rentré un e-mail valide... %[Réessayer](postback:emailRetry) %[Contacter l'équipe](postback:contactRequest)`);
+            }
             return bot.setProp('email', email)
                 .then(() => 'servicesRequest')
         }

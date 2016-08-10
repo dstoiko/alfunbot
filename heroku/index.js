@@ -142,6 +142,7 @@ function handlePostback(req, res) {
         case 'pass':
         case 'passRetry':
         case 'postcode':
+        case 'emailRetry':
         case 'faq':
         case 'launchDate':
         case 'citiesAvailable':
