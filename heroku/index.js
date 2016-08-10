@@ -169,7 +169,7 @@ function handlePostback(req, res) {
         case 'summary':
             const user = req.body.appUser;
             const userId = user.userId || user._id;
-            const propsRef = usersRef.child(userId + "/properties/ask")
+            const propsRef = usersRef.child(userId + "/properties/postcode")
             const userProps = propsRef.once("value", function(snapshot) {
                 var props = snapshot.val();
                 console.log(`Demande : ` + props);
