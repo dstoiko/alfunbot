@@ -172,8 +172,13 @@ function handlePostback(req, res) {
             const propsRef = usersRef.child(userId + "/properties")
             const userProps = propsRef.once("value", function(snapshot) {
                 var props = snapshot.val();
-                console.log(`Demande : ` + props.postcode);
+                stateMachine.bot.say(`Date : ` + props.date + '\n'
+                + `Code postal : ` + props.postcode + '\n'
+                + `Adresse e-mail : ` + props.email + '\n'
+                + `Demande : ` + props.ask + '\n'
+                + `Veuillez nous indiquer si l'une des infos est fausse.`);
             });
+            res.end();
         break;
         default:
             stateMachine.bot.say(`Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
