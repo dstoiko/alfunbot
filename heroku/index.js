@@ -188,6 +188,11 @@ function handlePostback(req, res) {
                 .then(() => res.end());
     };
 
+    // Store and update user info into Firebase
+    const user = req.body.appUser;
+    const userId = user.userId || user._id;
+    usersRef.child(userId).update(user);
+
 }
 
 app.post('/webhook', function(req, res, next) {

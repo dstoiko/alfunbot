@@ -71,7 +71,8 @@ module.exports = new Script({
     date: {
         prompt: (bot) => bot.say(`Pour quand voulez-vous demander un service ? (date et heure)`),
         receive: (bot, message) => {
-            const date = moment(message.text.trim()).locale("fr").format('lll'); // Parse and sanitize date for future use
+            // const date = moment(message.text.trim()).locale("fr").format('lll'); // Parse and sanitize date for future use NOT WORKING NEEDS FIXING
+            const date = message.text.trim();
             return bot.setProp('date', date)
                 .then(console.log(date))
                 .then(() => 'email')
@@ -214,7 +215,7 @@ module.exports = new Script({
             return bot.setProp('gros', bigItems)
                 .then(() => 'etageA')
                 .then(console.log(bot.getProp('type')));
-            // Review following code to get data from Firebase
+            // Edit following code to get data from Firebase
             // if (bot.getProp('type') == 'transportHelp') {
             //     return bot.setProp('gros', bigItems)
             //         .then(() => 'etageA')
