@@ -17,6 +17,16 @@ const store = new SmoochApiStore({
 });
 const lock = new MemoryLock();
 const webhookTriggers = ['message:appUser', 'postback'];
+// Initialize Firebase
+const firebase = require('firebase');
+firebase.initializeApp({
+  serviceAccount: "firebase-service.json",
+  databaseURL: "https://wondorbot.firebaseio.com"
+});
+// Firebase services
+var db = firebase.database();
+var ref = db.ref("bot");
+var usersRef = ref.child("users");
 
 function createWebhook(smoochCore, target) {
     return smoochCore.webhooks.create({
@@ -106,8 +116,9 @@ function handleMessages(req, res) {
         });
 
     // Store user id into Firebase
-    // const user = req.body.appUser;
-    // console.log(user);
+    const user = req.body.appUser;
+    const userId = user.userId || user._id;
+    usersRef.child(userId).update(user);
 }
 
 function handlePostback(req, res) {
