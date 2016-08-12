@@ -114,11 +114,6 @@ function handleMessages(req, res) {
             console.error(err.stack);
             res.end();
         });
-
-    // Store and update user info into Firebase
-    const user = req.body.appUser;
-    const userId = user.userId || user._id;
-    usersRef.child(userId).update(user);
 }
 
 function handlePostback(req, res) {
@@ -187,12 +182,6 @@ function handlePostback(req, res) {
             stateMachine.bot.say(`Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
                 .then(() => res.end());
     };
-
-    // Store and update user info into Firebase
-    const user = req.body.appUser;
-    const userId = user.userId || user._id;
-    usersRef.child(userId).update(user);
-
 }
 
 app.post('/webhook', function(req, res, next) {
@@ -210,6 +199,10 @@ app.post('/webhook', function(req, res, next) {
         default:
             console.log('Ignoring unknown webhook trigger:', trigger);
     }
+    // Store and update user info into Firebase
+    const user = req.body.appUser;
+    const userId = user.userId || user._id;
+    usersRef.child(userId).update(user);
 });
 
 var server = app.listen(process.env.PORT || 8000, function() {
