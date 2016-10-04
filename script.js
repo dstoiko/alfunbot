@@ -82,7 +82,7 @@ module.exports = new Script({
             const email = message.text.trim();
             if (validator.isEmail(email)) { // Validate e-mail format using nifty validator library
                 return bot.say(`Merci !`)
-                    .then((bot) => bot.setProp('email', email))
+                    .then(() => bot.setProp('email', email))
                     .then(() => 'servicesRequest');
             }
             else {
@@ -97,7 +97,7 @@ module.exports = new Script({
             const email = message.text.trim();
             if (validator.isEmail(email)) { // Validate e-mail format using nifty validator library
                 return bot.say(`Merci !`)
-                    .then((bot) => bot.setProp('email', email))
+                    .then(() => bot.setProp('email', email))
                     .then(() => 'servicesRequest');
             }
             else {
