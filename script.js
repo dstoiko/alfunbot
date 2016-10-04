@@ -72,7 +72,6 @@ module.exports = new Script({
             // const date = moment(message.text.trim()).locale("fr").format('lll'); // Parse and sanitize date for future use MOMENT NOT WORKING, TRY ANOTHER ONE
             const date = message.text.trim();
             return bot.setProp('date', date)
-                .then(console.log(date))
                 .then(() => 'email')
         }
     },
@@ -83,6 +82,7 @@ module.exports = new Script({
             const email = message.text.trim();
             if (validator.isEmail(email)) { // Validate e-mail format using nifty validator library
                 return bot.say(`Merci !`)
+                    .then((bot) => bot.setProp('email', email))
                     .then(() => 'servicesRequest');
             }
             else {
@@ -97,6 +97,7 @@ module.exports = new Script({
             const email = message.text.trim();
             if (validator.isEmail(email)) { // Validate e-mail format using nifty validator library
                 return bot.say(`Merci !`)
+                    .then((bot) => bot.setProp('email', email))
                     .then(() => 'servicesRequest');
             }
             else {
