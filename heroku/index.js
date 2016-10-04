@@ -146,15 +146,17 @@ function handlePostback(req, res) {
         case 'howMuch':
         case 'workRequest':
         case 'contactRequest':
+        case 'alacarte':
+        case 'renting':
+        case 'laundry':
+        case 'shopping':
+        case 'shoemaker':
+        case 'postoffice':
         case 'bricolage':
         case 'furniture':
         case 'mounting':
         case 'paint':
         case 'otherBrico':
-        case 'menage':
-        case 'demenagement':
-        case 'transportOnly':
-        case 'transportHelp':
         case 'otherService':
             Promise.all([
                 stateMachine.bot.releaseLock(),

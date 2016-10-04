@@ -24,7 +24,7 @@ module.exports = new Script({
     },
 
     welcome: {
-        prompt: (bot) => bot.say(`Nous offrons actuellement des services de bricolage, déménagement et ménage. Sélectionnez une option pour commencer : %[Demander un service](postback:pass) %[Plus d'infos](postback:faq)`),
+        prompt: (bot) => bot.say(`Nous offrons actuellement des services de maison récurrents (ménage, repassage, ...) et des services à la carte (bricolage, accueil AirBnB, course express, pressing, ...). Sélectionnez une option pour commencer : %[Demander un service](postback:pass) %[Plus d'infos](postback:faq)`),
         receive: () => 'escape'
     },
 
@@ -86,7 +86,7 @@ module.exports = new Script({
                     .then(() => 'servicesRequest');
             }
             else {
-                return bot.say(`Il semblerait que vous n'ayez pas rentré un e-mail valide... %[Réessayer](postback:emailRetry)`);
+                return bot.say(`Humm... Il semblerait que vous n'ayez pas rentré un e-mail valide... %[Réessayer](postback:emailRetry)`);
             }
         }
     },
@@ -100,7 +100,9 @@ module.exports = new Script({
                     .then(() => 'servicesRequest');
             }
             else {
-                return bot.say(`Il semblerait que vous n'ayez toujours pas rentré un e-mail valide... %[Réessayer](postback:emailRetry) %[Contacter l'équipe](postback:contactRequest)`);
+                return bot.say(`Il semblerait que vous n'ayez toujours pas rentré un e-mail valide...
+                %[Réessayer](postback:emailRetry)
+                %[Contacter l'équipe](postback:contactRequest)`);
             }
         }
     },
@@ -108,14 +110,72 @@ module.exports = new Script({
     // User chooses between available services or suggests a new one
     servicesRequest: {
         prompt: (bot) => bot.say(`Choisissez le type de service que vous voulez:
-        %[Bricolage](postback:bricolage)
-        %[Ménage](postback:menage)
-        %[Déménagement](postback:demenagement)
-        %[Autre](postback:otherService)`),
+        %[Ménage](http://wondor.co/#services)
+        %[Service à la carte](postback:alacarte)`),
         receive: () => 'escape'
     },
 
-    // Specific message depending on service asked
+    // A la carte services
+    alacarte: {
+        prompt: (bot) => {
+          return bot.say(`De quel service avez-vous besoin ?
+          %[Accueil location](postback:renting)
+          %[Bricolage](postback:bricolage)
+          %[Pressing](postback:laundry)`)
+              .then(() => bot.say(`%[Course express](postback:shopping)
+              %[Cordonnier](postback:shoemaker)
+              %[Courrier - Colis](postback:postoffice)`))
+        },
+        receive: () => 'escape'
+    },
+
+    // Specific messages for renting
+    renting: {
+      prompt: (bot) => bot.say(`Pourriez-vous préciser si vous souhaitez un service de check-in, check-out, un ménage ?`),
+      receive: (bot, message) => {
+          const ask = message.text.trim();
+          return bot.setProp('ask', ask)
+              .then(() => 'wait')
+      }
+    },
+
+    laundry: {
+      prompt: (bot) => bot.say(`Pourriez-vous préciser si vous souhaitez que l'on récupère vos vêtements chez vous ou au pressing ?`),
+      receive: (bot, message) => {
+          const ask = message.text.trim();
+          return bot.setProp('ask', ask)
+              .then(() => 'wait')
+      }
+    },
+
+    shopping: {
+      prompt: (bot) => bot.say(`Pourriez-vous préciser votre liste de courses à faire ?`),
+      receive: (bot, message) => {
+          const ask = message.text.trim();
+          return bot.setProp('ask', ask)
+              .then(() => 'wait')
+      }
+    },
+
+    shoemaker: {
+      prompt: (bot) => bot.say(`Pourriez-vous préciser si vous souhaitez que l'on récupère vos chaussures ou autres articles chez vous ou chez le cordonnier ?`),
+      receive: (bot, message) => {
+          const ask = message.text.trim();
+          return bot.setProp('ask', ask)
+              .then(() => 'wait')
+      }
+    },
+
+    postoffice: {
+      prompt: (bot) => bot.say(`Pourriez-vous préciser combien de colis vous souhaitez que l'on apporte à la poste ?`),
+      receive: (bot, message) => {
+          const ask = message.text.trim();
+          return bot.setProp('ask', ask)
+              .then(() => 'wait')
+      }
+    },
+
+    // Specific messages for handywork
     bricolage: {
         prompt: (bot) => bot.say(`De quel service de bricolage avez-vous besoin ?
         %[Montage de meubles](postback:furniture)
@@ -124,128 +184,44 @@ module.exports = new Script({
         %[Autre](postback:otherBrico)`),
         receive: () => 'escape'
     },
-    furniture: {
-        prompt: (bot) => bot.say(`Pourriez-vous préciser le nombre et type(s) de meubles à monter ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-        receive: (bot, message) => {
-            const ask = message.text.trim();
-            return bot.setProp('ask', ask)
-                .then(() => 'wait')
-        }
-    },
-    mounting: {
-        prompt: (bot) => bot.say(`Pourriez-vous préciser ce que vous avez besoin de fixer (étagères, luminaires, rideaux...) ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-        receive: (bot, message) => {
-            const ask = message.text.trim();
-            return bot.setProp('ask', ask)
-                .then(() => 'wait')
-        }
-    },
-    paint: {
-        prompt: (bot) => bot.say(`Pourriez-vous préciser quelle surface vous avez besoin de peindre ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-        receive: (bot, message) => {
-            const ask = message.text.trim();
-            return bot.setProp('ask', ask)
-                .then(() => 'wait')
-        }
-    },
-    otherBrico: {
-        prompt: (bot) => bot.say(`Pourriez-vous décrire votre besoin de bricolage ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-        receive: (bot, message) => {
-            const ask = message.text.trim();
-            return bot.setProp('ask', ask)
-                .then(() => 'wait')
-        }
-    },
-    menage: {
-        prompt: (bot) => bot.say(`Décrivez en quelques mots votre besoin de ménage : surface, fenêtres à nettoyer, vêtements à repasser ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
-        receive: (bot, message) => {
-            const ask = message.text.trim();
-            return bot.setProp('ask', ask)
-                .then(() => 'menageProducts')
-        }
-    },
-    menageProducts: {
-        prompt: (bot) => bot.say(`Avez-vous besoin de produits d'entretien ?`),
-        receive: (bot, message) => {
-            const products = message.text.trim();
-            return bot.setProp('produits', products)
-                .then(() => 'wait')
-        }
-    },
-    demenagement: {
-        prompt: (bot) => bot.say(`Où emménagez-vous ? (code postal de destination)`),
-        receive: (bot, message) => {
-            const destination = message.text.trim();
-            return bot.setProp('destination', destination)
-                .then(() => 'demenagementType')
-        }
-    },
-    demenagementType: {
-        prompt: (bot) => bot.say(`De quel service de déménagement avez-vous besoin ?
-        %[Transport seul](postback:transportOnly)
-        %[Transport avec aide](postback:transportHelp)`),
-        receive: () => 'escape'
-    },
-    transportOnly: {
-        prompt: (bot) => bot.say(`Le transport seul comprend un service de déménagement de trottoir à trottoir, avec chargement et déchargement de 15mn maximum. Combien de cartons avez-vous à déplacer environ ?`),
-        receive: (bot, message) => {
-            const type = bot.getState();
-            const boxes = message.text.trim();
-            return bot.setProp('cartons', boxes)
-                .then(bot.setProp('type', type))
-                .then(() => 'bigFurniture')
-        }
-    },
-    transportHelp: {
-        prompt: (bot) => bot.say(`Le transport avec aide comprend une intervention avec un chauffeur éventuellement accompagné pour vous aider à transporter vos biens. Combien de cartons avez-vous à déplacer environ ?`),
-        receive: (bot, message) => {
-            const type = bot.getState();
-            const boxes = message.text.trim();
-            return bot.setProp('cartons', boxes)
-                .then(bot.setProp('type', type))
-                .then(() => 'bigFurniture')
-        }
-    },
-    bigFurniture: {
-        prompt: (bot) => bot.say(`Avez-vous également des gros meubles à transporter ? Si oui, dites simplement combien et quels types de meubles...`),
-        receive: (bot, message) => {
-            const bigItems = message.text.trim();
-            return bot.setProp('gros', bigItems)
-                .then(() => 'etageA')
-                .then(console.log(bot.getProp('type')));
-            // Edit following code to get data from Firebase
-            // if (bot.getProp('type') == 'transportHelp') {
-            //     return bot.setProp('gros', bigItems)
-            //         .then(() => 'etageA')
-            // }
-            // else if (bot.getProp('type') == 'transportOnly') {
-            //     return bot.setProp('gros', bigItems)
-            //         .then(() => 'wait')
-            // }
-        }
-    },
-    etageA: {
-        prompt: (bot) => bot.say(`A quel étage habitez-vous ? Indiquez également si vous avez un ascenseur dans votre bâtiment actuel.`),
-        receive: (bot, message) => {
-            const etageA = message.text.trim();
-            return bot.setProp('etageA', etageA)
-                .then(() => 'etageB')
-        }
-    },
-    etageB: {
-        prompt: (bot) => bot.say(`A quel étage emménagez-vous ? Indiquez également si vous avez un ascenseur dans le bâtiment où vous emménagez.`),
-        receive: (bot, message) => {
-            const etageB = message.text.trim();
-            return bot.setProp('etageB', etageB)
-                .then(() => 'wait')
-        }
-    },
+      furniture: {
+          prompt: (bot) => bot.say(`Pourriez-vous préciser le nombre et type(s) de meubles à monter ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
+          receive: (bot, message) => {
+              const ask = message.text.trim();
+              return bot.setProp('ask', ask)
+                  .then(() => 'wait')
+          }
+      },
+      mounting: {
+          prompt: (bot) => bot.say(`Pourriez-vous préciser ce que vous avez besoin de fixer (étagères, luminaires, rideaux...) ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
+          receive: (bot, message) => {
+              const ask = message.text.trim();
+              return bot.setProp('ask', ask)
+                  .then(() => 'wait')
+          }
+      },
+      paint: {
+          prompt: (bot) => bot.say(`Pourriez-vous préciser quelle surface vous avez besoin de peindre ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
+          receive: (bot, message) => {
+              const ask = message.text.trim();
+              return bot.setProp('ask', ask)
+                  .then(() => 'wait')
+          }
+      },
+      otherBrico: {
+          prompt: (bot) => bot.say(`Pourriez-vous décrire votre besoin de bricolage ? Soyez bref mais précis, ce message sera utilisé pour sélectionner une personne qualifiée pour ce service.`),
+          receive: (bot, message) => {
+              const ask = message.text.trim();
+              return bot.setProp('ask', ask)
+                  .then(() => 'wait')
+          }
+      },
 
     otherService: {
-        prompt: (bot) => bot.say(`De quel service auriez-vous besoin ? Dites-nous ce que nous devrions ajouter à notre offre !`),
+        prompt: (bot) => bot.say(`De quel service auriez-vous besoin ?`),
         receive: (bot, message) => {
-            const autreService = message.text.trim();
-            return bot.setProp('autreService', autreService)
+            const ask = message.text.trim();
+            return bot.setProp('ask', ask)
                 .then(bot.say(`Merci pour votre demande. Nous la prenons en compte et essayons d'élargir notre offre au plus vite ! Vous voulez recevoir une notification quand ce service est disponible ? %[Me notifier](http://eepurl.com/b9RLAP)`))
                 .then(() => 'human')
         }
@@ -255,37 +231,37 @@ module.exports = new Script({
     faq: {
         prompt: (bot) => {
             return bot.say(`Voici les questions qu'on nous pose souvent :
-%[Quand lancez-vous ?](postback:launchDate)
-%[Où ?](postback:citiesAvailable)
-%[Quels services ?](postback:servicesAvailable)`)
-            .then(() => bot.say(`%[Qui est wondor ?](postback:wondorsProfile)
-%[Quels prix ?](postback:howMuch)
-%[Devenir wondor](postback:workRequest)`))
+            %[Quand lancez-vous ?](postback:launchDate)
+            %[Où ?](postback:citiesAvailable)
+            %[Quels services ?](postback:servicesAvailable)`)
+              .then(() => bot.say(`%[Qui est wondor ?](postback:wondorsProfile)
+              %[Quels prix ?](postback:howMuch)
+              %[Devenir wondor](postback:workRequest)`))
         },
         receive: () => 'escape'
     },
     launchDate: {
-        prompt: (bot) => bot.say(`Nous sommes en phase de test privé cet été et nous lançons nos services courant septembre. Si vous voulez être parmi les premiers à découvrir wondor, cliquez sur ce lien : %[Me prévenir](http://eepurl.com/b9RLAP)`),
+        prompt: (bot) => bot.say(`Nous sommes en phase de test et nous lançons nos services courant octobre. Si vous voulez être parmi les premiers à découvrir wondor, cliquez sur ce lien : %[Me prévenir](http://eepurl.com/b9RLAP)`),
         receive: () => 'contactRequest'
     },
     citiesAvailable: {
-        prompt: (bot) => bot.say(`Nous lançons le service pour Paris et l’Ile-de-France dans un premier temps. Si vous habitez dans une autre région, inscrivez-vous pour être prévenu de notre lancement chez vous : %[Me prévenir](http://eepurl.com/b_jwMv)`),
+        prompt: (bot) => bot.say(`Nous lançons le service pour Paris dans un premier temps. Si vous habitez dans une autre région, inscrivez-vous pour être prévenu de notre lancement chez vous : %[Me prévenir](http://eepurl.com/b_jwMv)`),
         receive: () => 'contactRequest'
     },
     servicesAvailable: {
-        prompt: (bot) => bot.say(`Vous pouvez demander n’importe quel service via notre plateforme. Actuellement, nous travaillons avec des bricoleurs, déménageurs et agents de ménage. Mais nous lancerons prochainement d’autres services. Demandez naturellement un service dont vous auriez besoin, nous ferons au mieux pour l’inclure au plus vite selon la demande ! %[Demander un autre service](postback:otherService)`),
+        prompt: (bot) => bot.say(`Vous pouvez demander n’importe quel service via notre plateforme. Demandez naturellement un service dont vous auriez besoin, nous ferons au mieux pour l’inclure au plus vite selon la demande ! %[Demander un autre service](postback:otherService)`),
         receive: () => 'contactRequest'
     },
     wondorsProfile: {
-        prompt: (bot) => bot.say(`Tous les wondors sont des prestataires de services qualifiés sur leur domaine et dont l’identité a été vérifiée.`),
+        prompt: (bot) => bot.say(`Tous les wondors sont des prestataires de services qualifiés sur leur domaine, rencontrés en personne et dont l’identité a été vérifiée.`),
         receive: () => 'contactRequest'
     },
     howMuch: {
-        prompt: (bot) => bot.say(`Nos tarifs sont évalués selon un taux horaire pour le bricolage et le ménage (majoration pour certaines prestations complémentaires), et une grille tarifaire selon le volume à transporter, la distance et les étages pour le déménagement. Dans tous les cas, nous vous communiquons un estimatif dès que vous effectuez une demande via wondor !`),
+        prompt: (bot) => bot.say(`Nos tarifs sont évalués selon un taux horaire, avec une majoration pour certaines prestations complémentaires. Dans tous les cas, nous vous communiquons un estimatif dès que vous effectuez une demande via wondor !`),
         receive: () => 'contactRequest'
     },
     workRequest: {
-        prompt: (bot) => bot.say(`Si vous êtes qualifié(e) sur l’un des services que nous proposons, vous pouvez travailler avec nous ! C’est très simple, remplissez l'un de ces formulaires et nous reviendrons vers vous très vite : %[Bricolage](https://goo.gl/forms/M1DkhFAJIcc4cc1H3) %[Déménagement](https://goo.gl/forms/ErBYXvtfQ6qJm9b42) %[Ménage](https://goo.gl/forms/qlcRkjy7d9qVAf7G3)`),
+        prompt: (bot) => bot.say(`Si vous êtes qualifié(e) sur l’un des services que nous proposons, vous pouvez travailler avec nous ! C’est très simple, remplissez l'un de ces formulaires et nous reviendrons vers vous très vite : %[Bricolage](https://goo.gl/forms/M1DkhFAJIcc4cc1H3) %[Ménage](https://goo.gl/forms/qlcRkjy7d9qVAf7G3) %[Autre]()`),
         receive: () => 'contactRequest'
     },
     // If FAQ doesn't answer all the user's questions
