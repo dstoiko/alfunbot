@@ -7,7 +7,7 @@ const natural = require('natural');
 // For e-mail validation
 const validator = require('validator');
 
-const states = require('states.json');
+const states = require('./states');
 
 module.exports = new Script({
 
