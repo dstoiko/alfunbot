@@ -26,7 +26,37 @@ module.exports = new Script({
     },
 
     welcome: {
-        prompt: (bot) => bot.say(`Bienvenue`, [{type:'reply', text:'FAQ', payload:'faq'}]),
+        prompt: bot => bot.say({
+    role: 'appMaker',
+    items: [{
+        title: 'Tacos',
+        description: 'Description',
+        mediaUrl: 'http://example.org/image.jpg',
+        actions: [{
+            text: 'Select',
+            type: 'postback',
+            payload: 'TACOS'
+        }, {
+            text: 'More info',
+            type: 'link',
+            uri: 'http://example.org'
+        }]
+    }, {
+        title: 'Ramen',
+        description: 'Description',
+        mediaUrl: 'http://example.org/image.jpg',
+        actions: [{
+            text: 'Select',
+            type: 'postback',
+            payload: 'RAMEN'
+        }, {
+            text: 'More info',
+            type: 'link',
+            uri: 'http://example.org'
+        }]
+    }]
+}),
+        // prompt: (bot) => bot.say(`Bienvenue`, [{type:'reply', text:'FAQ', payload:'faq'}]),
         receive: () => 'escape'
     },
 
