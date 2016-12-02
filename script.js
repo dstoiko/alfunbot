@@ -26,7 +26,7 @@ module.exports = new Script({
     },
 
     welcome: {
-        prompt: (bot) => bot.say(`Bienvenue`, [{type:'postback', text:'FAQ', payload:'faq'}]),
+        prompt: (bot) => bot.say(`Bienvenue`, [{type:'reply', text:'FAQ', payload:'faq'}]),
         receive: () => 'escape'
     },
 
