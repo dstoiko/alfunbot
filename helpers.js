@@ -2,7 +2,7 @@
 
 const smoochBot = require('smooch-bot');
 console.log(smoochBot);
-const StateMachine = smoochBot.stateMachine;
+const StateMachine = smoochBot.StateMachine;
 
 //
 StateMachine.receiveMessage = function(message) {
