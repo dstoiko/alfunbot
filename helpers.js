@@ -1,7 +1,7 @@
 'use strict';
 
-const StateMachine = require('smooch-bot').stateMachine;
-
+const smoochBot = require('smooch-bot');
+const StateMachine = smoochBot.stateMachine;
 
 //
 StateMachine.receiveMessage = function(message) {
