@@ -139,25 +139,7 @@ function handlePostback(req, res) {
         case 'postcode':
         case 'emailRetry':
         case 'faq':
-        case 'launchDate':
-        case 'citiesAvailable':
-        case 'servicesAvailable':
-        case 'wondorsProfile':
-        case 'howMuch':
-        case 'workRequest':
-        case 'contactRequest':
-        case 'alacarte':
-        case 'renting':
-        case 'laundry':
-        case 'shopping':
-        case 'shoemaker':
-        case 'postoffice':
-        case 'bricolage':
-        case 'furniture':
-        case 'mounting':
-        case 'paint':
-        case 'otherBrico':
-        case 'otherService':
+        case 'hello':
             Promise.all([
                 stateMachine.bot.releaseLock(),
                 stateMachine.setState(smoochPayload),

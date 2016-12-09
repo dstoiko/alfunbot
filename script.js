@@ -25,8 +25,13 @@ module.exports = new Script({
         }
     },
 
+    hello: {
+      prompt: (bot) => bot.say('Hello again!')
+      receive: () => 'start'
+    },
+
     welcome: {
-        prompt: bot => bot.say('Hello World. %[FAQ](reply:hello)'),
+        prompt: bot => bot.say('Hello World. %[FAQ](postback:hello)'),
         receive: (bot, message) => bot.say(`Your message: ${JSON.stringify(message, null, 2)}`)
     },
 
