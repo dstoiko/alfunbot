@@ -7,7 +7,9 @@ const StateMachine = smoochBot.StateMachine;
 StateMachine.receiveMessage = function(message) {
 
     var last = this.bot.getProp('last');
+    console.log('last: '+last);
     var state = this.getState();
+    console.log('state: '+state);
     if(state === 'human' && Date.now() > last + 1000) {
       return Promise.all([
           this.bot.releaseLock(),
