@@ -115,10 +115,11 @@ module.exports = new Script({
     // Send slack notification
     human: {
         receive: (bot, message) => bot.setProp('last', message.received)
-          .then(() =>
+          .then(() => {
             if (Date.now() > bot.getProp(last) + 1000) {
               'start'
-            });
+            }
+          });
     },
 
     // Error handling
