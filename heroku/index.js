@@ -139,6 +139,7 @@ function handlePostback(req, res) {
         case 'postcode':
         case 'emailRetry':
         case 'faq':
+        case 'human':
         case 'hello':
             Promise.all([
                 stateMachine.bot.releaseLock(),
