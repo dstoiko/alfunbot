@@ -33,6 +33,7 @@ module.exports = new Script({
     welcome: {
         prompt: bot => bot.say('Hello World. %[FAQ](postback:hello)'),
         receive: (bot, message) => bot.say(`Your message: ${JSON.stringify(message, null, 2)}`)
+          .then(() => 'human')
     },
 
     // Collect user e-mail
