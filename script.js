@@ -27,7 +27,7 @@ module.exports = new Script({
 
     welcome: {
         prompt: bot => bot.say('Hello World. %[FAQ](reply:hello)'),
-        receive: (bot, message) => bot.say(`Your message: ${message.text}`)
+        receive: (bot, message) => bot.say(`Your message: ${JSON.stringify(message, null, 2)}`)
     },
 
     // Collect user e-mail
