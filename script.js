@@ -27,7 +27,7 @@ module.exports = new Script({
 
     hello: {
       prompt: (bot) => bot.say('Hello again!'),
-      receive: () => 'start'
+      receive: () => 'escape'
     },
 
     welcome: {
