@@ -26,36 +26,7 @@ module.exports = new Script({
     },
 
     welcome: {
-        prompt: bot => bot.say({
-    role: 'appMaker',
-    items: [{
-        title: 'Tacos',
-        description: 'Description',
-        mediaUrl: 'http://example.org/image.jpg',
-        actions: [{
-            text: 'Select',
-            type: 'postback',
-            payload: 'TACOS'
-        }, {
-            text: 'More info',
-            type: 'link',
-            uri: 'http://example.org'
-        }]
-    }, {
-        title: 'Ramen',
-        description: 'Description',
-        mediaUrl: 'http://example.org/image.jpg',
-        actions: [{
-            text: 'Select',
-            type: 'postback',
-            payload: 'RAMEN'
-        }, {
-            text: 'More info',
-            type: 'link',
-            uri: 'http://example.org'
-        }]
-    }]
-}),
+        prompt: bot => bot.say('Hello World. %[FAQ](reply:faq)'),
         // prompt: (bot) => bot.say(`Bienvenue`, [{type:'reply', text:'FAQ', payload:'faq'}]),
         receive: () => 'escape'
     },
@@ -96,9 +67,8 @@ module.exports = new Script({
 
     // User chooses between available services or suggests a new one
     servicesRequest: {
-        prompt: (bot) => bot.say(`Choisissez le type de service que vous voulez:
-        %[Ménage](http://wondor.co/#services)
-        %[Service à la carte](postback:alacarte)`),
+        prompt: (bot) => bot.say(`Choisissez le type de service que vous voulez`)
+          .then(() => bot.say()),
         receive: () => 'escape'
     },
 
@@ -111,10 +81,7 @@ module.exports = new Script({
             %[Quels services ?](postback:servicesAvailable)
             %[Qui est wondor ?](postback:wondorsProfile)
             %[Quels prix ?](postback:howMuch)
-            %[Devenir wondor](postback:workRequest)`);
-              // .then(() => bot.say(`%[Qui est wondor ?](postback:wondorsProfile)
-              // %[Quels prix ?](postback:howMuch)
-              // %[Devenir wondor](postback:workRequest)`))
+            %[Devenir wondor](postback:workRequest)`)
         },
         receive: () => 'escape'
     },

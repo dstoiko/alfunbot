@@ -1,8 +1,7 @@
 {
-  "name": "smooch-bot-example",
+  "name": "alfunsmooch-bot",
   "version": "1.0.0",
-  "description": "Smooch Bot Example Apps",
-  "author": "Andrew Lavers <alavers@system42.net> (http://smooch.io/)",
+  "description": "Alfun bot with Smooch",
   "scripts": {
     "start": "node heroku"
   },
@@ -14,8 +13,8 @@
     "hbs": "^4.0.0",
     "jsonwebtoken": "^5.7.0",
     "natural": "^0.4.0",
-    "smooch-bot": "^1.0.1",
-    "smooch-core": "^0.0.15",
+    "smooch-bot": "^1.0.4",
+    "smooch-core": "^2.1.1",
     "validator": "^5.5.0"
   },
   "devDependencies": {
