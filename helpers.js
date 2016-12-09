@@ -6,6 +6,8 @@ const StateMachine = smoochBot.StateMachine;
 //
 StateMachine.receiveMessage = function(message) {
 
+    console.log(message);
+
     if (message.text === 'lol') {
       var last = this.bot.getProp('last');
       console.log('last: '+last);
