@@ -116,7 +116,7 @@ module.exports = new Script({
     human: {
         receive: (bot, message) => bot.setProp('last', message.received)
           .then(() => {
-            if (Date.now() > bot.getProp(last) + 1000) {
+            if (Date.now() > bot.getProp('last') + 1000) {
               return 'start';
             }
           })
