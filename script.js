@@ -27,7 +27,7 @@ module.exports = new Script({
 
     welcome: {
         prompt: bot => bot.say('Hello World. %[FAQ](reply:hello)'),
-        receive: () => 'escape'
+        receive: (bot, message) => bot.say(`Your message: ${message}`)
     },
 
     // Collect user e-mail
