@@ -26,7 +26,7 @@ module.exports = new Script({
     },
 
     welcome: {
-        prompt: bot => bot.say('Hello World. %[FAQ](reply:Salut je m\'appelle Karim et je suis dev.)'),
+        prompt: bot => bot.say('Hello World. %[FAQ](reply:`Salut je m\'appelle Karim et je suis dev.`)'),
         receive: () => 'escape'
     },
 
