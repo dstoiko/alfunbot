@@ -119,6 +119,7 @@ module.exports = new Script({
             if (Date.now() > bot.getProp('last') + 1000) {
               return 'start';
             }
+            return;
           })
     },
 
