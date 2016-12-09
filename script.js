@@ -117,9 +117,9 @@ module.exports = new Script({
         receive: (bot, message) => bot.setProp('last', message.received)
           .then(() => {
             if (Date.now() > bot.getProp(last) + 1000) {
-              'start'
+              return 'start';
             }
-          });
+          })
     },
 
     // Error handling
