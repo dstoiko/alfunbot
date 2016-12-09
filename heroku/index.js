@@ -1,7 +1,7 @@
 'use strict';
 
 const smoochBot = require('smooch-bot');
-const helpers = require('./helpers');
+const helpers = require('../helpers');
 const MemoryLock = smoochBot.MemoryLock;
 const SmoochApiStore = smoochBot.SmoochApiStore;
 const SmoochApiBot = smoochBot.SmoochApiBot;
