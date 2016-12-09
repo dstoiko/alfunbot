@@ -152,16 +152,16 @@ function handlePostback(req, res) {
         case 'summary':
             const user = req.body.appUser;
             const userId = user.userId || user._id;
-            const propsRef = usersRef.child(userId + "/properties")
-            const userProps = propsRef.once("value", function(snapshot) {
-                var props = snapshot.val();
-                stateMachine.bot.say( `Voici un résumé de votre demande :` + '\n'
-                + `Date : ` + props.date + '\n'
-                + `Code postal : ` + props.postcode + '\n'
-                + `Adresse e-mail : ` + props.email + '\n'
-                + `Demande : ` + props.ask + '\n'
-                + `Veuillez nous indiquer si l'une des informations est fausse.`);
-            });
+            // const propsRef = usersRef.child(userId + "/properties")
+            // const userProps = propsRef.once("value", function(snapshot) {
+            //     var props = snapshot.val();
+            //     stateMachine.bot.say( `Voici un résumé de votre demande :` + '\n'
+            //     + `Date : ` + props.date + '\n'
+            //     + `Code postal : ` + props.postcode + '\n'
+            //     + `Adresse e-mail : ` + props.email + '\n'
+            //     + `Demande : ` + props.ask + '\n'
+            //     + `Veuillez nous indiquer si l'une des informations est fausse.`);
+            // });
             res.end();
         break;
         default:
