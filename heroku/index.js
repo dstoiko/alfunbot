@@ -22,7 +22,7 @@ const webhookTriggers = ['message:appUser', 'postback'];
 const firebase = require('firebase');
 firebase.initializeApp({
   serviceAccount: "firebase-service.json",
-  databaseURL: "https://wondorbot.firebaseio.com"
+  databaseURL: "https://.firebaseio.com"
 });
 // Firebase services
 var db = firebase.database();

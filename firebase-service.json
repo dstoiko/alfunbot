@@ -1,12 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "wondorbot",
-  "private_key_id": "ec6a36b9f52d4f1216cf3ce30d5de761218a0c7c",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCV5jydojnmEGmA\n9QfGYLz/e467I3wKo/dUMWzQB0Xond/mkazTlLnHMmIi7l6l1Ydyeo+YP5fHJCLG\nsPJkPBACBAtaW60hDvL/p9zDMz2ZBLwJvzIP/j5wbYmlnU4MoyxqPopi/0Sz+zfu\nhu2DvOrE58POipg2zE6GeJdO8qqCNqW+lYCWhMSPv+lSRueVlOIm9TzVrFAgtmj4\noAyw3Hb860fUlcxs+xN/5aNGOKhHOX9nR39DUFUyUDSUHXATlM53gWvthJdDbaHW\nLQjLc5kbCrc1r1pmFCTtSb67JJtBBz86EXM/4Jm95hkUJgEnPJwXnMf7SGSgbOxq\nuw38atBpAgMBAAECggEAQwJunIU13sv9bgGbnSoHsyoX7z54qAUOfputqf1mWguh\nWOBMYzU8K3kxd64Zr4aaCyoQ4R2kiwhzZ2EYqohTG6OVM6qB5aJaLMFspfJVGf+M\n08qd5ZphbT76ZofAqVOUelZE5OZ6Xv7xzPaSXO7qAGYfGUjJrM1+WQy1jzxZzuVQ\n72WMlbW1Rt0Nd9/WbJXYjiaQv91e5ojO/ftOT93Y3Gk5XbjKqccTu1D+uSLLeEyy\nFH2ZP1jkiOrdMOTd2KWFa9uF8aB6W4lxLUJB4xRoExKtCN01IvMlI1RhIAcLP5kg\n7LT+Z3xDoEQWDrVipTnn0ChhJDjEXi+ROf7ZWbg+FQKBgQDZdJx/MWWXaGnHHllr\nPTIufc/3UeR7rYiccbVvjU3Jy7GJbH42HgUdTMfiyplASh/PJ3x9084ZShN47fUi\nwHZAip6BcLu6Qkkki1iWZkD41Og3GbHozAzx03sMKkZxbypKJuAc5uu6+G51O7lV\nGURa5iIrsTVLF5NQnumpMgIJrwKBgQCweCh0Fsg9vgfhjOD6mSrdOBmLv3F5LC81\nvEt9k0x4aXRX6MJcctL/A1I7iBido8cwVKCekILj8UKc4CbT3FSZU0MtM5T3xyHP\nMDf0fDGg6pi+T6XEBJzq2Z8flC2XGf4oU0mRKwypvnQCyV+mNBScBDkAlHi3+WE6\nnWjE+7+FZwKBgA7r2oU7zX3LM17vbTFXnKbmCSwuWWBHMxWRE+MYrhrHuGH2qN5r\nxuwQxbKBNmzb6Tzct8UmkIDZvWZR5b1BuZuKJ4A4TRllzQEN8sE3OQQaD+kgAT45\nKjY5zbqy9+x2tU8rRbuV+Nz2iRXQSFJXjoIyQmv/F+oULw6cKOpsPQmPAoGAQBBf\nH0XmDAQg+FEcm91fIlBrdcBagZL40Jk7Dqua51vhUMi/RrCoyMt73wDZbuE2PuV6\nKhZsbjP36tu1PNSQIdmIWbCQNCOmsoDez3MG0VRZfz2LAE5saRX4Ho68vk5BZoJW\nAs2OG1F47EoO31eo47rktsEv0hpGofDjSB/ct6ECgYB6h+buec21vGPJ+uFroqMr\nAOlJngjz2sHR0foJzvwt1nFb7kCzTbNTXthBL5hLeRXdexL9nHHyjA+G167YVvoN\nzEkic3q39PKtv/49h+PxdtYz00APqHslMouKpIFN3j2cDu2NOQlHhg1g02vJ2aTB\nbCE6DzgZktbv0NNPopdvtg==\n-----END PRIVATE KEY-----\n",
-  "client_email": "admin-79@wondorbot.iam.gserviceaccount.com",
-  "client_id": "105562770424355517353",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://accounts.google.com/o/oauth2/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/admin-79%40wondorbot.iam.gserviceaccount.com"
-}
+\\ ADD firebase-service file here //
