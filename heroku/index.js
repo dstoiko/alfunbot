@@ -188,7 +188,7 @@ app.post('/webhook', function(req, res, next) {
     // Store and update user info into Firebase
     const user = req.body.appUser;
     const userId = user.userId || user._id;
-    usersRef.child(userId).update(user);
+    // usersRef.child(userId).update(user);
 });
 
 var server = app.listen(process.env.PORT || 8000, function() {
