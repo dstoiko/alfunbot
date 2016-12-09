@@ -1,7 +1,6 @@
 'use strict';
 
 const smoochBot = require('smooch-bot');
-console.log(smoochBot);
 const StateMachine = smoochBot.StateMachine;
 
 //
@@ -45,4 +44,4 @@ StateMachine.receiveMessage = function(message) {
         });
 }
 
-module.exports = StateMachine;
+module.exports.StateMachine = StateMachine;
