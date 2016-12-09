@@ -1,10 +1,11 @@
 'use strict';
 
 const smoochBot = require('smooch-bot');
+const helpers = require('./helpers');
 const MemoryLock = smoochBot.MemoryLock;
 const SmoochApiStore = smoochBot.SmoochApiStore;
 const SmoochApiBot = smoochBot.SmoochApiBot;
-const StateMachine = smoochBot.StateMachine;
+const StateMachine = helpers.StateMachine;
 const app = require('../app');
 const script = require('../script');
 const SmoochCore = require('smooch-core');
