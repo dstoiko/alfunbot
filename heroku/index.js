@@ -19,15 +19,15 @@ const store = new SmoochApiStore({
 const lock = new MemoryLock();
 const webhookTriggers = ['message:appUser', 'postback'];
 // Initialize Firebase
-const firebase = require('firebase');
-firebase.initializeApp({
-  serviceAccount: "firebase-service.json",
-  databaseURL: "https://.firebaseio.com"
-});
+// const firebase = require('firebase');
+// firebase.initializeApp({
+//   serviceAccount: "firebase-service.json",
+//   databaseURL: "https://.firebaseio.com"
+// });
 // Firebase services
-var db = firebase.database();
-var ref = db.ref("bot");
-var usersRef = ref.child("users");
+// var db = firebase.database();
+// var ref = db.ref("bot");
+// var usersRef = ref.child("users");
 
 function createWebhook(smoochCore, target) {
     return smoochCore.webhooks.create({
