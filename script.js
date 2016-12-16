@@ -21,108 +21,67 @@ module.exports = new Script({
     start: {
         receive: (bot) => {
             return bot.say(states.start.response)
-                .then(() => 'welcome');
+                .then(() => bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)') );
+                .then(() => 'start')
         }
     },
 
-    hello: {
-      prompt: (bot) => bot.say('Hello again!'),
-      receive: () => 'escape'
-    },
-
-    welcome: {
-        prompt: bot => bot.say('Hello World. %[FAQ](postback:hello)'),
-        receive: (bot, message) => bot.say(`Your message: ${JSON.stringify(message, null, 2)}`)
-          .then(() => 'human')
-    },
-
-    // Collect user e-mail
-    email: {
-        prompt: (bot) => bot.say(`Quelle est votre adresse e-mail ?
-          Nous utiliserons cette adresse pour vous recontacter`),
-        receive: (bot, message) => {
-            const email = message.text.trim();
-            if (validator.isEmail(email)) { // Validate e-mail format using nifty validator library
-                return bot.say(`Merci !`)
-                    .then(() => bot.setProp('email', email))
-                    .then(() => 'servicesRequest');
-            }
-            else {
-                return bot.say(`Humm... Il semblerait que vous n'ayez pas rentré un e-mail valide... %[Réessayer](postback:emailRetry)`);
-            }
-        }
-    },
-    // Email retry if unsuccessful
-    emailRetry: {
-        prompt: (bot) => bot.say(`Veuilez réécrire votre adresse e-mail`),
-        receive: (bot, message) => {
-            const email = message.text.trim();
-            if (validator.isEmail(email)) { // Validate e-mail format using nifty validator library
-                return bot.say(`Merci !`)
-                    .then(() => bot.setProp('email', email))
-                    .then(() => 'servicesRequest');
-            }
-            else {
-                return bot.say(`Il semblerait que vous n'ayez toujours pas rentré un e-mail valide...
-                %[Réessayer](postback:emailRetry)
-                %[Contacter l'équipe](postback:contactRequest)`);
-            }
-        }
-    },
-
-    // User chooses between available services or suggests a new one
-    servicesRequest: {
-        prompt: (bot) => bot.say(`Choisissez le type de service que vous voulez`)
-          .then(() => bot.say()),
-        receive: () => 'escape'
-    },
-
-    // FAQ to answer most common questions
-    faq: {
+    site: {
         prompt: (bot) => {
-            return bot.say(`Voici les questions qu'on nous pose souvent :
-            %[Quand lancez-vous ?](postback:launchDate)
-            %[Où ?](postback:citiesAvailable)
-            %[Quels services ?](postback:servicesAvailable)
-            %[Qui est wondor ?](postback:wondorsProfile)
-            %[Quels prix ?](postback:howMuch)
-            %[Devenir wondor](postback:workRequest)`)
+            return bot.say(states.site.prompt)
+                .then( () => bot.say('%[Notre site](url)') )
         },
-        receive: () => 'escape'
-    },
-    // If FAQ doesn't answer all the user's questions
-    contactRequest: {
-        prompt: (bot) => bot.say(`Veuillez patienter, un de mes collègues humains va prendre le relais...`)
-            .then(() => 'human'),
-        receive: () => 'human'
+
+        receive: (bot) => {
+            return 'start'
+        }
+
     },
 
-    // Waiting message
-    wait: {
+    sessionStart: {
         prompt: (bot) => {
-            return bot.say(`Veuillez patienter, nous revenons vers vous au plus vite avec un tarif estimatif ou une demande de précisions... %[Récapitulatif](postback:summary)`)
-                .then(() => 'human')
-        },
-        receive: () => 'human'
-    },
-
-    // Fallback for human to jump in the conversation
-    escape: {
-        prompt: (bot) => bot.say(`Sélectionnez l'une des options proposées dans le dernier message, nous traiterons votre demande au plus vite ! Voulez-vous parler à quelqu'un de notre équipe ?
-        %[Parler à l'équipe](postback:contactRequest)`),
-        receive: () => 'contactRequest'
-    },
-
-    // Send slack notification
-    human: {
-        receive: (bot, message) => bot.setProp('last', message.received)
-          .then(() => 'human')
-    },
-
-    // Error handling
-    error: {
-        prompt: (bot) => bot.say(`Beep Boop... Désolé, il y a une erreur...
-%[Parler à l'équipe](postback:contactRequest)`),
-        receive: () => 'escape'
+            return bot.say(states.sessionStart.prompt)
+                .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
+        }
     }
+
+    creation: {
+        prompt: (bot) => {
+            return bot.say(states.creation.prompt)
+                .then( () => 'booking')
+        }
+    },
+
+    booking: {
+        prompt: (bot) => {
+            return bot.say(states.booking.prompt)
+                .then( () => 'start')
+        }
+    },
+
+    migration: {
+        prompt: (bot) => {
+            return bot.say(start.migration.prompt)
+        },
+        receive: (bot) => {
+            return 'builtWithStart'
+        }
+    },
+
+    builtWithStart: {
+        prompt: (bot) => {
+            return bot.say("Je vais proceder a une petite analyse ...")
+                .then( () => 'builtWithResults' )
+        }
+    }
+
+    builtWithResults: {
+
+        prompt: (bot) => {
+            return bot.say("Voici les caracteristiques que j'ai pu observer avec mon cyber scanner.")
+        }
+
+        receive: (bot) => { return 'start' }
+    }
+
 });

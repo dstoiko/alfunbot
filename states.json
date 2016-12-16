@@ -1,6 +1,35 @@
 {
-  "start": {
-    "prompt": "",
-    "response": "OKOK"
-  }
+    "start": {
+        "prompt": "",
+        "response": "Bonjour et bienvenue. Je suis le premier chatbot configuateur PaaS. \n Mon but est de vous guider vers une externalisation de votre plateforme idoine. Etes vous interessés ?"
+    },
+
+    "site": {
+        "prompt": "Je vous propose de continuer vers notre site et de revenir me voir bientot pour vous accompagner sur d'autres problematiques. A bientot !"
+    },
+
+    "sessionStart": {
+        "prompt": "Super ! Je vais vous poser quelques questions. Premièrement, s'agit t-il d'une migration ou d'une création de site ?"
+    },
+
+    "creation": {
+        "prompt": "Dans le cadre d’une création, je vous propose de prendre un rdv ensemble pour échanger de vive voix sur vos besoins..."
+    },
+
+    "booking": {
+        "prompt": "Je vais prendre RDV avec un de mes collègues humains pour vous..."
+    },
+
+    "migration": {
+        "prompt": "Pouvez-vous m'indiquer votre URL de site web (ex: http://exemple.fr)"
+    },
+
+    "builtwithStart": {
+        "prompt": "Je vais procéder à une rapide analyse..."
+    },
+
+    "builtWithResults": {
+        "prompt": "Voici ce que j'ai pu analyser: "
+    }
+
 }
