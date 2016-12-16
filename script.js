@@ -19,7 +19,8 @@ module.exports = new Script({
     start: {
         receive: (bot) => {
             return bot.say(states.start.response)
-                .then(() => 'start2')
+                .then(() => console.log("OK"))
+                .then(() => 'start2');
         }
     },
 
