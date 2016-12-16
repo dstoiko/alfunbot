@@ -61,6 +61,7 @@ module.exports = new Script({
             return bot.say(states.creation.prompt)
                 .then( () => 'booking')
         }
+        receive: (bot) => 'creation'
     },
 
     booking: {
