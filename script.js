@@ -44,6 +44,9 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say(states.sessionStart.prompt)
                 .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
+        },
+        receive: (bot, message) => {
+            return message.payload
         }
     },
 
