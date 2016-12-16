@@ -19,11 +19,15 @@ module.exports = new Script({
     start: {
         receive: (bot) => {
             return bot.say(states.start.response)
-                .then(() => {
-                    return bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)')
-                })
-                .then(() => 'replyButtonProcessing')
+                .then(() => 'start2')
         }
+    },
+
+    start2: {
+        prompt: (bot) => {
+            return bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)')
+        },
+        receive: () => 'replyButtonProcessing'
     },
 
     replyButtonProcessing: {
