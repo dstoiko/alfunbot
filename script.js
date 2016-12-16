@@ -21,7 +21,7 @@ module.exports = new Script({
     start: {
         receive: (bot) => {
             return bot.say(states.start.response)
-                .then(() => bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)') );
+                .then(() => bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)') )
                 .then(() => 'start')
         }
     },
