@@ -19,10 +19,12 @@ module.exports = new Script({
 
     // Initial state of the bot
     start: {
-        receive: (bot) => {
+        receive: (bot, message) => {
             return bot.say(states.start.response)
-                .then(() => bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)') )
-                .then(() => 'start')
+                .then(() => {
+                    console.log(message.text)
+                    bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)') )
+                }
         }
     },
 
@@ -61,7 +63,7 @@ module.exports = new Script({
 
     migration: {
         prompt: (bot) => {
-            return bot.say(start.migration.prompt)
+            return bot.say(states.migration.prompt)
         },
         receive: (bot) => {
             return 'builtWithStart'
