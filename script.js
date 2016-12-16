@@ -60,7 +60,7 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say(states.creation.prompt)
                 .then( () => 'booking')
-        }
+        },
         receive: (bot) => 'creation'
     },
 
