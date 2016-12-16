@@ -43,7 +43,6 @@ module.exports = new Script({
         receive: (bot) => {
             return 'start'
         }
-
     },
 
     sessionStart: {
@@ -52,7 +51,7 @@ module.exports = new Script({
                 .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
         },
         receive: (bot, message) => {
-            return message.payload
+            return 'replyButtonProcessing'
         }
     },
 
@@ -61,7 +60,7 @@ module.exports = new Script({
             return bot.say(states.creation.prompt)
                 .then( () => 'booking')
         },
-        receive: (bot) => 'creation'
+        receive: (bot) => 'start'
     },
 
     booking: {
