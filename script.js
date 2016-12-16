@@ -22,7 +22,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             return bot.say(states.start.response)
                 .then(() => {
-                    console.log(message.text)
+                    console.log("Payload" + message.payload)
                     bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)')
                 })
         }
