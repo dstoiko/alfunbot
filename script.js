@@ -43,7 +43,7 @@ module.exports = new Script({
             return bot.say(states.sessionStart.prompt)
                 .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
         }
-    }
+    },
 
     creation: {
         prompt: (bot) => {
