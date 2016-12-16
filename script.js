@@ -79,7 +79,7 @@ module.exports = new Script({
 
         prompt: (bot) => {
             return bot.say("Voici les caracteristiques que j'ai pu observer avec mon cyber scanner.")
-        }
+        },
 
         receive: (bot) => { return 'start' }
     }
