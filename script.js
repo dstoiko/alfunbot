@@ -23,8 +23,14 @@ module.exports = new Script({
             return bot.say(states.start.response)
                 .then(() => {
                     bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)')
-                    return message.payload
                 })
+                .then( () => 'replyButtonProcessing')
+        }
+    },
+
+    replyButtonProcessing: {
+        receive: (bot, message) => {
+            return message.payload
         }
     },
 
