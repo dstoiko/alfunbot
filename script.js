@@ -23,8 +23,8 @@ module.exports = new Script({
             return bot.say(states.start.response)
                 .then(() => {
                     console.log(message.text)
-                    bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)') )
-                }
+                    bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)')
+                })
         }
     },
 
