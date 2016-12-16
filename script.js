@@ -12,26 +12,22 @@ const states = require('./states');
 module.exports = new Script({
 
     processing: {
-        // prompt: (bot) => bot.say(states.processing.prompt),
         receive: () => 'processing'
-        // receive: () => states.processing.next
     },
 
     // Initial state of the bot
     start: {
-        receive: () => {
+        receive: (bot) => {
             return bot.say(states.start.response)
                 .then(() => {
                     bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)')
                 })
-                .then( () => 'replyButtonProcessing')
+                .then(() => 'replyButtonProcessing')
         }
     },
 
     replyButtonProcessing: {
-        receive: (bot, message) => {
-            return message.payload
-        }
+        receive: (bot, message) => message.payload
     },
 
     site: {
@@ -39,10 +35,7 @@ module.exports = new Script({
             return bot.say(states.site.prompt)
                 .then( () => bot.say('%[Notre site](url)') )
         },
-
-        receive: (bot) => {
-            return 'start'
-        }
+        receive: () => 'start'
     },
 
     sessionStart: {
@@ -50,9 +43,7 @@ module.exports = new Script({
             return bot.say(states.sessionStart.prompt)
                 .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
         },
-        receive: (bot, message) => {
-            return 'replyButtonProcessing'
-        }
+        receive: () => 'replyButtonProcessing'
     },
 
     creation: {
@@ -60,23 +51,22 @@ module.exports = new Script({
             return bot.say(states.creation.prompt)
                 .then( () => 'booking')
         },
-        receive: (bot) => 'start'
+        receive: () => 'start'
     },
 
     booking: {
         prompt: (bot) => {
             return bot.say(states.booking.prompt)
                 .then( () => 'start')
-        }
+        },
+        receive : () => 'start'
     },
 
     migration: {
         prompt: (bot) => {
             return bot.say(states.migration.prompt)
         },
-        receive: (bot) => {
-            return 'builtWithStart'
-        }
+        receive: () => 'builtWithStart'
     },
 
     builtWithStart: {
@@ -84,9 +74,7 @@ module.exports = new Script({
             return bot.say("Je vais proceder a une petite analyse ...")
                 .then( () => 'builtWithResults' )
         },
-        receive: (bot) => {
-            return 'builtWithStart'
-        }
+        receive: () => 'builtWithStart'
     },
 
     builtWithResults: {
@@ -94,8 +82,7 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say("Voici les caracteristiques que j'ai pu observer avec mon cyber scanner.")
         },
-
-        receive: (bot) => { return 'start' }
+        receive: () => 'start'
     }
 
 });

@@ -18,16 +18,6 @@ const store = new SmoochApiStore({
 });
 const lock = new MemoryLock();
 const webhookTriggers = ['message:appUser', 'postback'];
-// Initialize Firebase
-// const firebase = require('firebase');
-// firebase.initializeApp({
-//   serviceAccount: "firebase-service.json",
-//   databaseURL: "https://.firebaseio.com"
-// });
-// Firebase services
-// var db = firebase.database();
-// var ref = db.ref("bot");
-// var usersRef = ref.child("users");
 
 function createWebhook(smoochCore, target) {
     return smoochCore.webhooks.create({
@@ -152,16 +142,6 @@ function handlePostback(req, res) {
         case 'summary':
             const user = req.body.appUser;
             const userId = user.userId || user._id;
-            // const propsRef = usersRef.child(userId + "/properties")
-            // const userProps = propsRef.once("value", function(snapshot) {
-            //     var props = snapshot.val();
-            //     stateMachine.bot.say( `Voici un résumé de votre demande :` + '\n'
-            //     + `Date : ` + props.date + '\n'
-            //     + `Code postal : ` + props.postcode + '\n'
-            //     + `Adresse e-mail : ` + props.email + '\n'
-            //     + `Demande : ` + props.ask + '\n'
-            //     + `Veuillez nous indiquer si l'une des informations est fausse.`);
-            // });
             res.end();
         break;
         default:
@@ -185,10 +165,9 @@ app.post('/webhook', function(req, res, next) {
         default:
             console.log('Ignoring unknown webhook trigger:', trigger);
     }
-    // Store and update user info into Firebase
+    // Store and update user info
     const user = req.body.appUser;
     const userId = user.userId || user._id;
-    // usersRef.child(userId).update(user);
 });
 
 var server = app.listen(process.env.PORT || 8000, function() {
