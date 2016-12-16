@@ -73,7 +73,7 @@ module.exports = new Script({
             return bot.say("Je vais proceder a une petite analyse ...")
                 .then( () => 'builtWithResults' )
         }
-    }
+    },
 
     builtWithResults: {
 
