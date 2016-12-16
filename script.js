@@ -19,7 +19,6 @@ module.exports = new Script({
     start: {
         receive: (bot) => {
             return bot.say(states.start.response)
-                .then(() => console.log("OK"))
                 .then(() => 'start2');
         }
     },
@@ -76,16 +75,15 @@ module.exports = new Script({
 
     builtWithStart: {
         prompt: (bot) => {
-            return bot.say("Je vais proceder a une petite analyse ...")
+            return bot.say(states.builtWithStart.prompt)
                 .then( () => 'builtWithResults' )
         },
         receive: () => 'builtWithStart'
     },
 
     builtWithResults: {
-
         prompt: (bot) => {
-            return bot.say("Voici les caracteristiques que j'ai pu observer avec mon cyber scanner.")
+            return bot.say(states.builtWithResults.prompt)
         },
         receive: () => 'start'
     }
