@@ -77,6 +77,9 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say("Je vais proceder a une petite analyse ...")
                 .then( () => 'builtWithResults' )
+        },
+        receive: (bot) => {
+            return 'builtWithStart'
         }
     },
 
