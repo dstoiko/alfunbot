@@ -20,7 +20,8 @@
     },
 
     "migration": {
-        "prompt": "Pouvez-vous m'indiquer l'adresse de votre site web (ex: http://exemple.fr) ?"
+        "prompt": "Pouvez-vous m'indiquer l'adresse de votre site web (ex: http://exemple.fr) ?",
+        "response": "Voici votre profil technologique: \n"
     },
 
     "builtWithStart": {

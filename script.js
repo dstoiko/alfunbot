@@ -8,6 +8,8 @@ const natural = require('natural');
 const validator = require('validator');
 // For external API requests
 const request = require('request');
+// For JSON filtering
+const where = require('lodash.where');
 // States stored locally
 const states = require('./states');
 
@@ -68,13 +70,28 @@ module.exports = new Script({
         receive : () => 'start'
     },
 
+    // Filters for parsing BuiltWith API response
+    let techFilter = function(technologies, tag) {
+      if (where(technologies, { 'tag': tag }) !== undefined) {
+        let results = where(technologies, { 'tag': tag });
+        let string = '';
+        results.forEach(function(result) {
+          string += ', ' + result.Name;
+        });
+        console.log(string);
+        return string + "\n";
+      }
+      else {
+        return 'pas d\'information';
+      }
+    }
+
     migration: {
         prompt: (bot) => {
             return bot.say(states.migration.prompt)
         },
         receive: (bot, message) =>  {
           let siteUrl = message.text.trim();
-          console.log(siteUrl);
           request(
             'https://api.builtwith.com/v11/api.json?KEY=' +
             BUILTWITH_KEY +
@@ -82,11 +99,21 @@ module.exports = new Script({
             siteUrl,
             function (error, response, body) {
               if (!error && response.statusCode == 200) {
-                console.log(JSON.stringify(body, null, 2));
+                let technologies = body.Results[0].Result.Paths[0].Technologies;
+                let cms = techFilter(technologies, 'cms');
+                let hosting = techFilter(technologies, 'hosting');
+                let framework = techFilter(technologies, 'framework');
+                return bot.say(states.migration.response +
+                               'CMS : ' + cms +
+                               'Hébergement : ' + hosting +
+                               'Langage(s) : ' + framework
+                               )
+                  .then(() => 'builtWithStart');
               }
+              return bot.say('Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...')
+                .then(() => 'builtWithStart');
             }
           );
-          return 'builtWithStart';
         }
     },
 
