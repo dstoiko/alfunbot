@@ -19,7 +19,8 @@ module.exports = new Script({
     start: {
         receive: (bot) => {
             return bot.say(states.start.response)
-                .then(() => 'start2');
+                .then( () => bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)') )
+                .then( () => 'replyButtonProcessing')
         }
     },
 
@@ -31,13 +32,16 @@ module.exports = new Script({
     },
 
     replyButtonProcessing: {
-        receive: (bot, message) => message.payload
+        receive: (bot, message) => {
+            bot.getProp('siteType').then( result => console.log(result) )
+            return message.payload
+        }
     },
 
     site: {
         prompt: (bot) => {
             return bot.say(states.site.prompt)
-                .then( () => bot.say('%[Notre site](url)') )
+                .then( () => bot.say('%[Notre site](https://google.com)') )
         },
         receive: () => 'start'
     },
@@ -47,7 +51,9 @@ module.exports = new Script({
             return bot.say(states.sessionStart.prompt)
                 .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
         },
-        receive: () => 'replyButtonProcessing'
+        receive: (bot, message) => {
+                return  message.payload
+        }
     },
 
     creation: {
