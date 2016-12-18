@@ -80,7 +80,8 @@ module.exports = new Script({
 
     builtWithStart: {
         prompt: (bot) => {
-            return bot.sayCarousel([{title: "Tacos", description: "Some description", mediaUrl: "http://example.org/image.jpg"}])
+            return bot.sayCarousel([{title: "Tacos", description: "Some description", mediaUrl: "http://example.org/image.jpg", actions: [ {text: "select", type: "postback", payload: "TACOS"}, {text: "More info", type: "postback", uri: "hewkjekw"} ]}])
+
                 .then( () => 'builtWithResults' )
                 .catch( err => console.log(err) )
         },
