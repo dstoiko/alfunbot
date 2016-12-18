@@ -13,7 +13,8 @@ const where = require('lodash.where');
 // States stored locally
 const states = require('./states');
 
-const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
+// const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
+const BUILTWITH_KEY = '45e8e1eb-e717-47d8-b1f0-a33458e4268f';
 
 // Filters for parsing BuiltWith API response
 let techFilter = function(technologies, tag) {
