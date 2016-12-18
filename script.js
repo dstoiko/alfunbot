@@ -92,29 +92,33 @@ module.exports = new Script({
         },
         receive: (bot, message) =>  {
           let siteUrl = message.text.trim();
-          request(
+          result = request(
             'https://api.builtwith.com/v11/api.json?KEY=' +
             BUILTWITH_KEY +
             '&LOOKUP=' +
             siteUrl,
             function (error, response, body) {
               if (!error && response.statusCode == 200) {
-                console.log(JSON.parse(body));
                 let technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
+                console.log(technologies);
                 let cms = techFilter(technologies, 'cms');
+                console.log(cms);
                 let hosting = techFilter(technologies, 'hosting');
+                console.log(hosting);
                 let framework = techFilter(technologies, 'framework');
-                return bot.say(states.migration.response +
-                               'CMS : ' + cms +
-                               'Hébergement : ' + hosting +
-                               'Langage(s) : ' + framework
-                               )
-                  .then(() => 'builtWithStart');
+                console.log(framework);
+                let out = 'CMS : ' + cms +
+                          'Hébergement : ' + hosting +
+                          'Langage(s) : ' + framework ;
               }
-              return bot.say('Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...')
-                .then(() => 'builtWithStart');
+              else {
+                let out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
+              }
+              return out;
             }
           );
+          return bot.say(states.migration.response + result);
+              .then( () => 'builtWithStart' )
         }
     },
 
