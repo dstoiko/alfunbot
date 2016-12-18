@@ -117,7 +117,7 @@ module.exports = new Script({
               return out;
             }
           );
-          return bot.say(states.migration.response + result);
+          return bot.say(states.migration.response + result)
               .then( () => 'builtWithStart' )
         }
     },
