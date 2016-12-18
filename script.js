@@ -99,8 +99,8 @@ module.exports = new Script({
             siteUrl,
             function (error, response, body) {
               if (!error && response.statusCode == 200) {
-                console.log(body);
-                let technologies = body.Results[0].Result.Paths[0].Technologies;
+                console.log(JSON.parse(body));
+                let technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
                 let cms = techFilter(technologies, 'cms');
                 let hosting = techFilter(technologies, 'hosting');
                 let framework = techFilter(technologies, 'framework');
