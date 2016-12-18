@@ -92,8 +92,8 @@ module.exports = new Script({
         },
         receive: (bot, message) => {
           var siteUrl = message.text.trim();
-          if (!(validator.isUrl(siteUrl))) {
-            return bot.say(states.migration.noUrl);
+          if (!(validator.isURL(siteUrl))) {
+            return bot.say(states.migration.noURL);
           }
           else {
             return bot.say(states.migration.wait)
