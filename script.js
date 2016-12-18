@@ -17,13 +17,13 @@ const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
 
 // Filters for parsing BuiltWith API response
 let techFilter = function(technologies, tag) {
-  if (where(technologies, { 'tag': tag }) !== undefined) {
-    let results = where(technologies, { 'tag': tag });
+  if (where(technologies, { 'Tag': tag }) !== undefined) {
+    let results = where(technologies, { 'Tag': tag });
     let string = '';
     results.forEach(function(result) {
       string += ', ' + result.Name;
     });
-    console.log(string);
+    console.log('FILTER: ' + string);
     return string + "\n";
   }
   else {
@@ -101,16 +101,17 @@ module.exports = new Script({
               let out = '';
               if (!error && response.statusCode == 200) {
                 let technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
-                console.log(technologies);
+                console.log('TECH: ' + technologies);
                 let cms = techFilter(technologies, 'cms');
-                console.log(cms);
+                console.log('CMS: ' + cms);
                 let hosting = techFilter(technologies, 'hosting');
-                console.log(hosting);
+                console.log('HOSTING: ' + hosting);
                 let framework = techFilter(technologies, 'framework');
-                console.log(framework);
+                console.log('FRAMEWORKS: ' + framework);
                 out = 'CMS : ' + cms +
-                          'Hébergement : ' + hosting +
-                          'Langage(s) : ' + framework ;
+                      'Hébergement : ' + hosting +
+                      'Langage(s) : ' + framework ;
+                console.log(out);
               }
               else {
                 out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
