@@ -6,20 +6,14 @@ const StateMachine  = smoochBot.StateMachine;
 
 class SuperSmoochApiBotTwo extends SmoochApiBot {
 
-    say(text, options) {
-        const api = this.store.getApi();
-        let message = Object.assign({
-            text,
-            actions: options.actions,
-            role: 'appMaker'
-        }, {
-            name: this.name,
-            avatarUrl: this.avatarUrl,
-            items: options.items,
-            type: options.type
+    sayCarousel(items) {
 
-        });
-        console.log(message)
+        const api = this.store.getApi();
+        let message = {
+            role: 'appMaker',
+            type: 'carousel',
+            items: items
+        }
         return api.appUsers.sendMessage(this.userId, message);
     }
 }
