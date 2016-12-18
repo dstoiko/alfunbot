@@ -19,11 +19,9 @@ module.exports = new Script({
 
     // Initial state of the bot
     start: {
-        receive: (bot, message) => {
+        receive: (bot) => {
             return bot.say(states.start.response)
-                .then(() => {
-                    bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)')
-                })
+                .then( () => bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)') )
                 .then( () => 'replyButtonProcessing')
         }
     },
