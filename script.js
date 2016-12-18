@@ -15,6 +15,22 @@ const states = require('./states');
 
 const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
 
+// Filters for parsing BuiltWith API response
+let techFilter = function(technologies, tag) {
+  if (where(technologies, { 'tag': tag }) !== undefined) {
+    let results = where(technologies, { 'tag': tag });
+    let string = '';
+    results.forEach(function(result) {
+      string += ', ' + result.Name;
+    });
+    console.log(string);
+    return string + "\n";
+  }
+  else {
+    return 'pas d\'information';
+  }
+}
+
 module.exports = new Script({
 
     processing: {
@@ -69,22 +85,6 @@ module.exports = new Script({
         },
         receive : () => 'start'
     },
-
-    // Filters for parsing BuiltWith API response
-    let techFilter = function(technologies, tag) {
-      if (where(technologies, { 'tag': tag }) !== undefined) {
-        let results = where(technologies, { 'tag': tag });
-        let string = '';
-        results.forEach(function(result) {
-          string += ', ' + result.Name;
-        });
-        console.log(string);
-        return string + "\n";
-      }
-      else {
-        return 'pas d\'information';
-      }
-    }
 
     migration: {
         prompt: (bot) => {
