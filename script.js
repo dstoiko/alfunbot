@@ -75,17 +75,17 @@ module.exports = new Script({
         receive: (bot, message) =>  {
           let siteUrl = message.text.trim();
           console.log(siteUrl);
-          // request(
-          //   'https://api.builtwith.com/v11/api.json?KEY=' +
-          //   BUILTWITH_KEY +
-          //   '&LOOKUP=' +
-          //   siteUrl,
-          //   function (error, response, body) {
-          //     if (!error && response.statusCode == 200) {
-          //       console.log(JSON.stringify(body, null, 2));
-          //     }
-          //   }
-          // );
+          request(
+            'https://api.builtwith.com/v11/api.json?KEY=' +
+            BUILTWITH_KEY +
+            '&LOOKUP=' +
+            siteUrl,
+            function (error, response, body) {
+              if (!error && response.statusCode == 200) {
+                console.log(JSON.stringify(body, null, 2));
+              }
+            }
+          );
           return 'builtWithStart'
         }
     },
