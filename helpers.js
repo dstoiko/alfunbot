@@ -14,8 +14,7 @@ class SuperSmoochApiBotTwo extends SmoochApiBot {
             type: 'carousel',
             items: items
         }
-        console.log(api.appUsers.sendMessage(this.userId, message))
-        return api.appUsers.sendMessage(this.userId, message);
+        return api.appUsers.sendMessage(this.userId, message).then(data => console.log(data)).catch(e => console.log(e))
     }
 }
 
