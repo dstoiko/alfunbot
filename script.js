@@ -6,8 +6,12 @@ const Script = require('smooch-bot').Script;
 const natural = require('natural');
 // For e-mail validation
 const validator = require('validator');
-
+// For external API requests
+const request = require('request');
+// States stored locally
 const states = require('./states');
+
+const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
 
 module.exports = new Script({
 
@@ -24,16 +28,8 @@ module.exports = new Script({
         }
     },
 
-    start2: {
-        prompt: (bot) => {
-            return bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)')
-        },
-        receive: () => 'replyButtonProcessing'
-    },
-
     replyButtonProcessing: {
         receive: (bot, message) => {
-            bot.getProp('siteType').then( result => console.log(result) )
             return message.payload
         }
     },
@@ -76,7 +72,21 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say(states.migration.prompt)
         },
-        receive: () => 'builtWithStart'
+        receive: (bot, message) =>  {
+          let siteUrl = message.text.trim;
+          request(
+            'https://api.builtwith.com/v11/api.json?KEY=' +
+            BUILTWITH_KEY +
+            '&LOOKUP=' +
+            siteUrl,
+            function (error, response, body) {
+              if (!error && response.statusCode == 200) {
+                console.log(JSON.stringify(body, null, 2));
+              }
+            }
+          );
+          return 'builtWithStart'
+        }
     },
 
     builtWithStart: {
