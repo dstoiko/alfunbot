@@ -66,7 +66,7 @@ module.exports = new Script({
                 .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
         },
         receive: (bot, message) => {
-                return  message.payload
+            return  message.payload
         }
     },
 
@@ -90,7 +90,7 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say(states.migration.prompt)
         },
-        receive: (bot) =>  {
+        receive: () =>  {
           // var siteUrl = message.text.trim();
           return bot.say(states.migration.wait)
           // .then(() => {
@@ -119,7 +119,7 @@ module.exports = new Script({
           //     });
           //   });
           // })
-          .then(() => 'builtWithResults');
+            .then(() => 'builtWithResults')
         }
     },
 
