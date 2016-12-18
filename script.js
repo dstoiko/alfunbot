@@ -36,7 +36,7 @@ module.exports = new Script({
     site: {
         prompt: (bot) => {
             return bot.say(states.site.prompt)
-                .then( () => bot.say('%[Notre site](url:contact)') )
+                .then( () => bot.say('%[Notre site](https://google.com)') )
         },
 
         receive: (bot) => {
