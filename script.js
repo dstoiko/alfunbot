@@ -73,7 +73,7 @@ module.exports = new Script({
             return bot.say(states.migration.prompt)
         },
         receive: (bot, message) =>  {
-          let siteUrl = message.text.trim;
+          let siteUrl = message.text.trim();
           console.log(siteUrl);
           // request(
           //   'https://api.builtwith.com/v11/api.json?KEY=' +
