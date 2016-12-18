@@ -127,8 +127,22 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say(states.builtWithResults.prompt)
                 .then(() => bot.say(states.builtWithResults.carousel))
+                .then(() => bot.say(states.builtWithResults.check))
         },
-        receive: () => 'escape'
+        receive: (bot, message) => {
+            reply = message.payload
+            if (reply === 'yes') {
+                return bot.say(states.builtWithResults.yes)
+                    .then(() => 'contact')
+            }
+            if (reply === 'no') {
+                return bot.say(states.builtWithResults.no)
+                    .then(() => 'contact')
+            }
+            else {
+                return 'escape'
+            }
+        }
     },
 
     contact: {

@@ -21,13 +21,16 @@
 
     "migration": {
         "prompt": "Pouvez-vous m'indiquer l'adresse de votre site web (ex: http://exemple.fr) ?",
-        "wait": "Je vais procéder à une rapide analyse...",
-        "response": "Voici votre profil technologique: \n"
+        "wait": "Je procède à une rapide analyse...",
+        "response": "Voici votre profil technologique : \n"
     },
 
     "builtWithResults": {
         "prompt": "Le résultat de mon analyse me mène à vous proposer l'offre suivante :",
-        "carousel": "Carousel d'offres..."
+        "carousel": "Carousel d'offres...",
+        "check": "Cela vous paraît correct ? %[Oui](reply:yes) %[Non](reply:no)",
+        "yes": "Très bien !",
+        "no": "Malheureusement, je ne peux pas voir toutes les subtilités de votre configuration..."
     },
 
     "contact": {
