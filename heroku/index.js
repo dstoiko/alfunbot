@@ -120,34 +120,13 @@ function handlePostback(req, res) {
     };
 
     const smoochPayload = postback.action.payload;
-    const buttonText = postback.text;
-
     // Change conversation state according to postback clicked
-    switch (smoochPayload) {
-        case 'start':
-        case 'site':
-        case 'sessionStart':
-        case 'creation':
-        case 'booking':
-        case 'migration':
-        case 'builtWithStart':
-        case 'builtWithResults':
-            Promise.all([
-                stateMachine.bot.releaseLock(),
-                stateMachine.setState(smoochPayload),
-                stateMachine.prompt(smoochPayload)
-            ]);
-            res.end();
-        break;
-        case 'summary':
-            const user = req.body.appUser;
-            const userId = user.userId || user._id;
-            res.end();
-        break;
-        default:
-            stateMachine.bot.say(`Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
-                .then(() => res.end());
-    };
+    Promise.all([
+        stateMachine.bot.releaseLock(),
+        stateMachine.setState(smoochPayload),
+        stateMachine.prompt(smoochPayload)
+    ]);
+    res.end();
 }
 
 app.post('/webhook', function(req, res, next) {

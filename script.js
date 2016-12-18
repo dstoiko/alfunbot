@@ -57,7 +57,7 @@ module.exports = new Script({
             return bot.say(states.site.prompt)
                 .then( () => bot.say('%[Notre site](https://google.com)') )
         },
-        receive: () => 'start'
+        receive: () => 'menu'
     },
 
     sessionStart: {
@@ -75,7 +75,7 @@ module.exports = new Script({
             return bot.say(states.creation.prompt)
                 .then( () => 'booking')
         },
-        receive: () => 'start'
+        receive: () => 'menu'
     },
 
     booking: {
@@ -83,7 +83,7 @@ module.exports = new Script({
             return bot.say(states.booking.prompt)
                 .then( () => 'start')
         },
-        receive : () => 'start'
+        receive : () => 'menu'
     },
 
     migration: {
@@ -107,14 +107,14 @@ module.exports = new Script({
                     var cms = techFilter(technologies, 'cms');
                     var hosting = techFilter(technologies, 'hosting');
                     var framework = techFilter(technologies, 'framework');
-                    out = 'CMS : ' + cms + '\n' +
+                    var string = 'CMS : ' + cms + '\n' +
                           'Hébergement : ' + hosting + '\n' +
                           'Langage(s) : ' + framework ;
+                    out = states.migration.response + string;
                   }
                   else {
                     out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
                   }
-                console.log(out);
                 resolve(bot.say(out));
               });
             });
@@ -126,8 +126,34 @@ module.exports = new Script({
     builtWithResults: {
         prompt: (bot) => {
             return bot.say(states.builtWithResults.prompt)
+                .then(() => bot.say(states.builtWithResults.carousel))
         },
-        receive: () => 'start'
+        receive: () => 'escape'
+    },
+
+    contact: {
+        prompt: (bot) => bot.say(states.contact.prompt),
+        receive: (bot, message) => {
+            var email = message.text.trim();
+            if (validator.isEmail(email)) {
+                return bot.say(states.contact.response)
+                    .then(() => bot.setProp('email', email))
+                    .then(() => 'menu');
+            }
+            else {
+                return bot.say(states.contact.error);
+            }
+        }
+    },
+
+    menu: {
+        prompt: (bot) => bot.say(states.menu.prompt),
+        receive: () => 'escape'
+    },
+
+    escape: {
+        prompt: (bot) => bot.say(states.escape.prompt),
+        receive: () => 'escape'
     }
 
 });
