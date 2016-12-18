@@ -16,14 +16,14 @@ const states = require('./states');
 const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
 
 // Filters for parsing BuiltWith API response
-let techFilter = function(technologies, tag) {
+function techFilter(technologies, tag) {
   if (where(technologies, { 'Tag': tag }) !== null) {
-    let results = where(technologies, { 'Tag': tag });
-    let array = [];
+    var results = where(technologies, { 'Tag': tag });
+    var array = [];
     results.forEach(function(result) {
       array.push(result.Name);
     });
-    let string = array.join(', ');
+    var string = array.join(', ');
     console.log('FILTER: ' + string);
     return string + '\n';
   }
@@ -95,19 +95,19 @@ module.exports = new Script({
           return bot.say(states.builtWithStart.prompt)
             .then(() => {
               return new Promise((resolve) => {
-                let siteUrl = message.text.trim();
+                var siteUrl = message.text.trim();
                 request(
                   'https://api.builtwith.com/v11/api.json?KEY=' +
                   BUILTWITH_KEY +
                   '&LOOKUP=' +
                   siteUrl,
                   function (error, response, body) {
-                    let out = '';
+                    var out = '';
                     if (!error && response.statusCode == 200) {
-                      let technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
-                      let cms = techFilter(technologies, 'cms');
-                      let hosting = techFilter(technologies, 'hosting');
-                      let framework = techFilter(technologies, 'framework');
+                      var technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
+                      var cms = techFilter(technologies, 'cms');
+                      var hosting = techFilter(technologies, 'hosting');
+                      var framework = techFilter(technologies, 'framework');
                       out = 'CMS : ' + cms +
                             'Hébergement : ' + hosting +
                             'Langage(s) : ' + framework ;
@@ -116,7 +116,6 @@ module.exports = new Script({
                     else {
                       out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
                     }
-
                   resolve(bot.say(out));
                 });
               });
