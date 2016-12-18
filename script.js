@@ -138,15 +138,13 @@ module.exports = new Script({
 
     builtWithResults: {
         prompt: (bot) => {
-            return bot.say(states.builtWithResults.prompt)
-                .then(() => bot.say(states.builtWithResults.carousel))
-                .then(() => bot.say(states.builtWithResults.check))
+            return bot.say(states.builtWithResults.check)
         },
         receive: (bot, message) => {
             reply = message.payload
             if (reply === 'yes') {
                 return bot.say(states.builtWithResults.yes)
-                    .then(() => 'contact')
+                    .then(() => 'offers')
             }
             if (reply === 'no') {
                 return bot.say(states.builtWithResults.no)
@@ -156,6 +154,14 @@ module.exports = new Script({
                 return 'escape'
             }
         }
+    },
+
+    offers: {
+        prompt: (bot) => {
+            return bot.say(states.offers.prompt)
+                .then(() => bot.say(states.offers.carousel))
+        },
+        receive: () => 'escape'
     },
 
     contact: {

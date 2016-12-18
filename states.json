@@ -31,11 +31,14 @@
     },
 
     "builtWithResults": {
-        "prompt": "Le résultat de mon analyse me mène à vous proposer l'offre suivante :",
-        "carousel": "Carousel d'offres...",
-        "check": "Cela vous paraît correct ? %[Oui](reply:yes) %[Non](reply:no)",
+        "check": "Cela vous paraît-il correct ? %[Oui](reply:yes) %[Non](reply:no)",
         "yes": "Très bien !",
         "no": "Malheureusement, je ne peux pas voir toutes les subtilités de votre configuration..."
+    },
+
+    "offers": {
+        "prompt": "Le résultat de mon analyse me mène à vous proposer l'offre suivante :",
+        "carousel": "Carousel d'offres..."
     },
 
     "contact": {
@@ -49,7 +52,7 @@
     },
 
     "escape": {
-        "prompt": "Beep boop. Je ne comprends pas ce que vous dites... %[Revenir au début](postback:start)"
+        "prompt": "Beep boop. Je ne comprends pas ce que vous dites... %[Revenir au début](postback:start) %[Me faire contacter](postback:contact)"
     }
 
 }
