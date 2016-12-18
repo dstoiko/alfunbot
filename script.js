@@ -28,6 +28,7 @@ module.exports = new Script({
 
     replyButtonProcessing: {
         receive: (bot, message) => {
+            console.log(bot.getProp('siteType'))
             return message.payload
         }
     },
