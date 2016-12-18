@@ -20,7 +20,7 @@
     },
 
     "migration": {
-        "prompt": "Pouvez-vous m'indiquer votre URL de site web (ex: http://exemple.fr)"
+        "prompt": "Pouvez-vous m'indiquer l'adresse de votre site web (ex: http://exemple.fr) ?"
     },
 
     "builtWithStart": {

@@ -86,7 +86,7 @@ module.exports = new Script({
               }
             }
           );
-          return 'builtWithStart'
+          return 'builtWithStart';
         }
     },
 
