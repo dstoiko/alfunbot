@@ -24,8 +24,7 @@ function techFilter(technologies, tag) {
       array.push(result.Name);
     });
     var string = array.join(', ');
-    console.log('FILTER: ' + string);
-    return string + '\n';
+    return string;
   }
   else {
     return 'pas d\'information';
@@ -92,10 +91,10 @@ module.exports = new Script({
             return bot.say(states.migration.prompt)
         },
         receive: (bot, message) =>  {
-          return bot.say(states.builtWithStart.prompt)
+          var siteUrl = message.text.trim();
+          return bot.say(states.migration.wait)
             .then(() => {
               return new Promise((resolve) => {
-                var siteUrl = message.text.trim();
                 request(
                   'https://api.builtwith.com/v11/api.json?KEY=' +
                   BUILTWITH_KEY +
@@ -108,14 +107,14 @@ module.exports = new Script({
                       var cms = techFilter(technologies, 'cms');
                       var hosting = techFilter(technologies, 'hosting');
                       var framework = techFilter(technologies, 'framework');
-                      out = 'CMS : ' + cms +
-                            'Hébergement : ' + hosting +
+                      out = 'CMS : ' + cms + '\n' +
+                            'Hébergement : ' + hosting + '\n' +
                             'Langage(s) : ' + framework ;
-                      console.log(out);
                     }
                     else {
                       out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
                     }
+                  console.log(out);
                   resolve(bot.say(out));
                 });
               });

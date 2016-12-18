@@ -21,11 +21,8 @@
 
     "migration": {
         "prompt": "Pouvez-vous m'indiquer l'adresse de votre site web (ex: http://exemple.fr) ?",
+        "wait": "Je vais procéder à une rapide analyse...",
         "response": "Voici votre profil technologique: \n"
-    },
-
-    "builtWithStart": {
-        "prompt": "Je vais procéder à une rapide analyse..."
     },
 
     "builtWithResults": {
