@@ -50,8 +50,7 @@ module.exports = new Script({
                 .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
         },
         receive: (bot, message) => {
-            return bot.setProp('siteType', message.payload)
-                .then( () => 'replyButtonProcessing' )
+                return  message.payload
         }
     },
 
