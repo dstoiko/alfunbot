@@ -17,14 +17,15 @@ const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
 
 // Filters for parsing BuiltWith API response
 let techFilter = function(technologies, tag) {
-  if (where(technologies, { 'Tag': tag }) !== undefined) {
+  if (where(technologies, { 'Tag': tag }) !== null) {
     let results = where(technologies, { 'Tag': tag });
-    let string = '';
+    let array = [];
     results.forEach(function(result) {
-      string += ', ' + result.Name;
+      array.push(result.Name);
     });
+    let string = array.join(', ');
     console.log('FILTER: ' + string);
-    return string + "\n";
+    return string + '\n';
   }
   else {
     return 'pas d\'information';
@@ -92,7 +93,7 @@ module.exports = new Script({
         },
         receive: (bot, message) =>  {
           let siteUrl = message.text.trim();
-          result = request(
+          let result = request(
             'https://api.builtwith.com/v11/api.json?KEY=' +
             BUILTWITH_KEY +
             '&LOOKUP=' +
@@ -101,13 +102,9 @@ module.exports = new Script({
               let out = '';
               if (!error && response.statusCode == 200) {
                 let technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
-                console.log('TECH: ' + technologies);
                 let cms = techFilter(technologies, 'cms');
-                console.log('CMS: ' + cms);
                 let hosting = techFilter(technologies, 'hosting');
-                console.log('HOSTING: ' + hosting);
                 let framework = techFilter(technologies, 'framework');
-                console.log('FRAMEWORKS: ' + framework);
                 out = 'CMS : ' + cms +
                       'Hébergement : ' + hosting +
                       'Langage(s) : ' + framework ;
