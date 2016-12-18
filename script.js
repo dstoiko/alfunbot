@@ -28,7 +28,6 @@ module.exports = new Script({
 
     replyButtonProcessing: {
         receive: (bot, message) => {
-            console.log(message.payload);
             return message.payload
         }
     },
@@ -36,7 +35,7 @@ module.exports = new Script({
     site: {
         prompt: (bot) => {
             return bot.say(states.site.prompt)
-                .then( () => bot.say('%[Notre site](url)') )
+                .then( () => bot.say('%[Notre site](url:contact)') )
         },
 
         receive: (bot) => {
@@ -50,7 +49,8 @@ module.exports = new Script({
                 .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
         },
         receive: (bot, message) => {
-            return 'replyButtonProcessing'
+            return bot.setProp('siteType', message.payload)
+                .then( () => 'replyButtonProcessing' )
         }
     },
 
