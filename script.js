@@ -98,6 +98,7 @@ module.exports = new Script({
             '&LOOKUP=' +
             siteUrl,
             function (error, response, body) {
+              let out = '';
               if (!error && response.statusCode == 200) {
                 let technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
                 console.log(technologies);
@@ -107,12 +108,12 @@ module.exports = new Script({
                 console.log(hosting);
                 let framework = techFilter(technologies, 'framework');
                 console.log(framework);
-                let out = 'CMS : ' + cms +
+                out = 'CMS : ' + cms +
                           'Hébergement : ' + hosting +
                           'Langage(s) : ' + framework ;
               }
               else {
-                let out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
+                out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
               }
               return out;
             }
