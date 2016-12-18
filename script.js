@@ -37,6 +37,14 @@ module.exports = new Script({
         receive: () => 'processing'
     },
 
+    back: {
+      prompt: (bot) => {
+        return bot.say(states.back.prompt)
+            .then(() => 'start')
+      },
+      receive: () => 'escape'
+    },
+
     // Initial state of the bot
     start: {
         receive: (bot) => {
