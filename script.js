@@ -13,8 +13,7 @@ const where = require('lodash.where');
 // States stored locally
 const states = require('./states');
 
-// const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
-const BUILTWITH_KEY = '45e8e1eb-e717-47d8-b1f0-a33458e4268f';
+const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
 
 // Filters for parsing BuiltWith API response
 let techFilter = function(technologies, tag) {
@@ -100,6 +99,7 @@ module.exports = new Script({
             siteUrl,
             function (error, response, body) {
               if (!error && response.statusCode == 200) {
+                console.log(body);
                 let technologies = body.Results[0].Result.Paths[0].Technologies;
                 let cms = techFilter(technologies, 'cms');
                 let hosting = techFilter(technologies, 'hosting');
