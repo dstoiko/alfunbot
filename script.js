@@ -90,8 +90,8 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say(states.migration.prompt)
         },
-        receive: (bot, message) =>  {
-          var siteUrl = message.text.trim();
+        receive: (bot) =>  {
+          // var siteUrl = message.text.trim();
           return bot.say(states.migration.wait)
           // .then(() => {
           //   return new Promise((resolve) => {
