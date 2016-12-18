@@ -92,34 +92,39 @@ module.exports = new Script({
         },
         receive: (bot, message) => {
           var siteUrl = message.text.trim();
-          return bot.say(states.migration.wait)
-          .then(() => {
-            return new Promise((resolve) => {
-              request(
-                'https://api.builtwith.com/v11/api.json?KEY=' +
-                BUILTWITH_KEY +
-                '&LOOKUP=' +
-                siteUrl,
-                function (error, response, body) {
-                  var out = '';
-                  if (!error && response.statusCode == 200) {
-                    var technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
-                    var cms = techFilter(technologies, 'cms');
-                    var hosting = techFilter(technologies, 'hosting');
-                    var framework = techFilter(technologies, 'framework');
-                    var string = 'CMS : ' + cms + '\n' +
-                          'Hébergement : ' + hosting + '\n' +
-                          'Langage(s) : ' + framework ;
-                    out = states.migration.response + string;
-                  }
-                  else {
-                    out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
-                  }
-                resolve(bot.say(out));
+          if (!(validator.isUrl(siteUrl))) {
+            return bot.say(states.migration.noUrl);
+          }
+          else {
+            return bot.say(states.migration.wait)
+            .then(() => {
+              return new Promise((resolve) => {
+                request(
+                  'https://api.builtwith.com/v11/api.json?KEY=' +
+                  BUILTWITH_KEY +
+                  '&LOOKUP=' +
+                  siteUrl,
+                  function (error, response, body) {
+                    var out = '';
+                    if (!error && response.statusCode == 200) {
+                      var technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
+                      var cms = techFilter(technologies, 'cms');
+                      var hosting = techFilter(technologies, 'hosting');
+                      var framework = techFilter(technologies, 'framework');
+                      var string = 'CMS : ' + cms + '\n' +
+                            'Hébergement : ' + hosting + '\n' +
+                            'Langage(s) : ' + framework ;
+                      out = states.migration.response + string;
+                    }
+                    else {
+                      out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
+                    }
+                  resolve(bot.say(out));
+                });
               });
-            });
-          })
-            .then(() => 'builtWithResults')
+            })
+              .then(() => 'builtWithResults')
+          }
         }
     },
 
