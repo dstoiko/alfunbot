@@ -27,7 +27,7 @@
         "prompt": "Pouvez-vous m'indiquer l'adresse de votre site web (ex: http://exemple.fr) ?",
         "wait": "Je procède à une rapide analyse...",
         "response": "Voici votre profil technologique : \n",
-        "noURL": "Désolé mais il semblerait que l'URL n'est pas correcte... Veuillez réessayer !"
+        "noURL": "Désolé mais il semblerait que l'URL n'est pas correcte... %[Réessayer](postback:migration) !"
     },
 
     "builtWithResults": {
