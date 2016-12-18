@@ -92,41 +92,37 @@ module.exports = new Script({
             return bot.say(states.migration.prompt)
         },
         receive: (bot, message) =>  {
-          let siteUrl = message.text.trim();
-          let result = request(
-            'https://api.builtwith.com/v11/api.json?KEY=' +
-            BUILTWITH_KEY +
-            '&LOOKUP=' +
-            siteUrl,
-            function (error, response, body) {
-              let out = '';
-              if (!error && response.statusCode == 200) {
-                let technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
-                let cms = techFilter(technologies, 'cms');
-                let hosting = techFilter(technologies, 'hosting');
-                let framework = techFilter(technologies, 'framework');
-                out = 'CMS : ' + cms +
-                      'Hébergement : ' + hosting +
-                      'Langage(s) : ' + framework ;
-                console.log(out);
-              }
-              else {
-                out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
-              }
-              return out;
-            }
-          );
-          return bot.say(states.migration.response + result)
-              .then( () => 'builtWithStart' )
-        }
-    },
+          return bot.say(states.builtWithStart.prompt)
+            .then(() => {
+              return new Promise((resolve) => {
+                let siteUrl = message.text.trim();
+                request(
+                  'https://api.builtwith.com/v11/api.json?KEY=' +
+                  BUILTWITH_KEY +
+                  '&LOOKUP=' +
+                  siteUrl,
+                  function (error, response, body) {
+                    let out = '';
+                    if (!error && response.statusCode == 200) {
+                      let technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
+                      let cms = techFilter(technologies, 'cms');
+                      let hosting = techFilter(technologies, 'hosting');
+                      let framework = techFilter(technologies, 'framework');
+                      out = 'CMS : ' + cms +
+                            'Hébergement : ' + hosting +
+                            'Langage(s) : ' + framework ;
+                      console.log(out);
+                    }
+                    else {
+                      out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
+                    }
 
-    builtWithStart: {
-        prompt: (bot) => {
-            return bot.say(states.builtWithStart.prompt)
-                .then( () => 'builtWithResults' )
-        },
-        receive: () => 'builtWithStart'
+                  resolve(bot.say(out));
+                });
+              });
+            })
+            .then(() => 'builtWithResults');
+        }
     },
 
     builtWithResults: {

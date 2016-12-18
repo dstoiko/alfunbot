@@ -29,7 +29,7 @@
     },
 
     "builtWithResults": {
-        "prompt": "Voici ce que j'ai pu analyser: "
+        "prompt": "Le résultat de mon analyse me mène à vous proposer l'offre suivante :"
     }
 
 }
