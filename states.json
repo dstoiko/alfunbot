@@ -24,7 +24,7 @@
         "prompt": "Pouvez-vous m'indiquer votre URL de site web (ex: http://exemple.fr)"
     },
 
-    "builtwithStart": {
+   "builtWithStart": {
         "prompt": "Je vais procéder à une rapide analyse..."
     },
 
