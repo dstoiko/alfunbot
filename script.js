@@ -80,7 +80,7 @@ module.exports = new Script({
 
     builtWithStart: {
         prompt: (bot) => {
-            return bot.say("Je vais proceder a une petite analyse ...")
+            return bot.say("Je vais proceder a une petite analyse ...", {type:"carousel", items: [{title: "Tacos", description: "Some description", mediaUrl: "http://example.org/image.jpg"}] })
                 .then( () => 'builtWithResults' )
         },
         receive: (bot) => {
