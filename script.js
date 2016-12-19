@@ -188,7 +188,6 @@ module.exports = new Script({
                     .then(() => bot.getProp('email'))
                     .then((email) => bot.say(`Vous serez contacté(e) sur ${email}, cela vous convient-il ?`))
                     .then(() => bot.say(states.contact.check))
-                    .then(() => 'menu');
             }
             else {
                 return bot.say(states.contact.prompt);
