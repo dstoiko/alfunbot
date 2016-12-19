@@ -117,7 +117,8 @@ module.exports = new Script({
         receive: (bot, message) => {
           var siteUrl = message.text.trim();
           if (!(validator.isURL(siteUrl))) {
-            return bot.say(states.migration.noURL);
+            return bot.say(states.migration.noURL)
+                .then(() => 'escape');
           }
           else {
             return bot.say(states.migration.wait)
