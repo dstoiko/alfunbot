@@ -29,7 +29,7 @@ class SuperSmoochApiBot extends SmoochApiBot {
             name: this.name,
             avatarUrl: this.avatarUrl
         });
-        console.log('CAROUSEL: ' + JSON.stringify(message, null, 2))
+        console.log('CAROUSEL: ' + JSON.stringify(message, null, 2));
         return api.appUsers.sendMessage(this.userId, message)
             .then(data => console.log(data))
             .catch(e => console.log(e.message))
