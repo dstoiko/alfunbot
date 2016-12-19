@@ -47,6 +47,8 @@ class SuperSmoochApiBot extends SmoochApiBot {
         });
         console.log('TEXT: ' + JSON.stringify(message, null, 2));
         return api.appUsers.sendMessage(this.userId, message)
+            .then(data => console.log(JSON.stringify(data, null, 2)))
+            .catch(e => console.log(JSON.stringify(e, null, 2)))
     }
 }
 
