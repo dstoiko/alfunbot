@@ -200,7 +200,9 @@ module.exports = new Script({
                         .then(() => 'escape')
                 }
                 else if (message.payload === 'contact') {
-                    return message.payload
+                    let reset = '';
+                    return bot.setProp('email', reset)
+                        .then(() => message.payload)
                 }
                 else {
                     return 'escape'
