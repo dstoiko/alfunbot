@@ -68,7 +68,10 @@ module.exports = new Script({
     },
 
     site: {
-        prompt: (bot) => bot.say(states.site.prompt),
+        prompt: (bot) => {
+            return bot.say(states.site.prompt)
+                .then(() => bot.sayCarousel(states.offers.carousel))
+        },
         receive: () => 'escape'
     },
 

@@ -8,7 +8,7 @@ class SuperSmoochApiBot extends SmoochApiBot {
 
     constructor(options) {
         super(options);
-        
+
         this.name = options.name;
         this.avatarUrl = options.avatarUrl;
     }
@@ -29,7 +29,23 @@ class SuperSmoochApiBot extends SmoochApiBot {
             name: this.name,
             avatarUrl: this.avatarUrl
         });
-        console.log(message)
+        console.log('CAROUSEL: ' + message)
+        return api.appUsers.sendMessage(this.userId, message)
+            .then(data => console.log(data))
+            .catch(e => console.log(e.message))
+    }
+
+    say(text, actions) {
+        const api = this.store.getApi();
+        let message = Object.assign({
+            text,
+            actions: actions,
+            role: 'appMaker'
+        }, {
+            name: this.name,
+            avatarUrl: this.avatarUrl
+        });
+        console.log('TEXT: ' + message);
         return api.appUsers.sendMessage(this.userId, message)
             .then(data => console.log(data))
             .catch(e => console.log(e.message))
