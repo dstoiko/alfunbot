@@ -70,7 +70,7 @@ module.exports = new Script({
     site: {
         prompt: (bot) => {
             return bot.say(states.site.prompt)
-                .then(() => bot.sayCarousel(states.offers.carousel))
+                // .then(() => bot.sayCarousel(states.offers.carousel))
         },
         receive: () => 'escape'
     },
@@ -177,7 +177,7 @@ module.exports = new Script({
     offers: {
         prompt: (bot) => {
             return bot.say(states.offers.prompt)
-                .then(() => bot.sayCarousel(states.offers.carousel))
+                // .then(() => bot.sayCarousel(states.offers.carousel))
         },
         receive: () => 'escape'
     },

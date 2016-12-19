@@ -16,19 +16,14 @@ class SuperSmoochApiBot extends SmoochApiBot {
     sayCarousel(items) {
 
         const api = this.store.getApi();
-        let message = {
-            items: items,
+        let message = Object.assign({
             role: 'appMaker',
-            type: 'carousel'
-        }
-        // let message = Object.assign({
-        //     role: 'appMaker',
-        //     type: 'carousel',
-        //     items: items
-        // }, {
-        //     name: this.name,
-        //     avatarUrl: this.avatarUrl
-        // });
+            type: 'carousel',
+            items: items
+        }, {
+            name: this.name,
+            avatarUrl: this.avatarUrl
+        });
         console.log('CAROUSEL: ' + JSON.stringify(message, null, 2));
         return api.appUsers.sendMessage(this.userId, message)
             .then(data => console.log(data))
