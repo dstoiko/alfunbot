@@ -23,7 +23,7 @@ class SuperSmoochApiBot extends SmoochApiBot {
         // }
         let message = Object.assign({
             role: 'appMaker',
-            type: 'carousel',
+            // type: 'carousel',
             items: items
         }, {
             name: this.name,
