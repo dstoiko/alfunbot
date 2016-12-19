@@ -119,8 +119,8 @@ function handlePostback(req, res) {
         res.end();
     };
 
-    const smoochPayload = postback.action.payload;
     // Change conversation state according to postback clicked
+    const smoochPayload = postback.action.payload;
     Promise.all([
         stateMachine.bot.releaseLock(),
         stateMachine.setState(smoochPayload),

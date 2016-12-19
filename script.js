@@ -45,7 +45,6 @@ module.exports = new Script({
       receive: () => 'escape'
     },
 
-    // Initial state of the bot
     start: {
         receive: (bot) => {
             return bot.say(states.start.response)
@@ -65,7 +64,7 @@ module.exports = new Script({
             return bot.say(states.site.prompt)
                 .then( () => bot.say('%[Notre site](https://google.com)') )
         },
-        receive: () => 'menu'
+        receive: () => 'escape'
     },
 
     sessionStart: {
@@ -83,7 +82,7 @@ module.exports = new Script({
             return bot.say(states.creation.prompt)
                 .then( () => 'booking')
         },
-        receive: () => 'menu'
+        receive: () => 'escape'
     },
 
     booking: {
@@ -91,7 +90,7 @@ module.exports = new Script({
             return bot.say(states.booking.prompt)
                 .then( () => 'start')
         },
-        receive : () => 'menu'
+        receive : () => 'escape'
     },
 
     migration: {
@@ -167,26 +166,42 @@ module.exports = new Script({
     contact: {
         prompt: (bot) => bot.say(states.contact.prompt),
         receive: (bot, message) => {
-            var email = message.text.trim();
-            if (validator.isEmail(email)) {
-                return bot.say(states.contact.response)
-                    .then(() => bot.setProp('email', email))
+            if (bot.getProp('email')) {
+                let email = bot.getProp('email');
+                return bot.say(states.contact.exists)
                     .then(() => 'menu');
             }
             else {
-                return bot.say(states.contact.error);
+                let email = message.text.trim();
+                if (validator.isEmail(email)) {
+                    return bot.say(states.contact.response)
+                        .then(() => bot.setProp('email', email))
+                        .then(() => 'menu')
+                }
+                else {
+                    return bot.say(states.contact.error)
+                        .then(() => 'deadend')
+                }
             }
+
         }
     },
 
     menu: {
         prompt: (bot) => bot.say(states.menu.prompt),
-        receive: () => 'escape'
+        receive: () => 'deadend'
     },
 
     escape: {
         prompt: (bot) => bot.say(states.escape.prompt),
-        receive: () => 'escape'
+        receive: () => 'deadend'
+    },
+
+    deadend: {
+        receive: (bot) => {
+            return bot.say(states.deadend.response)
+                .then(() => 'deadend')
+        }
     }
 
 });
