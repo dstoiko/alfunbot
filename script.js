@@ -183,15 +183,18 @@ module.exports = new Script({
 
     contact: {
         prompt: (bot) => {
-            if (bot.getProp('email')) {
-                return bot.say(states.contact.exists)
-                    .then(() => bot.getProp('email'))
-                    .then((email) => bot.say(`Vous serez contacté(e) sur ${email}, cela vous convient-il ?`))
-                    .then(() => bot.say(states.contact.check))
-            }
-            else {
-                return bot.say(states.contact.prompt);
-            }
+            return bot.getProp('email')
+                .then((email) => {
+                    if (email !== '') {
+                        return bot.say(states.contact.exists)
+                            .then(() => bot.getProp('email'))
+                            .then((email) => bot.say(`Vous serez contacté(e) sur ${email}, cela vous convient-il ?`))
+                            .then(() => bot.say(states.contact.check))
+                    }
+                    else {
+                        return bot.say(states.contact.prompt);
+                    }
+                })
         },
         receive: (bot, message) => {
             return bot.getProp('email')
