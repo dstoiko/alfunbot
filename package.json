@@ -12,7 +12,9 @@
     "firebase": "^3.2.1",
     "hbs": "^4.0.0",
     "jsonwebtoken": "^5.7.0",
+    "lodash.where": "^3.1.0",
     "natural": "^0.4.0",
+    "request": "^2.79.0",
     "smooch-bot": "^1.0.4",
     "smooch-core": "^2.1.1",
     "validator": "^5.5.0"

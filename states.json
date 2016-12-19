@@ -1,35 +1,92 @@
 {
     "start": {
-        "prompt": "",
-        "response": "Bonjour et bienvenue. Je suis le premier chatbot configuateur PaaS. \n Mon but est de vous guider vers une externalisation de votre plateforme idoine. Etes vous interessés ?"
+        "response": "Bonjour et bienvenue. Je suis le premier chatbot configuateur PaaS. \n Mon but est de vous guider vers une externalisation de votre plateforme idoine. Êtes-vous interessé(e) ? %[Oui](reply:sessionStart) %[Non](reply:site)"
+    },
+
+    "back": {
+        "prompt": "Dites-moi un mot doux pour me faire redémarrer..."
     },
 
     "site": {
-        "prompt": "Je vous propose de continuer vers notre site et de revenir me voir bientot pour vous accompagner sur d'autres problematiques. A bientot !"
+        "prompt": "Je vous propose de continuer vers notre site et de revenir me voir bientot pour vous accompagner sur d'autres problématiques. A bientôt ! %[Notre site](http://www.alfun.fr)"
     },
 
     "sessionStart": {
-        "prompt": "Super ! Je vais vous poser quelques questions. Premièrement, s'agit t-il d'une migration ou d'une création de site ?"
+        "prompt": "Super ! Je vais vous poser quelques questions. Premièrement, s'agit t-il d'une migration ou d'une création de site ? %[Migration](reply:migration) %[Creation](reply:creation)"
     },
 
     "creation": {
-        "prompt": "Dans le cadre d’une création, je vous propose de prendre un rdv ensemble pour échanger de vive voix sur vos besoins..."
+        "prompt": "Dans le cadre d’une création, je vous propose de prendre un rdv ensemble pour échanger de vive voix sur vos besoins. Cela vous convient-il? %[Oui](reply:booking) %[Non](reply:site)"
     },
 
     "booking": {
-        "prompt": "Je vais prendre RDV avec un de mes collègues humains pour vous..."
+        "prompt": "Je vais prendre RDV avec un de mes collègues humains pour vous... Pouvez-vous me donner votre adresse e-mail ?",
+        "response": "Merci, c'est noté !",
+        "error": "Humm... Il semblerait que vous n'ayez pas donné un e-mail valide ! %[Réessayer](postback:booking)"
     },
 
     "migration": {
-        "prompt": "Pouvez-vous m'indiquer votre URL de site web (ex: http://exemple.fr)"
-    },
-
-   "builtWithStart": {
-        "prompt": "Je vais procéder à une rapide analyse..."
+        "prompt": "Pouvez-vous m'indiquer l'adresse de votre site web (ex: http://exemple.fr) ?",
+        "wait": "Je procède à une rapide analyse...",
+        "response": "Voici votre profil technologique : \n",
+        "noURL": "Désolé mais il semblerait que l'URL n'est pas correcte... %[Réessayer](postback:migration) !"
     },
 
     "builtWithResults": {
-        "prompt": "Voici ce que j'ai pu analyser: "
+        "check": "Cela vous paraît-il correct ? %[Oui](reply:yes) %[Non](reply:no)",
+        "yes": "Très bien !",
+        "no": "Malheureusement, je ne peux pas voir toutes les subtilités de votre configuration..."
+    },
+
+    "offers": {
+        "prompt": "Le résultat de mon analyse me mène à vous proposer l'offre suivante :",
+        "carousel": [{
+            "title": "Tacos",
+            "description": "Description",
+            "mediaUrl": "http://example.org/image.jpg",
+            "actions": [{
+                "text": "Select",
+                "type": "postback",
+                "payload": "TACOS"
+            }, {
+                "text": "More info",
+                "type": "link",
+                "uri": "http://example.org"
+            }]
+        }, {
+            "title": "Ramen",
+            "description": "Description",
+            "mediaUrl": "http://example.org/image.jpg",
+            "actions": [{
+                "text": "Select",
+                "type": "postback",
+                "payload": "RAMEN"
+            }, {
+                "text": "More info",
+                "type": "link",
+                "uri": "http://example.org"
+            }]
+        }]
+    },
+
+    "contact": {
+        "exists": "Il semblerait que vous m'ayez déjà donné votre adresse e-mail...",
+        "prompt": "Pouvez-vous me donner votre adresse e-mail ? Je vous enverrai mes analyses et mes collègues humains vous contacteront !",
+        "response": "Merci, c'est noté !",
+        "error": "Humm... Il semblerait que vous n'ayez pas donné un e-mail valide ! %[Réessayer](postback:contact)",
+        "check": "%[Oui](reply:yes) %[Non](reply:contact)"
+    },
+
+    "menu": {
+        "prompt": "Que voulez-vous faire maintenant ? %[Revenir au début](postback:back) %[Continuer par email](postback:contact)"
+    },
+
+    "escape": {
+        "prompt": "Beep boop. Mes fonctions se limitent là... %[Revenir au début](postback:back) %[Continuer par email](postback:contact)"
+    },
+
+    "deadend": {
+        "response": "Toutes mes excuses... Je ne peux plus vous aider ! %[Revenir au début](postback:back) %[Continuer par email](postback:contact)"
     }
 
 }

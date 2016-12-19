@@ -5,7 +5,7 @@ const helpers = require('../helpers');
 const MemoryLock = smoochBot.MemoryLock;
 const SmoochApiStore = smoochBot.SmoochApiStore;
 const SmoochApiBot = helpers.SuperSmoochApiBot;
-const StateMachine = helpers.SuperStateMachine;
+const StateMachine = smoochBot.StateMachine;
 const app = require('../app');
 const script = require('../script');
 const SmoochCore = require('smooch-core');
@@ -18,16 +18,6 @@ const store = new SmoochApiStore({
 });
 const lock = new MemoryLock();
 const webhookTriggers = ['message:appUser', 'postback'];
-// Initialize Firebase
-// const firebase = require('firebase');
-// firebase.initializeApp({
-//   serviceAccount: "firebase-service.json",
-//   databaseURL: "https://.firebaseio.com"
-// });
-// Firebase services
-// var db = firebase.database();
-// var ref = db.ref("bot");
-// var usersRef = ref.child("users");
 
 function createWebhook(smoochCore, target) {
     return smoochCore.webhooks.create({
@@ -129,45 +119,14 @@ function handlePostback(req, res) {
         res.end();
     };
 
-    const smoochPayload = postback.action.payload;
-    const buttonText = postback.text;
-
     // Change conversation state according to postback clicked
-    switch (smoochPayload) {
-        case 'start':
-        case 'site':
-        case 'sessionStart':
-        case 'creation':
-        case 'booking':
-        case 'migration':
-        case 'builtWithStart':
-        case 'builtWithResults':
-            Promise.all([
-                stateMachine.bot.releaseLock(),
-                stateMachine.setState(smoochPayload),
-                stateMachine.prompt(smoochPayload)
-            ]);
-            res.end();
-        break;
-        case 'summary':
-            const user = req.body.appUser;
-            const userId = user.userId || user._id;
-            // const propsRef = usersRef.child(userId + "/properties")
-            // const userProps = propsRef.once("value", function(snapshot) {
-            //     var props = snapshot.val();
-            //     stateMachine.bot.say( `Voici un résumé de votre demande :` + '\n'
-            //     + `Date : ` + props.date + '\n'
-            //     + `Code postal : ` + props.postcode + '\n'
-            //     + `Adresse e-mail : ` + props.email + '\n'
-            //     + `Demande : ` + props.ask + '\n'
-            //     + `Veuillez nous indiquer si l'une des informations est fausse.`);
-            // });
-            res.end();
-        break;
-        default:
-            stateMachine.bot.say(`Veuillez sélectionner une option ou contacter un humain de l'équipe: %[Contacter l'équipe](postback:contactRequest)`)
-                .then(() => res.end());
-    };
+    const smoochPayload = postback.action.payload;
+    Promise.all([
+        stateMachine.bot.releaseLock(),
+        stateMachine.setState(smoochPayload),
+        stateMachine.prompt(smoochPayload)
+    ]);
+    res.end();
 }
 
 app.post('/webhook', function(req, res, next) {
@@ -185,10 +144,9 @@ app.post('/webhook', function(req, res, next) {
         default:
             console.log('Ignoring unknown webhook trigger:', trigger);
     }
-    // Store and update user info into Firebase
+    // Store and update user info
     const user = req.body.appUser;
     const userId = user.userId || user._id;
-    // usersRef.child(userId).update(user);
 });
 
 var server = app.listen(process.env.PORT || 8000, function() {

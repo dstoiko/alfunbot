@@ -2,27 +2,39 @@
 
 const smoochBot     = require('smooch-bot');
 const SmoochApiBot  = smoochBot.SmoochApiBot
-const StateMachine  = smoochBot.StateMachine;
+// const StateMachine  = smoochBot.StateMachine;
 
-class SuperSmoochApiBotTwo extends SmoochApiBot {
+class SuperSmoochApiBot extends SmoochApiBot {
+
+    constructor(options) {
+        super(options);
+        
+        this.name = options.name;
+        this.avatarUrl = options.avatarUrl;
+    }
 
     sayCarousel(items) {
 
         const api = this.store.getApi();
-        let message = {
+        // let message = {
+        //     role: 'appMaker',
+        //     type: 'carousel',
+        //     items: items
+        // }
+        let message = Object.assign({
             role: 'appMaker',
             type: 'carousel',
             items: items
-        }
+        }, {
+            name: this.name,
+            avatarUrl: this.avatarUrl
+        });
         console.log(message)
-        return api.appUsers.sendMessage(this.userId, message).then(data => console.log(data)).catch(e => console.log(e))
+        return api.appUsers.sendMessage(this.userId, message)
+            .then(data => console.log(data))
+            .catch(e => console.log(e.message))
     }
 }
 
-class SuperStateMachine extends StateMachine {
-
-}
-
-module.exports.SuperSmoochApiBot = SuperSmoochApiBotTwo
-module.exports.SuperStateMachine = SuperStateMachine
-
+module.exports.SuperSmoochApiBot = SuperSmoochApiBot
+// module.exports.SuperStateMachine = SuperStateMachine
