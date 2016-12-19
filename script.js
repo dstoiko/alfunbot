@@ -187,6 +187,7 @@ module.exports = new Script({
                 return bot.say(states.contact.exists)
                     .then(() => bot.getProp('email'))
                     .then((email) => bot.say(`Vous serez contacté(e) sur ${email}, cela vous convient-il ?`))
+                    .then(() => bot.say(states.contact.check))
                     .then(() => 'menu');
             }
             else {
@@ -194,15 +195,29 @@ module.exports = new Script({
             }
         },
         receive: (bot, message) => {
-            let email = message.text.trim();
-            if (validator.isEmail(email)) {
-                return bot.say(states.contact.response)
-                    .then(() => bot.setProp('email', email))
-                    .then(() => 'menu')
+            if (bot.getProp('email')) {
+                if (message.payload === 'yes') {
+                    return bot.say(states.contact.response)
+                        .then(() => 'escape')
+                }
+                else if (message.payload === 'contact') {
+                    return message.payload
+                }
+                else {
+                    return 'escape'
+                }
             }
             else {
-                return bot.say(states.contact.error)
-                    .then(() => 'deadend')
+                let email = message.text.trim();
+                if (validator.isEmail(email)) {
+                    return bot.say(states.contact.response)
+                        .then(() => bot.setProp('email', email))
+                        .then(() => 'menu')
+                }
+                else {
+                    return bot.say(states.contact.error)
+                        .then(() => 'deadend')
+                }
             }
         }
     },
