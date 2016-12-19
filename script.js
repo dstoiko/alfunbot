@@ -183,9 +183,9 @@ module.exports = new Script({
     contact: {
         prompt: (bot) => {
             if (bot.getProp('email')) {
-                let email = bot.getProp('email').then((email) => email);
                 return bot.say(states.contact.exists)
-                    .then(bot.say(`Vous serez contacté(e) sur ${email}, cela vous convient-il ?`))
+                    .then(() => bot.getProp('email'))
+                    .then(() => bot.say(`Vous serez contacté(e) sur ${email}, cela vous convient-il ?`))
                     .then(() => 'menu');
             }
             else {
