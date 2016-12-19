@@ -194,32 +194,35 @@ module.exports = new Script({
             }
         },
         receive: (bot, message) => {
-            if (bot.getProp('email')) {
-                if (message.payload === 'yes') {
-                    return bot.say(states.contact.response)
-                        .then(() => 'escape')
-                }
-                else if (message.payload === 'contact') {
-                    let reset = '';
-                    return bot.setProp('email', reset)
-                        .then(() => message.payload)
-                }
-                else {
-                    return 'escape'
-                }
-            }
-            else {
-                let email = message.text.trim();
-                if (validator.isEmail(email)) {
-                    return bot.say(states.contact.response)
-                        .then(() => bot.setProp('email', email))
-                        .then(() => 'menu')
-                }
-                else {
-                    return bot.say(states.contact.error)
-                        .then(() => 'deadend')
-                }
-            }
+            return bot.getProp('email')
+                .then((email) => {
+                    if (email !== '') {
+                        if (message.payload === 'yes') {
+                            return bot.say(states.contact.response)
+                                .then(() => 'escape')
+                        }
+                        else if (message.payload === 'contact') {
+                            let reset = '';
+                            return bot.setProp('email', reset)
+                                .then(() => message.payload)
+                        }
+                        else {
+                            return 'escape'
+                        }
+                    }
+                    else {
+                        let email = message.text.trim();
+                        if (validator.isEmail(email)) {
+                            return bot.say(states.contact.response)
+                                .then(() => bot.setProp('email', email))
+                                .then(() => 'menu')
+                        }
+                        else {
+                            return bot.say(states.contact.error)
+                                .then(() => 'deadend')
+                        }
+                    }
+                })
         }
     },
 
