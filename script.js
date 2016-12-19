@@ -95,11 +95,19 @@ module.exports = new Script({
     },
 
     booking: {
-        prompt: (bot) => {
-            return bot.say(states.booking.prompt)
-                .then( () => 'start')
-        },
-        receive : () => 'escape'
+        prompt: (bot) => bot.say(states.booking.prompt),
+        receive: (bot, message) => {
+            let email = message.text.trim();
+            if (validator.isEmail(email)) {
+                return bot.say(states.booking.response)
+                    .then(() => bot.setProp('email', email))
+                    .then(() => 'menu')
+            }
+            else {
+                return bot.say(states.booking.error)
+                    .then(() => 'deadend')
+            }
+        }
     },
 
     migration: {
