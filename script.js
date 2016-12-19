@@ -31,6 +31,15 @@ function techFilter(technologies, tag) {
   }
 }
 
+function handleReplyButton(message) {
+  if (message.payload) {
+    return  message.payload
+  }
+  else {
+    return 'escape'
+  }
+}
+
 module.exports = new Script({
 
     processing: {
@@ -48,7 +57,6 @@ module.exports = new Script({
     start: {
         receive: (bot) => {
             return bot.say(states.start.response)
-                .then( () => bot.say('%[Oui](reply:sessionStart) %[Non](reply:site)') )
                 .then( () => 'replyButtonProcessing')
         }
     },
@@ -60,25 +68,14 @@ module.exports = new Script({
     },
 
     site: {
-        prompt: (bot) => {
-            return bot.say(states.site.prompt)
-                .then( () => bot.say('%[Notre site](https://google.com)') )
-        },
+        prompt: (bot) => bot.say(states.site.prompt),
         receive: () => 'escape'
     },
 
     sessionStart: {
-        prompt: (bot) => {
-            return bot.say(states.sessionStart.prompt)
-                .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
-        },
+        prompt: (bot) => bot.say(states.sessionStart.prompt),
         receive: (bot, message) => {
-            if (message.payload) {
-                return  message.payload
-            }
-            else {
-                return 'escape'
-            }
+            return handleReplyButton(message)
         }
     },
 

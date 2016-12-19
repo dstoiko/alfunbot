@@ -1,6 +1,6 @@
 {
     "start": {
-        "response": "Bonjour et bienvenue. Je suis le premier chatbot configuateur PaaS. \n Mon but est de vous guider vers une externalisation de votre plateforme idoine. Êtes-vous interessé ?"
+        "response": "Bonjour et bienvenue. Je suis le premier chatbot configuateur PaaS. \n Mon but est de vous guider vers une externalisation de votre plateforme idoine. Êtes-vous interessé(e) ? %[Oui](reply:sessionStart) %[Non](reply:site)"
     },
 
     "back": {
@@ -8,11 +8,11 @@
     },
 
     "site": {
-        "prompt": "Je vous propose de continuer vers notre site et de revenir me voir bientot pour vous accompagner sur d'autres problématiques. A bientôt !"
+        "prompt": "Je vous propose de continuer vers notre site et de revenir me voir bientot pour vous accompagner sur d'autres problématiques. A bientôt ! %[Notre site](http://www.alfun.fr)"
     },
 
     "sessionStart": {
-        "prompt": "Super ! Je vais vous poser quelques questions. Premièrement, s'agit t-il d'une migration ou d'une création de site ?"
+        "prompt": "Super ! Je vais vous poser quelques questions. Premièrement, s'agit t-il d'une migration ou d'une création de site ? %[Migration](reply:migration) %[Creation](reply:creation)"
     },
 
     "creation": {
