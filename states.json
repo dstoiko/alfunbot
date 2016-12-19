@@ -49,15 +49,15 @@
     },
 
     "menu": {
-        "prompt": "Que voulez-vous faire maintenant ? %[Revenir au début](postback:start) %[Continuer par email](postback:contact)"
+        "prompt": "Que voulez-vous faire maintenant ? %[Revenir au début](postback:back) %[Continuer par email](postback:contact)"
     },
 
     "escape": {
-        "prompt": "Beep boop. Mes fonctions se limitent là... %[Revenir au début](postback:start) %[Continuer par email](postback:contact)"
+        "prompt": "Beep boop. Mes fonctions se limitent là... %[Revenir au début](postback:back) %[Continuer par email](postback:contact)"
     },
 
     "deadend": {
-        "response": "Toutes mes excuses... Je ne peux plus vous aider ! %[Revenir au début](postback:start) %[Continuer par email](postback:contact)"
+        "response": "Toutes mes excuses... Je ne peux plus vous aider ! %[Revenir au début](postback:back) %[Continuer par email](postback:contact)"
     }
 
 }

@@ -38,11 +38,11 @@ module.exports = new Script({
     },
 
     back: {
-      prompt: (bot) => {
-        return bot.say(states.back.prompt)
-            .then(() => 'start')
-      },
-      receive: () => 'escape'
+        prompt: (bot) => {
+          return bot.say(states.back.prompt)
+              .then(() => 'start')
+        },
+        receive: () => 'start'
     },
 
     start: {
