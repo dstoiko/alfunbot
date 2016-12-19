@@ -8,7 +8,7 @@
     },
 
     "site": {
-        "prompt": "Je vous propose de continuer vers notre site et de revenir me voir bientot pour vous accompagner sur d'autres problematiques. A bientot !"
+        "prompt": "Je vous propose de continuer vers notre site et de revenir me voir bientot pour vous accompagner sur d'autres problématiques. A bientôt !"
     },
 
     "sessionStart": {
@@ -16,11 +16,11 @@
     },
 
     "creation": {
-        "prompt": "Dans le cadre d’une création, je vous propose de prendre un rdv ensemble pour échanger de vive voix sur vos besoins..."
+        "prompt": "Dans le cadre d’une création, je vous propose de prendre un rdv ensemble pour échanger de vive voix sur vos besoins. Cela vous convient-il? %[Oui](reply:booking) %[Non](reply:site)"
     },
 
     "booking": {
-        "prompt": "Je vais prendre RDV avec un de mes collègues humains pour vous..."
+        "prompt": "Je vais prendre RDV avec un de mes collègues humains pour vous... Pouvez-vous me donner votre adresse e-mail ?"
     },
 
     "migration": {

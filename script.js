@@ -73,7 +73,12 @@ module.exports = new Script({
                 .then( () => bot.say('%[Migration](reply:migration) %[Creation](reply:creation)') )
         },
         receive: (bot, message) => {
-            return  message.payload
+            if (message.payload) {
+                return  message.payload
+            }
+            else {
+                return 'escape'
+            }
         }
     },
 
@@ -82,7 +87,14 @@ module.exports = new Script({
             return bot.say(states.creation.prompt)
                 .then( () => 'booking')
         },
-        receive: () => 'escape'
+        receive: (bot, message) => {
+            if (message.payload) {
+                return  message.payload
+            }
+            else {
+                return 'escape'
+            }
+        }
     },
 
     booking: {
