@@ -27,7 +27,7 @@ function techFilter(technologies, tag) {
     return string;
   }
   else {
-    return 'Pas d\'information de ' + tag.toUpperCase();
+    return 'Pas d\'information de ' + tag;
   }
 }
 
