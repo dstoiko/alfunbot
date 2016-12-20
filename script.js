@@ -191,9 +191,19 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say(states.offers.prompt)
                 .then(() => bot.sayCarousel(states.offers.carousel))
-                .then(() => 'contact')
+                .then(() => bot.say(states.offers.contact))
         },
-        receive: () => 'escape'
+        receive: (bot, message) => {
+            if (message.payload === 'yes') {
+                return 'contact'
+            }
+            else if (message.payload === 'no') {
+                return 'menu'
+            }
+            else {
+                return 'escape'
+            }
+        }
     },
 
     contact: {

@@ -40,6 +40,7 @@
 
     "offers": {
         "prompt": "Le résultat de mon analyse me mène à vous proposer l'offre suivante :",
+        "contact": "Voulez-vous que je vous envoie ces offres par e-mail également ? %[Oui](reply:yes) %[Non](reply:no)",
         "carousel": [{
             "title": "Offre A",
             "description": "Description de l'offre",
