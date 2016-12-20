@@ -120,7 +120,7 @@ module.exports = new Script({
           var checkUrl = validator.isURL(protocol + siteUrl) || validator.isURL(siteUrl);
           if (!checkUrl) {
             return bot.say(states.migration.noURL)
-                .then(() => 'escape');
+                .then(() => 'deadend')
           }
           else {
             return bot.say(states.migration.wait)
