@@ -23,11 +23,11 @@ function techFilter(technologies, tag) {
     results.forEach(function(result) {
       array.push(result.Name);
     });
-    var string = array.join(', ');
+    var string = tag.toUpperCase() + ' : ' + array.join(', ') + '\n';
     return string;
   }
   else {
-    return 'pas d\'information';
+    return 'Pas d\'information de ' + tag.toUpperCase();
   }
 }
 
@@ -133,12 +133,26 @@ module.exports = new Script({
                     var out = '';
                     if (!error && response.statusCode == 200) {
                       var technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
-                      var cms = techFilter(technologies, 'cms');
-                      var hosting = techFilter(technologies, 'hosting');
-                      var framework = techFilter(technologies, 'framework');
-                      var string = 'CMS : ' + cms + '\n' +
-                            'Hébergement : ' + hosting + '\n' +
-                            'Langage(s) : ' + framework ;
+                      var tags = [
+                        'hosting',
+                        'Web Server',
+                        'ssl',
+                        'cms',
+                        'framework',
+                        'analytics',
+                        'mx',
+                        'feeds',
+                        'widgets',
+                        'javascript',
+                        'mapping',
+                        'payment',
+                        'cdn'
+                      ]
+                      var string = '';
+                      tags.forEach(function(tag) {
+                        let tagSearch = techFilter(technologies, tag);
+                        string += tagSearch;
+                      });
                       out = states.migration.response + string;
                     }
                     else {
