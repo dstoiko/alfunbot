@@ -41,20 +41,38 @@
     "offers": {
         "prompt": "Le résultat de mon analyse me mène à vous proposer l'offre suivante :",
         "carousel": [{
-            "title": "Offre1",
-            "description": "Description",
+            "title": "Offre A",
+            "description": "Description de l'offre",
             "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
             "actions": [{
-                "text": "More info",
+                "text": "Plus d'infos",
                 "type": "link",
                 "uri": "http://www.alfun.fr"
             }]
         }, {
-            "title": "Offre2",
+            "title": "Offre B",
             "description": "Description",
             "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
             "actions": [{
-                "text": "More info",
+                "text": "Plus d'infos",
+                "type": "link",
+                "uri": "http://www.alfun.fr"
+            }]
+        }, {
+            "title": "Offre C",
+            "description": "Description",
+            "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
+            "actions": [{
+                "text": "Plus d'infos",
+                "type": "link",
+                "uri": "http://www.alfun.fr"
+            }]
+        }, {
+            "title": "Offre D",
+            "description": "Description",
+            "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
+            "actions": [{
+                "text": "Plus d'infos",
                 "type": "link",
                 "uri": "http://www.alfun.fr"
             }]

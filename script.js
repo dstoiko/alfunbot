@@ -68,10 +68,7 @@ module.exports = new Script({
     },
 
     site: {
-        prompt: (bot) => {
-            return bot.say(states.site.prompt)
-                .then(() => bot.sayCarousel(states.offers.carousel))
-        },
+        prompt: (bot) => bot.say(states.site.prompt),
         receive: () => 'escape'
     },
 
@@ -177,7 +174,7 @@ module.exports = new Script({
     offers: {
         prompt: (bot) => {
             return bot.say(states.offers.prompt)
-                // .then(() => bot.sayCarousel(states.offers.carousel))
+                .then(() => bot.sayCarousel(states.offers.carousel))
         },
         receive: () => 'escape'
     },
@@ -186,7 +183,7 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.getProp('email')
                 .then((email) => {
-                    if (email !== '') {
+                    if (email) {
                         return bot.say(states.contact.exists)
                             .then(() => bot.getProp('email'))
                             .then((email) => bot.say(`Vous serez contacté(e) sur ${email}, cela vous convient-il ?`))
@@ -200,7 +197,7 @@ module.exports = new Script({
         receive: (bot, message) => {
             return bot.getProp('email')
                 .then((email) => {
-                    if (email !== '') {
+                    if (email) {
                         if (message.payload === 'yes') {
                             return bot.say(states.contact.response)
                                 .then(() => 'escape')

@@ -24,26 +24,10 @@ class SuperSmoochApiBot extends SmoochApiBot {
             name: this.name,
             avatarUrl: this.avatarUrl
         });
-        console.log('CAROUSEL: ' + JSON.stringify(message, null, 2));
-        return api.appUsers.sendMessage(this.userId, message)
-            .then(data => console.log(data))
-            .catch(e => console.log(JSON.stringify(e, null, 2)))
-    }
-
-    say(text, actions) {
-        const api = this.store.getApi();
-        let message = Object.assign({
-            text,
-            actions: actions,
-            role: 'appMaker'
-        }, {
-            name: this.name,
-            avatarUrl: this.avatarUrl
-        });
-        console.log('TEXT: ' + JSON.stringify(message, null, 2));
-        return api.appUsers.sendMessage(this.userId, message)
-            .then(data => console.log(JSON.stringify(data, null, 2)))
-            .catch(e => console.log(JSON.stringify(e, null, 2)))
+        // console.log('CAROUSEL: ' + JSON.stringify(message, null, 2));
+        return api.appUsers.sendMessage(this.userId, message);
+            // .then(data => console.log(data))
+            // .catch(e => console.log(JSON.stringify(e, null, 2)))
     }
 }
 
