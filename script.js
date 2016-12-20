@@ -19,6 +19,7 @@ const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
 function techFilter(technologies, tag) {
   if (where(technologies, { 'Tag': tag })) {
     var results = where(technologies, { 'Tag': tag });
+    console.log(tag + ': ' + results);
     var array = [];
     results.forEach(function(result) {
       array.push(result.Name);
