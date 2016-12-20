@@ -23,10 +23,10 @@ function techFilter(technologies, tag) {
     results.forEach(function(result) {
       array.push(result.Name);
     });
-    console.log(tag);
-    console.log(array.length < 1);
-    var string = tag.toUpperCase() + ' : ' + array.join(', ') + '\n';
-    return string;
+    if (array.length > 0) {
+      var string = tag.toUpperCase() + ' : ' + array.join(', ') + '\n';
+      return string;
+    }
   }
   else {
     return 'Pas d\'information de ' + tag;
