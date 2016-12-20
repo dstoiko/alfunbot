@@ -118,7 +118,6 @@ module.exports = new Script({
           var siteUrl = message.text.trim();
           var protocol = 'http://';
           var checkUrl = validator.isURL(protocol + siteUrl) || validator.isURL(siteUrl);
-          console.log('URL CHECK: ' + checkUrl);
           if (!checkUrl) {
             return bot.say(states.migration.noURL)
                 .then(() => 'escape');
@@ -192,6 +191,7 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say(states.offers.prompt)
                 .then(() => bot.sayCarousel(states.offers.carousel))
+                .then(() => 'contact')
         },
         receive: () => 'escape'
     },
@@ -219,10 +219,10 @@ module.exports = new Script({
                             return bot.say(states.contact.response)
                                 .then(() => 'escape')
                         }
-                        else if (message.payload === 'contact') {
+                        else if (message.payload === 'no') {
                             let reset = '';
                             return bot.setProp('email', reset)
-                                .then(() => message.payload)
+                                .then(() => 'contact')
                         }
                         else {
                             return 'escape'
