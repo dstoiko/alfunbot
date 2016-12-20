@@ -41,30 +41,22 @@
     "offers": {
         "prompt": "Le résultat de mon analyse me mène à vous proposer l'offre suivante :",
         "carousel": [{
-            "title": "Tacos",
+            "title": "Offre1",
             "description": "Description",
-            "mediaUrl": "http://example.org/image.jpg",
+            "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
             "actions": [{
-                "text": "Select",
-                "type": "postback",
-                "payload": "TACOS"
-            }, {
                 "text": "More info",
                 "type": "link",
-                "uri": "http://example.org"
+                "uri": "http://www.alfun.fr"
             }]
         }, {
-            "title": "Ramen",
+            "title": "Offre2",
             "description": "Description",
-            "mediaUrl": "http://example.org/image.jpg",
+            "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
             "actions": [{
-                "text": "Select",
-                "type": "postback",
-                "payload": "RAMEN"
-            }, {
                 "text": "More info",
                 "type": "link",
-                "uri": "http://example.org"
+                "uri": "http://www.alfun.fr"
             }]
         }]
     },
