@@ -116,7 +116,10 @@ module.exports = new Script({
         },
         receive: (bot, message) => {
           var siteUrl = message.text.trim();
-          if (!(validator.isURL(siteUrl))) {
+          var protocol = 'http://';
+          var checkUrl = validator.isURL(protocol + siteUrl) || validator.isURL(siteUrl);
+          console.log('URL CHECK: ' + checkUrl);
+          if (!checkUrl) {
             return bot.say(states.migration.noURL)
                 .then(() => 'escape');
           }

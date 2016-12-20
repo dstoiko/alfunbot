@@ -12,7 +12,7 @@
     },
 
     "sessionStart": {
-        "prompt": "Super ! Je vais vous poser quelques questions. Premièrement, s'agit t-il d'une migration ou d'une création de site ? %[Migration](reply:migration) %[Creation](reply:creation)"
+        "prompt": "Super ! Je vais vous poser quelques questions. Premièrement, s'agit t-il d'une migration ou d'une création de site ? %[Migration](reply:migration) %[Création](reply:creation)"
     },
 
     "creation": {
