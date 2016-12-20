@@ -17,7 +17,7 @@ const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
 
 // Filters for parsing BuiltWith API response
 function techFilter(technologies, tag) {
-  if (where(technologies, { 'Tag': tag }) !== null) {
+  if (where(technologies, { 'Tag': tag })) {
     var results = where(technologies, { 'Tag': tag });
     var array = [];
     results.forEach(function(result) {
