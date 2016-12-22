@@ -148,12 +148,13 @@ module.exports = new Script({
                     else {
                       result = states.migration.noResult;
                     }
+                  // Wait a few seconds since the bot is "thinking"...
                   setTimeout(
                     () => {
                       console.log('waiting before next message...');
                       resolve(result);
-                    }, 5000);
-                  // resolve(result);
+                    }, 4000
+                  );
                 });
               });
             })
@@ -187,7 +188,15 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say(states.offers.prompt)
                 .then(() => bot.sayCarousel(states.offers.carousel))
-                .then(() => bot.say(states.offers.contact))
+                // .then(() => bot.say(states.offers.contact))
+                .then(() => {
+                  setTimeout(
+                    () => {
+                      console.log('waiting before next message...');
+                      bot.say(states.offers.contact);
+                    }, 2000
+                  );
+                })
         },
         receive: (bot, message) => {
             if (message.payload === 'yes') {
