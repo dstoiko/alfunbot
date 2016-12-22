@@ -45,7 +45,13 @@
         ],
         "response": "Voici votre profil technologique : \n",
         "noResult": "Je n'ai pas trouvé votre profil technologique, toutes mes excuses...",
-        "noURL": "Désolé mais il semblerait que l'URL n'est pas correcte... %[Réessayer](postback:migration) !"
+        "noURL": "Désolé mais il semblerait que l'URL n'est pas correcte... %[Réessayer](postback:migration)"
+    },
+
+    "audience": {
+        "prompt": "Combien de visiteurs avez-vous par mois en moyenne ?",
+        "response": "Merci, je prends bien ça en compte.",
+        "error": "Hum... Il semblerait que vous ne m'ayez pas donné un nombre de visiteurs... %[Réessayer](postback:audience)"
     },
 
     "builtWithResults": {
