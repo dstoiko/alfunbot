@@ -160,7 +160,7 @@ module.exports = new Script({
               .then((techProfile) => {
                 return bot.say(techProfile);
               })
-              .then(() => 'audience')
+              .then(() => 'builtWithResults')
           }
         }
     },
