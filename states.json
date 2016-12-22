@@ -28,7 +28,23 @@
     "migration": {
         "prompt": "Pouvez-vous m'indiquer le nom de domaine de votre site web (ex: google.fr) ?",
         "wait": "Je procède à une rapide analyse...",
+        "tags": [
+          "hosting",
+          "Web Server",
+          "ssl",
+          "cms",
+          "framework",
+          "analytics",
+          "mx",
+          "feeds",
+          "widgets",
+          "javascript",
+          "mapping",
+          "payment",
+          "cdn"
+        ],
         "response": "Voici votre profil technologique : \n",
+        "noResult": "Je n'ai pas trouvé votre profil technologique, toutes mes excuses...",
         "noURL": "Désolé mais il semblerait que l'URL n'est pas correcte... %[Réessayer](postback:migration) !"
     },
 

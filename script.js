@@ -134,35 +134,21 @@ module.exports = new Script({
                   '&LOOKUP=' +
                   siteUrl,
                   function (error, response, body) {
-                    var out = '';
+                    var result = '';
                     if (!error && response.statusCode == 200) {
                       var technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
-                      var tags = [
-                        'hosting',
-                        'Web Server',
-                        'ssl',
-                        'cms',
-                        'framework',
-                        'analytics',
-                        'mx',
-                        'feeds',
-                        'widgets',
-                        'javascript',
-                        'mapping',
-                        'payment',
-                        'cdn'
-                      ]
+                      var tags = states.migration.tags;
                       var string = '';
                       tags.forEach(function(tag) {
                         let tagSearch = techFilter(technologies, tag);
                         string += tagSearch;
                       });
-                      out = states.migration.response + string;
+                      result = states.migration.response + string;
                     }
                     else {
-                      out = 'Je n\'ai pas trouvé votre profil technologique, toutes mes excuses...';
+                      result = states.migration.noResult;
                     }
-                  resolve(bot.say(out));
+                  resolve(bot.say(result));
                 });
               });
             })
@@ -215,7 +201,8 @@ module.exports = new Script({
                     if (email) {
                         return bot.say(states.contact.exists)
                             .then(() => bot.getProp('email'))
-                            .then((email) => bot.say(`Vous serez contacté(e) sur ${email}, cela vous convient-il ?`))
+                            .then((email) => bot.say(`Vous serez contacté(e) sur ${email},
+                            cela vous convient-il ?`))
                             .then(() => bot.say(states.contact.check))
                     }
                     else {
