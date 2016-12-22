@@ -148,16 +148,15 @@ module.exports = new Script({
                     else {
                       result = states.migration.noResult;
                     }
-                  // resolve(bot.say(result));
+                  setTimeout(
+                    () => console.log('waiting before next message...'),
+                    5000
+                  );
                   resolve(result);
                 });
               });
             })
               .then((techProfile) => {
-                setTimeout(
-                  () => console.log('waiting before next message...'),
-                  5000
-                );
                 return bot.say(techProfile);
               })
               .then(() => 'builtWithResults')
