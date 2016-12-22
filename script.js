@@ -155,8 +155,8 @@ module.exports = new Script({
             })
               .then((techProfile) => {
                 setTimeout(
-                  (x) => x*x,
-                  2000
+                  (x) => x,
+                  5000
                 );
                 return bot.say(techProfile);
               })
