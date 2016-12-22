@@ -153,7 +153,7 @@ module.exports = new Script({
                 });
               });
             })
-              .then((techProfile) => bot.say(techProfile));
+              .then((techProfile) => bot.say(techProfile))
               .then(() => 'builtWithResults')
           }
         }
