@@ -48,12 +48,19 @@ module.exports = new Script({
         receive: () => 'processing'
     },
 
+    // back: {
+    //     prompt: (bot) => {
+    //       return bot.say(states.back.prompt)
+    //           .then(() => 'start')
+    //     },
+    //     receive: () => 'pseudoStart'
+    // },
+
     back: {
-        prompt: (bot) => {
-          return bot.say(states.back.prompt)
-              .then(() => 'start')
-        },
-        receive: () => 'start'
+          prompt: (bot) => bot.say(states.start.response),
+          receive: (bot, message) => {
+              return handleReplyButton(message)
+          }
     },
 
     start: {
