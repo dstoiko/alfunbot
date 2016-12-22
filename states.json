@@ -48,16 +48,16 @@
         "noURL": "Désolé mais il semblerait que l'URL n'est pas correcte... %[Réessayer](postback:migration)"
     },
 
-    "audience": {
-        "prompt": "Combien de visiteurs avez-vous par mois en moyenne ?",
-        "response": "Merci, je prends bien ça en compte.",
-        "error": "Hum... Il semblerait que vous ne m'ayez pas donné un nombre de visiteurs... %[Réessayer](postback:audience)"
-    },
-
     "builtWithResults": {
         "check": "Cela vous paraît-il correct ? %[Oui](reply:yes) %[Non](reply:no)",
         "yes": "Très bien !",
         "no": "Malheureusement, je ne peux pas voir toutes les subtilités de votre configuration..."
+    },
+
+    "audience": {
+        "prompt": "Combien de visiteurs avez-vous par mois en moyenne ?",
+        "response": "Merci, je prends bien ça en compte...",
+        "error": "Hum... Il semblerait que vous ne m'ayez pas donné un nombre de visiteurs... %[Réessayer](postback:audience)"
     },
 
     "offers": {

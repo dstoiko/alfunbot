@@ -171,7 +171,15 @@ module.exports = new Script({
             reply = message.payload
             if (reply === 'yes') {
                 return bot.say(states.builtWithResults.yes)
-                    .then(() => 'audience')
+                    .then(() => {
+                      // Wait a few seconds since the bot is "thinking"...
+                      return setTimeout(
+                        () => {
+                          console.log('waiting before next message...');
+                          'audience';
+                        }, 2000
+                      );
+                    })
             }
             if (reply === 'no') {
                 return bot.say(states.builtWithResults.no)
@@ -205,7 +213,6 @@ module.exports = new Script({
         prompt: (bot) => {
             return bot.say(states.offers.prompt)
                 .then(() => bot.sayCarousel(states.offers.carousel))
-                // .then(() => bot.say(states.offers.contact))
                 .then(() => {
                   setTimeout(
                     () => {
