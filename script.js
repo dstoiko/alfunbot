@@ -154,10 +154,11 @@ module.exports = new Script({
               });
             })
               .then((techProfile) => {
-                  return setTimeout(
-                    bot.say(techProfile),
-                    2000
-                  );
+                setTimeout(
+                  (x) => x*x,
+                  2000
+                );
+                return bot.say(techProfile);
               })
               .then(() => 'builtWithResults')
           }
