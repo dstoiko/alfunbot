@@ -153,7 +153,12 @@ module.exports = new Script({
                 });
               });
             })
-              .then((techProfile) => bot.say(techProfile))
+              .then((techProfile) => {
+                  return setTimeout(
+                    bot.say(techProfile),
+                    2000
+                  );
+              }
               .then(() => 'builtWithResults')
           }
         }
