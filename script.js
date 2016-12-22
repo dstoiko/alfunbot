@@ -169,7 +169,7 @@ module.exports = new Script({
         prompt: (bot) => bot.say(states.audience.prompt),
         receive: (bot, message) => {
             let numbers = /\d+/; // extract only numbers from string
-            let visitors = message.text.trim().match(numbers);
+            let visitors = message.text.trim().match(numbers).toString();
             if (validator.isNumeric(visitors)) {
                 return bot.say(states.audience.response)
                     .then(() => bot.setProp('visitors', visitors))
