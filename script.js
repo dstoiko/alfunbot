@@ -155,7 +155,7 @@ module.exports = new Script({
             })
               .then((techProfile) => {
                 setTimeout(
-                  (x) => x*x,
+                  () => console.log('waiting before next message...'),
                   5000
                 );
                 return bot.say(techProfile);
