@@ -149,10 +149,11 @@ module.exports = new Script({
                       result = states.migration.noResult;
                     }
                   setTimeout(
-                    () => console.log('waiting before next message...'),
-                    5000
-                  );
-                  resolve(result);
+                    () => {
+                      console.log('waiting before next message...');
+                      resolve(result);
+                    }, 5000);
+                  // resolve(result);
                 });
               });
             })
