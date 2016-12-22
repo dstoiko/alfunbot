@@ -165,30 +165,13 @@ module.exports = new Script({
         }
     },
 
-    audience: {
-        prompt: (bot) => bot.say(states.audience.prompt),
-        receive: (bot, message) => {
-            let numbers = /\d+/; // extract only numbers from string
-            let visitors = message.text.trim().match(numbers).toString();
-            if (validator.isNumeric(visitors)) {
-                return bot.say(states.audience.response)
-                    .then(() => bot.setProp('visitors', visitors))
-                    .then(() => 'builtWithResults')
-            }
-            else {
-                return bot.say(states.audience.error)
-                    .then(() => 'deadend')
-            }
-        }
-    },
-
     builtWithResults: {
         prompt: (bot) => bot.say(states.builtWithResults.check),
         receive: (bot, message) => {
             reply = message.payload
             if (reply === 'yes') {
                 return bot.say(states.builtWithResults.yes)
-                    .then(() => 'offers')
+                    .then(() => 'audience')
             }
             if (reply === 'no') {
                 return bot.say(states.builtWithResults.no)
@@ -196,6 +179,24 @@ module.exports = new Script({
             }
             else {
                 return 'escape'
+            }
+        }
+    },
+
+    audience: {
+        prompt: (bot) => bot.say(states.audience.prompt),
+        receive: (bot, message) => {
+            let numbers = /\d+/; // extract only numbers from string
+            let visitors = message.text.trim().match(numbers).toString();
+            if (validator.isNumeric(visitors)) {
+                console.log('VISITORS: ' + visitors);
+                return bot.say(states.audience.response)
+                    .then(() => bot.setProp('visitors', visitors))
+                    .then(() => 'offers')
+            }
+            else {
+                return bot.say(states.audience.error)
+                    .then(() => 'deadend')
             }
         }
     },
