@@ -148,10 +148,12 @@ module.exports = new Script({
                     else {
                       result = states.migration.noResult;
                     }
-                  resolve(bot.say(result));
+                  // resolve(bot.say(result));
+                  resolve(result);
                 });
               });
             })
+              .then((techProfile) => bot.say(techProfile));
               .then(() => 'builtWithResults')
           }
         }
