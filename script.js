@@ -158,7 +158,7 @@ module.exports = new Script({
                     bot.say(techProfile),
                     2000
                   );
-              }
+              })
               .then(() => 'builtWithResults')
           }
         }
