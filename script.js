@@ -102,16 +102,17 @@ module.exports = new Script({
                   '&LOOKUP=' +
                   siteUrl,
                   function (error, response, body) {
-                    var result = '';
+                    let result;
                     if (!error && response.statusCode == 200) {
-                      var technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
-                      var tags = Object.keys(states.migration.tags);
-                      var string = '';
+                      let technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
+                      let tags = Object.keys(states.migration.tags);
+                      let obj = {};
                       tags.forEach(function(tag) {
                         let tagSearch = helpers.techFilter(technologies, tag);
-                        string += tagSearch;
+                        obj[tag] = tagSearch;
                       });
-                      result = states.migration.response + string;
+                      result = obj.toString();
+                      console.log(result);
                     }
                     else {
                       result = states.migration.noResult;
@@ -125,10 +126,10 @@ module.exports = new Script({
                 });
               });
             })
-              .then((techProfile) => {
-                return bot.say(techProfile);
-              })
-              .then(() => 'builtWithResults')
+            .then((techProfile) => {
+              return bot.say(techProfile);
+            })
+            .then(() => 'builtWithResults')
           }
         }
     },

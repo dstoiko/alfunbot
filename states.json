@@ -30,7 +30,7 @@
         "wait": "Je procède à une rapide analyse...",
         "response": "Voici les informations récoltées suivant mes scanneurs intégrés : \n",
         "tags": {
-          "hosting": "Votre hébergement actuel est fait sur: ${hosting}",
+          "hosting": "Votre hébergement actuel est fait sur : ${hosting}",
           "Web Server": "${server} motorise votre serveur web...",
           "ssl": "Vous avez activé le SSL, parfait !",
           "cms": "Vous utilisez le(s) CMS suivant(s) : ${cms}",
