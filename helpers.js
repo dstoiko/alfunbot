@@ -15,7 +15,7 @@ module.exports = {
         resultArray.push(result.Name);
       });
       if (resultArray.length > 0) {
-        resultString = tag.toUpperCase() + ' : ' + resultArray.join(', ') + '\n';
+        resultString = resultArray.join(', ');
       }
     }
     else {
