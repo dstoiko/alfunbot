@@ -130,13 +130,13 @@ module.exports = new Script({
                 let finalObj = helpers.interpolateObject(states.migration.tags, techProfile);
                 let string = '';
                 console.log(JSON.stringify(finalObj, null, 2));
-                // for (var key in finalObj) {
-                //   if (object.hasOwnProperty(key)) {
-                //
-                //   }
-                // }
-                techProfile = JSON.stringify(techProfile, null, 2)
-                console.log(JSON.stringify(techProfile, null, 2));
+                let techArray = [];
+                for (var key in techProfile) {
+                  if (techProfile[key] !== '') {
+                    techArray.push(finalObj[key]);
+                  }
+                }
+                techProfile = techArray.join('\n');
               }
               return bot.say(techProfile);
             })
