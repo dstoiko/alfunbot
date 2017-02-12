@@ -1,5 +1,8 @@
 'use strict';
 
+// For JSON filtering
+const where = require('lodash.where');
+
 module.exports = {
 
   // Filters for parsing BuiltWith API response

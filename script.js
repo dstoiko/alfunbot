@@ -8,8 +8,6 @@ const natural = require('natural');
 const validator = require('validator');
 // For external API requests
 const request = require('request');
-// For JSON filtering
-const where = require('lodash.where');
 // States stored locally
 const states = require('./states');
 // Helper functions used
