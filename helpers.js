@@ -8,21 +8,24 @@ module.exports = {
   // Filters for parsing BuiltWith API response
   techFilter: function(technologies, tag) {
     if (where(technologies, { 'Tag': tag })) {
-      var results = where(technologies, { 'Tag': tag });
-      var array = [];
+      let results = where(technologies, { 'Tag': tag });
+      let array = [];
+      let string = '';
       results.forEach(function(result) {
         if (result.Name !== undefined) { // BUGFIX: 'undefined' was displayed in end result
           array.push(result.Name);
         }
       });
       if (array.length > 0) {
-        var string = tag.toUpperCase() + ' : ' + array.join(', ') + '\n';
-        return string;
+        string = tag.toUpperCase() + ' : ' + array.join(', ') + '\n';
       }
     }
     else {
-      return 'Pas d\'information de ' + tag;
+      string = 'Pas d\'information de ' + tag;
     }
+    console.log('Array: ' + array.toString());
+    console.log('String: ' + string);
+    return string;
   },
 
   // Hack to treat reply buttons as state-changers
