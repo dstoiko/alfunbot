@@ -31,7 +31,7 @@
         "response": "Voici les informations récoltées suivant mes scanneurs intégrés : \n",
         "tags": {
           "hosting": "Votre hébergement actuel est fait sur : ${hosting}",
-          "Web Server": "${server} motorise votre serveur web...",
+          "Web Server": "${Web Server} motorise votre serveur web...",
           "ssl": "Vous avez activé le SSL, parfait !",
           "cms": "Vous utilisez le(s) CMS suivant(s) : ${cms}",
           "framework": "Le langage utilisé est : ${framework}",
