@@ -1,31 +1,30 @@
 'use strict';
 
 // For JSON filtering
-const where = require('lodash.where');
+const _ = require('lodash');
 
 module.exports = {
 
   // Filters for parsing BuiltWith API response
   techFilter: function(technologies, tag) {
-    let string = '';
-    let array = [];
-    if (where(technologies, { 'Tag': tag })) {
-      let results = where(technologies, { 'Tag': tag });
+    let resultString = '';
+    let resultArray = [];
+    let results = _.filter(technologies, { 'Tag': tag });
+    if (results) {
+      console.log('Results: ' + results.toString());
       results.forEach(function(result) {
-        if (result.Name !== undefined) { // BUGFIX: 'undefined' was displayed in end result
-          array.push(result.Name);
-        }
+        resultArray.push(result.Name);
       });
-      if (array.length > 0) {
-        string = tag.toUpperCase() + ' : ' + array.join(', ') + '\n';
+      if (resultArray.length > 0) {
+        resultString = tag.toUpperCase() + ' : ' + resultArray.join(', ') + '\n';
       }
-      console.log('Array: ' + array.toString());
+      console.log('Array: ' + resultArray.toString());
     }
     else {
-      string = 'Pas d\'information de ' + tag;
+      resultString = 'Pas d\'information de ' + tag;
     }
-    console.log('String: ' + string);
-    return string;
+    console.log('String: ' + resultString);
+    return resultString;
   },
 
   // Hack to treat reply buttons as state-changers
