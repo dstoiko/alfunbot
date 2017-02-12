@@ -127,15 +127,16 @@ module.exports = new Script({
             })
             .then((techProfile) => {
               if (typeof techProfile == 'object') {
-                // let finalObj = helpers.interpolateObject(states.migration.tags, techProfile);
-                // let string = '';
-                // console.log(JSON.stringify(finalObj, null, 2));
+                let finalObj = helpers.interpolateObject(states.migration.tags, techProfile);
+                let string = '';
+                console.log(JSON.stringify(finalObj, null, 2));
                 // for (var key in finalObj) {
                 //   if (object.hasOwnProperty(key)) {
                 //
                 //   }
                 // }
-                techProfile = JSON.stringify(techProfile, null, 2);
+                techProfile = JSON.stringify(techProfile, null, 2)
+                console.log(JSON.stringify(techProfile, null, 2));
               }
               return bot.say(techProfile);
             })
