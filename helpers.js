@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  
+
   // Filters for parsing BuiltWith API response
   techFilter: function(technologies, tag) {
     if (where(technologies, { 'Tag': tag })) {
@@ -18,7 +18,7 @@ module.exports = {
     else {
       return 'Pas d\'information de ' + tag;
     }
-  }
+  },
 
   // Hack to treat reply buttons as state-changers
   handleReplyButton: function(message) {
