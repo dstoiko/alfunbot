@@ -136,7 +136,7 @@ module.exports = new Script({
                     techArray.push(finalObj[key]);
                   }
                 }
-                techProfile = techArray.join('\n');
+                techProfile = techArray.join('\n\n');
               }
               return bot.say(techProfile);
             })

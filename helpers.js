@@ -15,7 +15,7 @@ module.exports = {
         resultArray.push(result.Name);
       });
       if (resultArray.length > 0) {
-        resultString = resultArray.join(', ');
+        resultString = resultArray.join(', ') + '.';
       }
     }
     else {
