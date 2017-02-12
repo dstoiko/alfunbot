@@ -7,10 +7,10 @@ module.exports = {
 
   // Filters for parsing BuiltWith API response
   techFilter: function(technologies, tag) {
+    let string = '';
+    let array = [];
     if (where(technologies, { 'Tag': tag })) {
       let results = where(technologies, { 'Tag': tag });
-      let array = [];
-      let string = '';
       results.forEach(function(result) {
         if (result.Name !== undefined) { // BUGFIX: 'undefined' was displayed in end result
           array.push(result.Name);
