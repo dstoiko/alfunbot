@@ -111,7 +111,7 @@ module.exports = new Script({
                         let tagSearch = helpers.techFilter(technologies, tag);
                         obj[tag] = tagSearch;
                       });
-                      result = obj;
+                      result = obj.toString();
                     }
                     else {
                       result = states.migration.noResult;
