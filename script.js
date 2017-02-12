@@ -157,7 +157,6 @@ module.exports = new Script({
             let numbers = /\d+/; // extract only numbers from string
             let visitors = message.text.trim().match(numbers).toString();
             if (validator.isNumeric(visitors)) {
-                console.log('VISITORS: ' + visitors);
                 return bot.say(states.audience.response)
                     .then(() => bot.setProp('visitors', visitors))
                     .then(() => 'offers')
