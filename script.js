@@ -105,7 +105,7 @@ module.exports = new Script({
                     var result = '';
                     if (!error && response.statusCode == 200) {
                       var technologies = JSON.parse(body).Results[0].Result.Paths[0].Technologies;
-                      var tags = states.migration.tags;
+                      var tags = Object.keys(states.migration.tags);
                       var string = '';
                       tags.forEach(function(tag) {
                         let tagSearch = helpers.techFilter(technologies, tag);
