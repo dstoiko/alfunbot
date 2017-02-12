@@ -28,22 +28,17 @@
     "migration": {
         "prompt": "Pouvez-vous m'indiquer le nom de domaine de votre site web (ex: google.fr) ?",
         "wait": "Je procède à une rapide analyse...",
-        "tags": [
-          "hosting",
-          "Web Server",
-          "ssl",
-          "cms",
-          "framework",
-          "analytics",
-          "mx",
-          "feeds",
-          "widgets",
-          "javascript",
-          "mapping",
-          "payment",
-          "cdn"
-        ],
-        "response": "Voici votre profil technologique : \n",
+        "response": "Voici les informations récoltées suivant mes scanneurs intégrés : \n",
+        "tags": {
+          "hosting": "Votre hébergement actuel est fait sur: ${hosting}",
+          "Web Server": "${server} motorise votre serveur web...",
+          "ssl": "Vous avez activé le SSL, parfait !",
+          "cms": "Vous utilisez le(s) CMS suivant(s) : ${cms}",
+          "framework": "Le langage utilisé est : ${framework}",
+          "analytics": "Vous suivez vos analytics...",
+          "payment": "Vous acceptez des paiements sur votre site...",
+          "cdn": "Pour les performances, le CDN est un bon choix en effet !"
+        },
         "noResult": "Je n'ai pas trouvé votre profil technologique, toutes mes excuses...",
         "noURL": "Désolé mais il semblerait que l'URL n'est pas correcte... %[Réessayer](postback:migration)"
     },

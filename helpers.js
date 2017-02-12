@@ -26,12 +26,13 @@ module.exports = {
 
   // Hack to treat reply buttons as state-changers
   handleReplyButton: function(message) {
-    if (message.payload) {
-      return  message.payload
-    }
-    else {
-      return 'escape'
-    }
+    return message.payload ? message.payload : 'escape'
+    // if (message.payload) {
+    //   return  message.payload
+    // }
+    // else {
+    //   return 'escape'
+    // }
   }
 
 }
