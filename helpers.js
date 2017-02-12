@@ -25,14 +25,20 @@ module.exports = {
   },
 
   // Hack to treat reply buttons as state-changers
+  // TODO: refine to accept texts that are like the button payloads
+  // eg: button is "yes", accept text "yes"
   handleReplyButton: function(message) {
     return message.payload ? message.payload : 'escape'
-    // if (message.payload) {
-    //   return  message.payload
-    // }
-    // else {
-    //   return 'escape'
-    // }
+  },
+
+  // Interpolation enabler in JSON objects
+  interpolateObject: function(o, a) {
+    var j = JSON.stringify(o);
+    for (var k in a) {
+      j = j.split('${'+k+'}').join(a[k]);
+    }
+    return JSON.parse(j);
   }
+
 
 }
