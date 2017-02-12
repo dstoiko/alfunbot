@@ -12,35 +12,10 @@ const request = require('request');
 const where = require('lodash.where');
 // States stored locally
 const states = require('./states');
+// Helper functions used
+const helpers = require('./helpers');
 
 const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
-
-// Filters for parsing BuiltWith API response
-function techFilter(technologies, tag) {
-  if (where(technologies, { 'Tag': tag })) {
-    var results = where(technologies, { 'Tag': tag });
-    var array = [];
-    results.forEach(function(result) {
-      array.push(result.Name);
-    });
-    if (array.length > 0) {
-      var string = tag.toUpperCase() + ' : ' + array.join(', ') + '\n';
-      return string;
-    }
-  }
-  else {
-    return 'Pas d\'information de ' + tag;
-  }
-}
-
-function handleReplyButton(message) {
-  if (message.payload) {
-    return  message.payload
-  }
-  else {
-    return 'escape'
-  }
-}
 
 module.exports = new Script({
 
@@ -50,15 +25,13 @@ module.exports = new Script({
 
     back: {
           prompt: (bot) => bot.say(states.start.response),
-          receive: (bot, message) => {
-              return handleReplyButton(message)
-          }
+          receive: (bot, message) => helpers.handleReplyButton(message)
     },
 
     start: {
         receive: (bot) => {
             return bot.say(states.start.response)
-                .then( () => 'replyButtonProcessing')
+                .then(() => 'replyButtonProcessing')
         }
     },
 
@@ -75,9 +48,7 @@ module.exports = new Script({
 
     sessionStart: {
         prompt: (bot) => bot.say(states.sessionStart.prompt),
-        receive: (bot, message) => {
-            return handleReplyButton(message)
-        }
+        receive: (bot, message) => helpers.handleReplyButton(message)
     },
 
     creation: {
@@ -139,7 +110,7 @@ module.exports = new Script({
                       var tags = states.migration.tags;
                       var string = '';
                       tags.forEach(function(tag) {
-                        let tagSearch = techFilter(technologies, tag);
+                        let tagSearch = helpers.techFilter(technologies, tag);
                         string += tagSearch;
                       });
                       result = states.migration.response + string;
@@ -171,17 +142,9 @@ module.exports = new Script({
             reply = message.payload
             if (reply === 'yes') {
                 return bot.say(states.builtWithResults.yes)
-                    .then(() => {
-                      // Wait a few seconds since the bot is "thinking"...
-                      return setTimeout(
-                        () => {
-                          console.log('waiting before next message...');
-                          'audience';
-                        }, 2000
-                      );
-                    })
+                    .then(() => 'audience')
             }
-            if (reply === 'no') {
+            else if (reply === 'no') {
                 return bot.say(states.builtWithResults.no)
                     .then(() => 'contact')
             }

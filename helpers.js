@@ -1,35 +1,33 @@
 'use strict';
 
-const smoochBot     = require('smooch-bot');
-const SmoochApiBot  = smoochBot.SmoochApiBot
-// const StateMachine  = smoochBot.StateMachine;
-
-class SuperSmoochApiBot extends SmoochApiBot {
-
-    constructor(options) {
-        super(options);
-
-        this.name = options.name;
-        this.avatarUrl = options.avatarUrl;
+module.exports = {
+  
+  // Filters for parsing BuiltWith API response
+  techFilter: function(technologies, tag) {
+    if (where(technologies, { 'Tag': tag })) {
+      var results = where(technologies, { 'Tag': tag });
+      var array = [];
+      results.forEach(function(result) {
+        array.push(result.Name);
+      });
+      if (array.length > 0) {
+        var string = tag.toUpperCase() + ' : ' + array.join(', ') + '\n';
+        return string;
+      }
     }
-
-    sayCarousel(items) {
-
-        const api = this.store.getApi();
-        let message = Object.assign({
-            role: 'appMaker',
-            type: 'carousel',
-            items: items
-        }, {
-            name: this.name,
-            avatarUrl: this.avatarUrl
-        });
-        // console.log('CAROUSEL: ' + JSON.stringify(message, null, 2));
-        return api.appUsers.sendMessage(this.userId, message);
-            // .then(data => console.log(data))
-            // .catch(e => console.log(JSON.stringify(e, null, 2)))
+    else {
+      return 'Pas d\'information de ' + tag;
     }
+  }
+
+  // Hack to treat reply buttons as state-changers
+  handleReplyButton: function(message) {
+    if (message.payload) {
+      return  message.payload
+    }
+    else {
+      return 'escape'
+    }
+  }
+
 }
-
-module.exports.SuperSmoochApiBot = SuperSmoochApiBot
-// module.exports.SuperStateMachine = SuperStateMachine
