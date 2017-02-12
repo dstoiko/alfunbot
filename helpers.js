@@ -19,11 +19,11 @@ module.exports = {
       if (array.length > 0) {
         string = tag.toUpperCase() + ' : ' + array.join(', ') + '\n';
       }
+      console.log('Array: ' + array.toString());
     }
     else {
       string = 'Pas d\'information de ' + tag;
     }
-    console.log('Array: ' + array.toString());
     console.log('String: ' + string);
     return string;
   },
