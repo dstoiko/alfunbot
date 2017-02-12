@@ -11,7 +11,9 @@ module.exports = {
       var results = where(technologies, { 'Tag': tag });
       var array = [];
       results.forEach(function(result) {
-        array.push(result.Name);
+        if (result.Name !== undefined) { // BUGFIX: 'undefined' was displayed in end result
+          array.push(result.Name);
+        }
       });
       if (array.length > 0) {
         var string = tag.toUpperCase() + ' : ' + array.join(', ') + '\n';

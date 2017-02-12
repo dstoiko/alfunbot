@@ -176,10 +176,8 @@ module.exports = new Script({
                 .then(() => bot.sayCarousel(states.offers.carousel))
                 .then(() => {
                   setTimeout(
-                    () => {
-                      console.log('waiting before next message...');
-                      bot.say(states.offers.contact);
-                    }, 2000
+                    () => bot.say(states.offers.contact),
+                    2000
                   );
                 })
         },
