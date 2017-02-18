@@ -220,6 +220,7 @@ module.exports = new Script({
                 return bot.sayCarousel(states.offers.premium)
               }
             })
+            .then(() => bot.storeUser())
             .then(() => {
               setTimeout(
                 () => bot.say(states.offers.contact),
