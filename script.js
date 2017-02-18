@@ -202,9 +202,11 @@ module.exports = new Script({
     offers: {
         prompt: (bot) => {
             // return bot.say(states.offers.prompt)
-              setTimeout(
-                () => bot.say(states.offers.prompt),
-                2000
+              return new Promise((resolve) =>
+                setTimeout(
+                  () => resolve(bot.say(states.offers.prompt)),
+                  2000
+                )
               )
               .then(() => bot.getProp('vms'))
               .then((vms) => {
