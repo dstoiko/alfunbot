@@ -201,32 +201,31 @@ module.exports = new Script({
 
     offers: {
         prompt: (bot) => {
-            // return bot.say(states.offers.prompt)
-              return new Promise((resolve) =>
-                setTimeout(
-                  () => resolve(bot.say(states.offers.prompt)),
-                  2000
-                )
+            return new Promise((resolve) =>
+              setTimeout(
+                () => resolve(bot.say(states.offers.prompt)),
+                2000
               )
-              .then(() => bot.getProp('vms'))
-              .then((vms) => {
-                let vmNumber = parseInt(vms);
-                if (vmNumber < 30) {
-                  return bot.sayCarousel(states.offers.basic)
-                }
-                else if (vmNumber <= 50) {
-                  return bot.sayCarousel(states.offers.advanced)
-                }
-                else {
-                  return bot.sayCarousel(states.offers.premium)
-                }
-              })
-              .then(() => {
-                setTimeout(
-                  () => bot.say(states.offers.contact),
-                  2000
-                );
-              })
+            )
+            .then(() => bot.getProp('vms'))
+            .then((vms) => {
+              let vmNumber = parseInt(vms);
+              if (vmNumber < 30) {
+                return bot.sayCarousel(states.offers.basic)
+              }
+              else if (vmNumber <= 50) {
+                return bot.sayCarousel(states.offers.advanced)
+              }
+              else {
+                return bot.sayCarousel(states.offers.premium)
+              }
+            })
+            .then(() => {
+              setTimeout(
+                () => bot.say(states.offers.contact),
+                2000
+              );
+            })
         },
         receive: (bot, message) => {
             if (message.payload === 'yes') {
@@ -243,18 +242,18 @@ module.exports = new Script({
 
     contact: {
         prompt: (bot) => {
-            return bot.getProp('email')
-                .then((email) => {
-                    if (email) {
-                        return bot.getProp('email')
-                            .then((email) => bot.say(`Vous serez contacté(e) sur ${email},
-                            cela vous convient-il ?`))
-                            .then(() => bot.say(states.contact.check))
-                    }
-                    else {
-                        return bot.say(states.contact.prompt);
-                    }
-                })
+          return bot.getProp('email')
+            .then((email) => {
+              if (email) {
+                return bot.getProp('email')
+                  .then((email) => bot.say(`Vous serez contacté(e) sur ${email},
+                  cela vous convient-il ?`))
+                  .then(() => bot.say(states.contact.check))
+              }
+              else {
+                return bot.say(states.contact.prompt);
+              }
+            })
         },
         receive: (bot, message) => {
             return bot.getProp('email')
