@@ -137,18 +137,18 @@ module.exports = new Script({
               }
               return bot.say(techProfile)
             })
-            // .then(() => {
-            //   setTimeout(
-            //     () => 'builtWithResults',
-            //     2000)
-            // })
             .then(() => 'builtWithResults')
           }
         }
     },
 
     builtWithResults: {
-        prompt: (bot) => bot.say(states.builtWithResults.check),
+        prompt: (bot) => {
+            setTimeout(
+              () => bot.say(states.builtWithResults.check),
+              2000
+            );
+        },
         receive: (bot, message) => {
             reply = message.payload
             if (reply === 'yes') {
