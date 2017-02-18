@@ -136,12 +136,13 @@ module.exports = new Script({
                 techProfile = techArray.join('\n\n');
               }
               return bot.say(techProfile)
-                .then(() => {
-                  setTimeout(
-                    () => 'builtWithResults',
-                    2000)
-                })
             })
+            .then(() => {
+              setTimeout(
+                () => 'builtWithResults',
+                2000)
+            })
+            // .then(() => 'builtWithResults')
           }
         }
     },
