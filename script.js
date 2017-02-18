@@ -128,8 +128,6 @@ module.exports = new Script({
             .then((techProfile) => {
               if (typeof techProfile == 'object') {
                 let finalObj = helpers.interpolateObject(states.migration.tags, techProfile);
-                let string = '';
-                console.log(JSON.stringify(finalObj, null, 2));
                 let techArray = [];
                 for (var key in techProfile) {
                   if (techProfile[key] !== '') {
@@ -171,7 +169,7 @@ module.exports = new Script({
             if (validator.isNumeric(visitors)) {
                 return bot.say(states.audience.response)
                     .then(() => bot.setProp('visitors', visitors))
-                    .then(() => 'offers')
+                    .then(() => 'vms')
             }
             else {
                 return bot.say(states.audience.error)
@@ -180,16 +178,37 @@ module.exports = new Script({
         }
     },
 
+    vms: {
+        prompt: (bot) => bot.say(states.vms.prompt),
+        receive: (bot, message) => {
+            let numbers = /\d+/; // extract only numbers from string
+            let vms = message.text.trim().match(numbers).toString();
+            if (validator.isNumeric(vms)) {
+                return bot.say(states.vms.response)
+                    .then(() => bot.setProp('vms', vms))
+                    .then(() => 'offers')
+            }
+            else {
+                return bot.say(states.vms.error)
+                    .then(() => 'deadend')
+            }
+        }
+    },
+
     offers: {
         prompt: (bot) => {
-            return bot.say(states.offers.prompt)
-                .then(() => bot.sayCarousel(states.offers.carousel))
-                .then(() => {
-                  setTimeout(
-                    () => bot.say(states.offers.contact),
-                    2000
-                  );
-                })
+            return bot.getProp('vms')
+              .then((vms) => {
+                bot.say(typeof(parseInt(vms)+1));
+              })
+            // return bot.say(states.offers.prompt)
+            //     .then(() => bot.sayCarousel(states.offers.carousel))
+            //     .then(() => {
+            //       setTimeout(
+            //         () => bot.say(states.offers.contact),
+            //         2000
+            //       );
+            //     })
         },
         receive: (bot, message) => {
             if (message.payload === 'yes') {

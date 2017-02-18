@@ -35,7 +35,7 @@
           "ssl": "Vous avez activé le SSL, parfait !",
           "cms": "Vous utilisez le(s) CMS suivant(s) : ${cms}",
           "framework": "Le langage utilisé est : ${framework}",
-          "analytics": "Vous suivez vos analytics...",
+          "analytics": "Vous suivez vos analytics, c'est bien !",
           "payment": "Vous acceptez des paiements sur votre site...",
           "cdn": "Pour les performances, le CDN est un bon choix en effet !"
         },
@@ -55,12 +55,18 @@
         "error": "Hum... Il semblerait que vous ne m'ayez pas donné un nombre de visiteurs... %[Réessayer](postback:audience)"
     },
 
+    "vms": {
+        "prompt": "Combien de machines virtuelles voulez-vous ?",
+        "response": "Merci ! Un instant, je vous trouve la bonne offre...",
+        "error": "Hum... Il semblerait que vous ne m'ayez pas donné un nombre de machines... %[Réessayer](postback:vms)"
+    },
+
     "offers": {
         "prompt": "Le résultat de mon analyse me mène à vous proposer l'offre suivante :",
         "contact": "Voulez-vous que je vous envoie ces offres par e-mail également ? %[Oui](reply:yes) %[Non](reply:no)",
         "carousel": [{
-            "title": "Offre A",
-            "description": "Description de l'offre",
+            "title": "Alfun Basic",
+            "description": "Offre Basic",
             "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
             "actions": [{
                 "text": "Plus d'infos",
@@ -68,8 +74,8 @@
                 "uri": "http://www.alfun.fr"
             }]
         }, {
-            "title": "Offre B",
-            "description": "Description",
+            "title": "Alfun Advanced",
+            "description": "Offre Advanced",
             "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
             "actions": [{
                 "text": "Plus d'infos",
@@ -77,17 +83,8 @@
                 "uri": "http://www.alfun.fr"
             }]
         }, {
-            "title": "Offre C",
-            "description": "Description",
-            "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
-            "actions": [{
-                "text": "Plus d'infos",
-                "type": "link",
-                "uri": "http://www.alfun.fr"
-            }]
-        }, {
-            "title": "Offre D",
-            "description": "Description",
+            "title": "Alfun Premium",
+            "description": "Offre Premium",
             "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
             "actions": [{
                 "text": "Plus d'infos",
