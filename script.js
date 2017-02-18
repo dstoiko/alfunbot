@@ -138,7 +138,11 @@ module.exports = new Script({
               }
               return bot.say(techProfile);
             })
-            .then(() => 'builtWithResults')
+            .then(() => {
+              setTimeout(
+                () => 'builtWithResults',
+                2000)
+            })
           }
         }
     },

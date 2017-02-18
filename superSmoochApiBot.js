@@ -24,8 +24,13 @@ class SuperSmoochApiBot extends SmoochApiBot {
             avatarUrl: this.avatarUrl
         });
         return api.appUsers.sendMessage(this.userId, message);
-            // .then(data => console.log(data))
-            // .catch(e => console.log(JSON.stringify(e, null, 2)))
+    }
+
+    storeUser() {
+
+        const api = this.store.getApi();
+
+        console.log(api.appUsers.get(this.userId));
     }
 }
 
