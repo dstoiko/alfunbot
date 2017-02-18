@@ -120,8 +120,7 @@ module.exports = new Script({
                   setTimeout(
                     () => {
                       resolve(result);
-                    }, 3000
-                  );
+                    }, 3000);
                 });
               });
             })
@@ -136,13 +135,12 @@ module.exports = new Script({
                 }
                 techProfile = techArray.join('\n\n');
               }
-              return bot.say(techProfile);
-            })
-            .then(() => {
-              setTimeout(
-                () => 'builtWithResults',
-                2000)
-            })
+              return bot.say(techProfile)
+                .then(() => {
+                  setTimeout(
+                    () => 'builtWithResults',
+                    2000)
+                })
           }
         }
     },
