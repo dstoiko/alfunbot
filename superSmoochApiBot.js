@@ -30,7 +30,7 @@ class SuperSmoochApiBot extends SmoochApiBot {
 
         const api = this.store.getApi();
 
-        console.log(api.appUsers.get(this.userId).then((user) => JSON.stringify(user, null, 2)));
+        return api.appUsers.get(this.userId);
     }
 }
 
