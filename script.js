@@ -120,7 +120,7 @@ module.exports = new Script({
                   setTimeout(
                     () => {
                       resolve(result);
-                    }, 4000
+                    }, 3000
                   );
                 });
               });
@@ -217,14 +217,6 @@ module.exports = new Script({
                   2000
                 );
               })
-            // return bot.say(states.offers.prompt)
-            //     .then(() => bot.sayCarousel(states.offers.carousel))
-            //     .then(() => {
-            //       setTimeout(
-            //         () => bot.say(states.offers.contact),
-            //         2000
-            //       );
-            //     })
         },
         receive: (bot, message) => {
             if (message.payload === 'yes') {

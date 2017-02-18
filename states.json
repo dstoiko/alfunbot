@@ -62,8 +62,8 @@
     },
 
     "offers": {
-        "prompt": "Le résultat de mon analyse me mène à vous proposer l'offre suivante :",
-        "contact": "Voulez-vous que je vous envoie ces offres par e-mail également ? %[Oui](reply:yes) %[Non](reply:no)",
+        "prompt": "Mes circuits ont analysé et trouvé l'offre la mieux adaptée pour vous :",
+        "contact": "Voulez-vous que je vous envoie les détails par e-mail également ? %[Oui](reply:yes) %[Non](reply:no)",
         "basic": [{
             "title": "Alfun Basic",
             "description": "Offre Basic",
