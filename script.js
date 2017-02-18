@@ -202,7 +202,7 @@ module.exports = new Script({
     offers: {
         prompt: (bot) => {
             // return bot.say(states.offers.prompt)
-              return setTimeout(
+              setTimeout(
                 () => bot.say(states.offers.prompt),
                 2000
               )
