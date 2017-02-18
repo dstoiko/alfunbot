@@ -141,6 +141,7 @@ module.exports = new Script({
                     () => 'builtWithResults',
                     2000)
                 })
+            }
           }
         }
     },
