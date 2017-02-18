@@ -137,12 +137,12 @@ module.exports = new Script({
               }
               return bot.say(techProfile)
             })
-            .then(() => {
-              setTimeout(
-                () => 'builtWithResults',
-                2000)
-            })
-            // .then(() => 'builtWithResults')
+            // .then(() => {
+            //   setTimeout(
+            //     () => 'builtWithResults',
+            //     2000)
+            // })
+            .then(() => 'builtWithResults')
           }
         }
     },
