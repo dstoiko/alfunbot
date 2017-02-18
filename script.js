@@ -197,9 +197,25 @@ module.exports = new Script({
 
     offers: {
         prompt: (bot) => {
-            return bot.getProp('vms')
+            return bot.say(states.offers.prompt)
+              .then(() => bot.getProp('vms'))
               .then((vms) => {
-                bot.say(typeof(parseInt(vms)+1));
+                let vmNumber = parseInt(vms);
+                if (vmNumber < 30) {
+                  return bot.sayCarousel(states.offers.basic)
+                }
+                else if (vmNumber <= 50) {
+                  return bot.sayCarousel(states.offers.advanced)
+                }
+                else {
+                  return bot.sayCarousel(states.offers.premium)
+                }
+              })
+              .then(() => {
+                setTimeout(
+                  () => bot.say(states.offers.contact),
+                  2000
+                );
               })
             // return bot.say(states.offers.prompt)
             //     .then(() => bot.sayCarousel(states.offers.carousel))
