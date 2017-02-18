@@ -144,7 +144,7 @@ module.exports = new Script({
 
     builtWithResults: {
         prompt: (bot) => {
-            setTimeout(
+            return setTimeout(
               () => bot.say(states.builtWithResults.check),
               2000
             );
@@ -201,7 +201,11 @@ module.exports = new Script({
 
     offers: {
         prompt: (bot) => {
-            return bot.say(states.offers.prompt)
+            // return bot.say(states.offers.prompt)
+              return setTimeout(
+                () => bot.say(states.offers.prompt),
+                2000
+              )
               .then(() => bot.getProp('vms'))
               .then((vms) => {
                 let vmNumber = parseInt(vms);
