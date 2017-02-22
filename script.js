@@ -250,8 +250,12 @@ module.exports = new Script({
             .then((email) => {
               if (email) {
                 return bot.getProp('email')
-                  .then((email) => bot.say(`Vous serez contacté(e) sur ${email},
-                  cela vous convient-il ?`))
+                  // .then((email) => bot.say(`Je vous transmets les détails sur votre email, ${email}.
+                  // Confirmez-vous que celui-ci est correct?`))
+                  .then((email) => {
+                    let emailTemplate = { 'email': email };
+                    return bot.say(helpers.interpolateObject(states.contact.emailExists, emailTemplate))
+                  })
                   .then(() => bot.say(states.contact.check))
               }
               else {
