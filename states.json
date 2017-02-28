@@ -65,9 +65,9 @@
         "prompt": "Mes circuits ont analysé et trouvé l'offre la mieux adaptée pour vous :",
         "contact": "Voulez-vous que je vous envoie les détails par e-mail également ? %[Oui](reply:yes) %[Non](reply:no)",
         "basic": [{
-            "title": "Alfun Basic",
-            "description": "Offre Basic",
-            "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
+            "title": "Alfun Starter",
+            "description": "Notre offre cloud Starter",
+            "mediaUrl": "http://v2.alfun.guizdigital.com/wp-content/uploads/2017/02/Starter-2.jpg",
             "actions": [{
                 "text": "Plus d'infos",
                 "type": "link",
@@ -75,9 +75,9 @@
             }]
         }],
         "advanced": [{
-            "title": "Alfun Advanced",
-            "description": "Offre Advanced",
-            "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
+            "title": "Alfun Premium",
+            "description": "Notre offre cloud Premium",
+            "mediaUrl": "http://v2.alfun.guizdigital.com/wp-content/uploads/2017/02/Premium-22.jpg",
             "actions": [{
                 "text": "Plus d'infos",
                 "type": "link",
@@ -85,9 +85,9 @@
             }]
         }],
         "premium": [{
-            "title": "Alfun Premium",
-            "description": "Offre Premium",
-            "mediaUrl": "https://images.pexels.com/photos/26301/pexels-photo-26301.jpg?w=500&h=200&auto=compress&cs=tinysrgb",
+            "title": "Alfun Power",
+            "description": "Notre offre cloud Power",
+            "mediaUrl": "http://v2.alfun.guizdigital.com/wp-content/uploads/2017/02/Power-2.jpg",
             "actions": [{
                 "text": "Plus d'infos",
                 "type": "link",
