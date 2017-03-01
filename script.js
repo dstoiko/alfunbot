@@ -85,9 +85,9 @@ module.exports = new Script({
             return bot.say(states.migration.prompt)
         },
         receive: (bot, message) => {
-          var siteUrl = message.text.trim();
-          var protocol = 'http://';
-          var checkUrl = validator.isURL(protocol + siteUrl) || validator.isURL(siteUrl);
+          const protocol = 'http://';
+          let siteUrl = message.text.trim();
+          let checkUrl = validator.isURL(protocol + siteUrl) || validator.isURL(siteUrl);
           if (!checkUrl) {
             return bot.say(states.migration.noURL)
                 .then(() => 'deadend')
