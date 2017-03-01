@@ -12,7 +12,7 @@ const request = require('request');
 const states = require('./states');
 // Helper functions used
 const helpers = require('./helpers');
-
+// BuiltWith API key
 const BUILTWITH_KEY = process.env['BUILTWITH_API_KEY'];
 
 module.exports = new Script({
@@ -211,13 +211,13 @@ module.exports = new Script({
             .then((vms) => {
               let vmNumber = parseInt(vms);
               if (vmNumber < 30) {
-                return bot.sayCarousel(states.offers.basic)
+                return bot.sayCarousel(states.offers.starter)
               }
               else if (vmNumber <= 50) {
-                return bot.sayCarousel(states.offers.advanced)
+                return bot.sayCarousel(states.offers.premium)
               }
               else {
-                return bot.sayCarousel(states.offers.premium)
+                return bot.sayCarousel(states.offers.power)
               }
             })
             .then(() => {
